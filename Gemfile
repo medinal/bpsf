@@ -16,24 +16,40 @@ gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+# Jquery turbolinks
+gem 'jquery-turbolinks'
+# Use Carrierwave for pictures
+gem 'carrierwave', '~> 1.0'
+# Use simple-forms for creating Simple-forms
+gem 'simple_form'
+# Use enum_help for enumerable types in forms
+gem 'enum_help'
+# Use will paginate for pagination
+gem 'will_paginate', '~> 3.1.0'
+# Use whenever for Chron Jobs
+gem 'whenever'
+# Use for keeping secrets secret.
+gem 'figaro'
+# Use for payments
+gem 'stripe'
+# Use devise for authentication
+gem 'devise'
+# Use cancancan for authorization
+gem 'cancancan'
+# Use Datagrid to create sortable tables
+gem 'datagrid'
+# admin portal
+gem 'rails_admin'
+# Date Validation
+gem 'validates_timeliness', '~> 4.0'
+gem 'date_validator'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+# For use when deploying to heroku
+gem 'rails_12factor', group: :production
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
