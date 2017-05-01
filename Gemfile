@@ -22,6 +22,8 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 # Jquery turbolinks
 gem 'jquery-turbolinks'
+# Use foundation for styling
+gem 'foundation-rails'
 # Use Carrierwave for pictures
 gem 'carrierwave', '~> 1.0'
 # Use simple-forms for creating Simple-forms
