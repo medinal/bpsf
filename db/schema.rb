@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170501203003) do
+ActiveRecord::Schema.define(version: 20170501203643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,10 +28,15 @@ ActiveRecord::Schema.define(version: 20170501203003) do
     t.string   "subject"
     t.text     "relationship"
     t.datetime "started_teaching"
-    t.integer  "school_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.index ["school_id"], name: "index_profiles_on_school_id", using: :btree
+  end
+
+  create_table "schools", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "donations_received"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -53,8 +58,11 @@ ActiveRecord::Schema.define(version: 20170501203003) do
     t.boolean  "teacher"
     t.boolean  "approved"
     t.string   "type"
+    t.integer  "school_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["school_id"], name: "index_users_on_school_id", using: :btree
   end
 
+  add_foreign_key "users", "schools"
 end

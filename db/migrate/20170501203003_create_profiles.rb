@@ -13,7 +13,6 @@ class CreateProfiles < ActiveRecord::Migration[5.0]
       t.string :subject
       t.text :relationship
       t.datetime :started_teaching
-      t.references :school
 
       t.timestamps
     end
