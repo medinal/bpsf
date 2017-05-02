@@ -4,6 +4,10 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
-  resources :grants
+  resources :grants do
+    member do
+      get 'preview'
+    end
+  end
 
 end
