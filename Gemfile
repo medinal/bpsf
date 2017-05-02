@@ -49,6 +49,8 @@ gem 'rails_admin'
 # Date Validation
 gem 'validates_timeliness', '~> 4.0'
 gem 'date_validator'
+# Font Awesome for Icons
+gem "font-awesome-rails"
 
 # For use when deploying to heroku
 gem 'rails_12factor', group: :production

@@ -14,13 +14,16 @@
   <body>
     <div class="page">
       <%= render "shared/header" %>
+      <%= render "shared/fullnavbar" %>
+      <%= render "shared/collapsednavbar" %>
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
-      
+
 
 
       <%= yield %>
-      <%= render "shared/footer" %>
+      <%= render "shared/collapsedfooter" %>
+      <%= render "shared/fullfooter" %>
     </div>
   </body>
 </html>
