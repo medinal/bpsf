@@ -49,6 +49,10 @@ gem 'rails_admin'
 # Date Validation
 gem 'validates_timeliness', '~> 4.0'
 gem 'date_validator'
+# Use jquery-ui as a supplement to jquery
+gem 'jquery-ui-rails'
+# User autocomplete for searching universities
+gem 'rails-jquery-autocomplete'
 
 # For use when deploying to heroku
 gem 'rails_12factor', group: :production
