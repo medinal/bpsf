@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
+  get "/user/:user_id", to: "users#show"
+
   resources :grants
 
 end
