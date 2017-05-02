@@ -53,6 +53,8 @@ gem 'date_validator'
 gem 'jquery-ui-rails'
 # User autocomplete for searching universities
 gem 'rails-jquery-autocomplete'
+# Font Awesome for Icons
+gem "font-awesome-rails"
 
 # For use when deploying to heroku
 gem 'rails_12factor', group: :production

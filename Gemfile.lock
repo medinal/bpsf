@@ -248,6 +248,7 @@ DEPENDENCIES
   devise
   enum_help
   figaro
+  font-awesome-rails
   foundation-rails
   jquery-rails
   jquery-turbolinks

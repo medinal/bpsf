@@ -53,7 +53,7 @@ $foundation-palette: (
   primary: #1779ba,
   secondary: #767676,
   success: #3adb76,
-  warning: #ffae00,
+  warning: #ff5400,
   alert: #cc4b37,
 );
 $light-gray: #e6e6e6;
@@ -61,7 +61,7 @@ $medium-gray: #cacaca;
 $dark-gray: #8a8a8a;
 $black: #0a0a0a;
 $white: #fefefe;
-$body-background: $white;
+$body-background: rgb(209, 210, 214);
 $body-font-color: $black;
 $body-font-family: 'MuseoSans300';
 $body-antialiased: true;
@@ -71,7 +71,7 @@ $global-weight-normal: normal;
 $global-weight-bold: bold;
 $global-radius: 0;
 $global-text-direction: ltr;
-$global-flexbox: false;
+$global-flexbox: true;
 $print-transparent-backgrounds: true;
 
 @include add-foundation-colors;
@@ -341,11 +341,11 @@ $dropdown-sizes: (
 // 18. Dropdown Menu
 // -----------------
 
-$dropdownmenu-arrows: true;
+$dropdownmenu-arrows: false;
 $dropdownmenu-arrow-color: $anchor-color;
 $dropdownmenu-arrow-size: 6px;
 $dropdownmenu-min-width: 200px;
-$dropdownmenu-background: $white;
+$dropdownmenu-background: $light-gray;
 $dropdownmenu-border: 1px solid $medium-gray;
 
 // 19. Forms
@@ -447,8 +447,8 @@ $maincontent-class: 'off-canvas-content';
 // 25. Orbit
 // ---------
 
-$orbit-bullet-background: $medium-gray;
-$orbit-bullet-background-active: $dark-gray;
+$orbit-bullet-background: rgba($warning-color,0.50);
+$orbit-bullet-background-active: $warning-color;
 $orbit-bullet-diameter: 1.2rem;
 $orbit-bullet-margin: 0.1rem;
 $orbit-bullet-margin-top: 0.8rem;
@@ -588,12 +588,12 @@ $thumbnail-radius: $global-radius;
 // 35. Title Bar
 // -------------
 
-$titlebar-background: $black;
-$titlebar-color: $white;
+$titlebar-background: $white;
+$titlebar-color: $warning-color;
 $titlebar-padding: 0.5rem;
 $titlebar-text-font-weight: bold;
-$titlebar-icon-color: $white;
-$titlebar-icon-color-hover: $medium-gray;
+$titlebar-icon-color: $warning-color;
+$titlebar-icon-color-hover: $warning-color;
 $titlebar-icon-spacing: 0.25rem;
 
 // 36. Tooltip
@@ -613,7 +613,7 @@ $tooltip-radius: $global-radius;
 // -----------
 
 $topbar-padding: 0.5rem;
-$topbar-background: $light-gray;
+$topbar-background: $white;
 $topbar-submenu-background: $topbar-background;
 $topbar-title-spacing: 0.5rem 1rem 0.5rem 0;
 $topbar-input-width: 200px;
