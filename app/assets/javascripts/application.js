@@ -11,9 +11,16 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
-//= require foundation
+//= require jquery-ui
 //= require turbolinks
+//= require jquery.turbolinks
+//= require jquery_ujs
+//= require autocomplete-rails
+//= require foundation
 //= require_tree .
 
-$(function(){ $(document).foundation(); });
+$(document).ready(function () {
+
+  $(function(){ $(document).foundation(); });
+
+});
