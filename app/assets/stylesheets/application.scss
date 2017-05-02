@@ -12,6 +12,107 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  *= require foundation_and_overrides
 
  */
+
+.page {
+  margin: 40px auto 50px;
+  box-shadow: 0 0 10px #aaaaaa;
+  max-width: 1020px;
+  padding: 30px;
+  background-color: white;
+}
+
+.header {
+  width: 100%;
+  clear: both;
+  line-height: 0px;
+  display: inline-block;
+}
+
+.logo {
+  max-width: 192px;
+  display: inline-block;
+}
+
+.banner {
+  display: inline-block;
+}
+
+.footer {
+  border-top: 2px solid #ff5400;
+  padding-top: 12px;
+}
+
+.footer .small-5 {
+  text-align: right;
+  margin-left: 8%;
+}
+
+.footer h5 {
+  font-weight: bold;
+}
+
+.news-image-gallery-container {
+  background-color: white;
+  padding: 2rem 1.5rem 1rem;
+}
+
+.orbit-previous, .orbit-next {
+  height: 100% ;
+}
+
+.nav {
+  border-bottom: 2px solid #ff5400;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.menu {
+  text-align: center;
+  color: #cacaca;
+}
+
+.main-links {
+  color: #ff5400;
+  font-weight: bolder;
+  padding-top: 0px !important;
+}
+
+.menu li:hover a {
+  background-color: #e6e6e6;
+  color: #ff5400;
+}
+
+.menu li:hover {
+  background-color: #e6e6e6;
+  color: #ff5400;
+}
+
+.dropdown-links {
+  color: black !important;
+  font-weight: 500;
+  display: inline;
+}
+
+.dropdown-links:hover {
+  background-color: #cacaca !important;
+  color: black;
+}
+
+.title-bar {
+  margin-top: 10px;
+  border: 1px solid #ff5400 !important;
+  justify-content: center;
+}
+
+@media (max-width: 640px){
+  .footer {
+    text-align: center;
+  }
+  .page {
+    margin: 0px;
+  }
+}
