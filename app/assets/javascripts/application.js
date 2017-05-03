@@ -12,11 +12,11 @@
 //
 //= require jquery
 //= require jquery-ui
-//= require turbolinks
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require autocomplete-rails
 //= require foundation
+//= require turbolinks
 //= require_tree .
 
 $(document).ready(function () {
