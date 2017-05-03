@@ -1,9 +1,6 @@
 <%- if controller_name != 'sessions' %>
-  <div class="already-registered">
-    <br>
     <span>Already registered?</span><br>
     <%= link_to "Log in", new_session_path(resource_name) %><br />
-  </div>
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
