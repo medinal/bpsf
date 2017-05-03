@@ -23,4 +23,25 @@ $(document).ready(function () {
 
   $(function(){ $(document).foundation(); });
 
+  $(".friend-family-p").hide();
+  $(".teacher-p").hide();
+
+  $(".role").change(function(){
+    console.log($(this).val())
+    $(".friend-family-p").hide();
+    $(".teacher-p").hide();
+    if($(this).val()=== "Friend/Family Member"){
+      $(".friend-family-p").show();
+    }
+    else if($(this).val()=== "Teacher"){
+      $(".teacher-p").show();
+    }
+    })
+
 });
+
+
+
+  // if($(".role").value === 0){
+  //   console.log("fuck")
+  // }
