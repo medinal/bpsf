@@ -17,3 +17,12 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+$(document).on('turbolinks:load', function(){
+  console.log('hello world');
+  $('.profile.account').show();
+  $('.profile-section').on('click', function(){
+    $('.account-section-info .profile').hide();
+    id = this.id;
+    $(`.account-section-info .${id}`).show();
+  });
+})
