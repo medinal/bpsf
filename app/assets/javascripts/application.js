@@ -11,18 +11,49 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
-//= require foundation
+//= require jquery-ui
 //= require turbolinks
+//= require jquery.turbolinks
+//= require jquery_ujs
+//= require autocomplete-rails
+//= require foundation
 //= require_tree .
 
-$(function(){ $(document).foundation(); });
-$(document).on('turbolinks:load', function(){
-  console.log('hello world');
+
+$(document).ready(function () {
+
+  $(function(){ $(document).foundation(); });
+
+  $(".friend-family-p").hide();
+  $(".teacher-p").hide();
+  $(".school-input").hide();
+
+  $(".role").change(function(){
+    $(".friend-family-p").hide();
+    $(".teacher-p").hide();
+
+    if($(this).val()=== "Teacher"){
+      $(".teacher-p").show();
+      $(".school-input").show();
+    }
+    else if($(this).val()=== "Friend/Family Member"){
+      $(".friend-family-p").show();
+      $(".school-input").hide();
+      $(".school-input").val('')
+    }
+  })
+
   $('.profile.account').show();
   $('.profile-section').on('click', function(){
     $('.account-section-info .profile').hide();
     id = this.id;
     $(`.account-section-info .${id}`).show();
   });
-})
+});
+
+
+
+  // if($(".role").value === 0){
+  //   console.log("fuck")
+  // }
+
