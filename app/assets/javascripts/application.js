@@ -25,18 +25,23 @@ $(document).ready(function () {
 
   $(".friend-family-p").hide();
   $(".teacher-p").hide();
+  $(".school-input").hide();
 
   $(".role").change(function(){
-    console.log($(this).val())
     $(".friend-family-p").hide();
     $(".teacher-p").hide();
-    if($(this).val()=== "Friend/Family Member"){
-      $(".friend-family-p").show();
-    }
-    else if($(this).val()=== "Teacher"){
+
+    if($(this).val()=== "Teacher"){
       $(".teacher-p").show();
+      $(".school-input").show();
     }
-    })
+    else if($(this).val()=== "Friend/Family Member"){
+      $(".friend-family-p").show();
+      $(".school-input").hide();
+      $(".school-input").val('')
+    }
+  })
+
 
 });
 
