@@ -112,7 +112,7 @@
   text-align: center;
   border-top: 2px solid black;
   border-bottom: 2px solid black;
-  height: 40px;
+  min-height: 40px;
 }
 
 .profile-section {
@@ -133,6 +133,14 @@
 
 .account-section-info .profile {
   display: none;
+}
+
+.user-attributes {
+  text-align: right;
+}
+
+.user-attribute-values p {
+  margin-left: 20px;
 }
 
 @media (max-width: 640px){

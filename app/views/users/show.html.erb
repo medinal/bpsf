@@ -4,8 +4,29 @@
   <div class="profile-section small-4" id="payment">Payment History</div>
   <div class="profile-section small-4" id="credit-card">Update Credit Card Info</div>
 </div>
-<div class="account-section-info">  
-  <div class="profile account">Account INFO</div>
-  <div class="profile payment">payment history stuff</div>
-  <div class="profile credit-card">Update your credit card info here</div>
+<div class="account-section-info">
+  <div class="profile account">
+    <div class="row">
+      <div class="user-attributes small-6">
+        <p>Email:</p>
+        <p>Relationship:</p>
+        <p>Address:</p>
+        <p>Phone:</p>
+      </div>
+      <div class="user-attribute-values small-6">
+        <p> <%= @user.email %> </p>
+        <p> <%= @user.role %> </p>
+        <p> <%= @user.profile.address %> </p>
+        <p> <%= @user.profile.home_phone %> </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile payment">
+    payment history stuff
+  </div>
+
+  <div class="profile credit-card">
+    Update your credit card info here
+  </div>
 </div>
