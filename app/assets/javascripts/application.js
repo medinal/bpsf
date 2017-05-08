@@ -19,13 +19,7 @@
 //= require turbolinks
 //= require_tree .
 
-<<<<<<< HEAD
 $(document).on('turbolinks:load', function() {
-  $(function(){ $(document).foundation(); });
-=======
-
-$(document).ready(function () {
-
   $(function(){ $(document).foundation(); });
 
   $(".friend-family-p").hide();
@@ -53,12 +47,5 @@ $(document).ready(function () {
     id = this.id;
     $(`.account-section-info .${id}`).show();
   });
->>>>>>> master
+
 });
-
-
-
-  // if($(".role").value === 0){
-  //   console.log("fuck")
-  // }
-
