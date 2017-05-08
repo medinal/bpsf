@@ -19,6 +19,7 @@
 //= require foundation
 //= require_tree .
 
+
 $(document).ready(function () {
 
   $(function(){ $(document).foundation(); });
@@ -42,7 +43,12 @@ $(document).ready(function () {
     }
   })
 
-
+  $('.profile.account').show();
+  $('.profile-section').on('click', function(){
+    $('.account-section-info .profile').hide();
+    id = this.id;
+    $(`.account-section-info .${id}`).show();
+  });
 });
 
 
@@ -50,3 +56,4 @@ $(document).ready(function () {
   // if($(".role").value === 0){
   //   console.log("fuck")
   // }
+

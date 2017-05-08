@@ -108,6 +108,41 @@
   justify-content: center;
 }
 
+.profile.row {
+  text-align: center;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  min-height: 40px;
+}
+
+.profile-section {
+  font-weight: bold;
+  height: 100%;
+  line-height: 40px !important;
+}
+
+.profile-section:hover {
+  background-color: #cacaca;
+  cursor: pointer;
+}
+
+#payment{
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+}
+
+.account-section-info .profile {
+  display: none;
+}
+
+.user-attributes {
+  text-align: right;
+}
+
+.user-attribute-values p {
+  margin-left: 20px;
+}
+
 @media (max-width: 640px){
   .footer {
     text-align: center;
