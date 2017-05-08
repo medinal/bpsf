@@ -5,7 +5,15 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
+<<<<<<< HEAD
+  resources :grants do
+    member do
+      get 'preview'
+    end
+  end
+=======
 
   resources :grants
+>>>>>>> master
 
 end

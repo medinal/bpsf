@@ -12,13 +12,17 @@
 //
 //= require jquery
 //= require jquery-ui
-//= require turbolinks
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require autocomplete-rails
 //= require foundation
+//= require turbolinks
 //= require_tree .
 
+<<<<<<< HEAD
+$(document).on('turbolinks:load', function() {
+  $(function(){ $(document).foundation(); });
+=======
 
 $(document).ready(function () {
 
@@ -49,6 +53,7 @@ $(document).ready(function () {
     id = this.id;
     $(`.account-section-info .${id}`).show();
   });
+>>>>>>> master
 });
 
 
