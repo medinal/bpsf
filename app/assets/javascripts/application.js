@@ -19,6 +19,46 @@
 //= require turbolinks
 //= require_tree .
 
+<<<<<<< HEAD
 $(document).on('turbolinks:load', function() {
   $(function(){ $(document).foundation(); });
+=======
+
+$(document).ready(function () {
+
+  $(function(){ $(document).foundation(); });
+
+  $(".friend-family-p").hide();
+  $(".teacher-p").hide();
+  $(".school-input").hide();
+
+  $(".role").change(function(){
+    $(".friend-family-p").hide();
+    $(".teacher-p").hide();
+
+    if($(this).val()=== "Teacher"){
+      $(".teacher-p").show();
+      $(".school-input").show();
+    }
+    else if($(this).val()=== "Friend/Family Member"){
+      $(".friend-family-p").show();
+      $(".school-input").hide();
+      $(".school-input").val('')
+    }
+  })
+
+  $('.profile.account').show();
+  $('.profile-section').on('click', function(){
+    $('.account-section-info .profile').hide();
+    id = this.id;
+    $(`.account-section-info .${id}`).show();
+  });
+>>>>>>> master
 });
+
+
+
+  // if($(".role").value === 0){
+  //   console.log("fuck")
+  // }
+
