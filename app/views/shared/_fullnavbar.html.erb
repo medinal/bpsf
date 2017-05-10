@@ -14,36 +14,29 @@
 
     <li>
       <h1><%= fa_icon "users" %></h1>
-      <a class="main-links align-center"  href="#">About Us</a>
+      <a class="main-links align-center" data-open="aboutModal">About</a>
+        <div class="reveal" id="aboutModal" data-reveal>
+          <%= render 'shared/about' %>
+        </div>
     </li>
 
     <li>
       <h1><%= fa_icon "question-circle-o" %></h1>
       <a class="main-links align-center"  href="#">FAQ</a>
       <ul class="menu">
+
         <!-- For teachers modal -->
         <li><a class="dropdown-links align-center" data-open="teacherModal">For Teachers</a></li>
         <div class="reveal" id="teacherModal" data-reveal>
-          <h4>FOR TEACHERS</h4>
-          <p> 1.  Sign up and create your account.</p>
-          <p> 2.  Log in and click “Apply for Grant”</p>
-          <p> 3.  Complete the brief online application. You can save and return to your application using your account login at any time. Please provide a project budget that is specific and accurate, and please set a reasonable timeline for raising the funds on the Friends & Family site.</p>
-          <p> 4.  Friends & Family grant funds cannot be used to pay an independent consultant (non-profit organizations are okay).</p>
-          <p> 5.  The Schools Fund will review your grant application and provide you with a response within a week of your submission. Approval will be based on a well-justified explanation of the educational value of the project.</p>
-          <p> 6.  If your grant application is approved, you will receive a notification email with a project link from the Berkeley Public Schools Fund, including sample text for you to send to your class/contact list. The grant amount that you applied for will have a 9% administration fee added to it when we post it to the site ($50 grant will become $54.50).</p>
-          <p> 7.  Email the grant link to your classroom parents and other contacts. Share this project with your friends, family and social networks to increase funding sources for your grant project.</p>
-          <p> 8.  Your grant will be visible and searchable (under your name, school or grant subject) on the Schools Fund Friends & Family site. The Schools Fund will also help promote grant projects through our monthly e-Newsletter and Facebook page.</p>
-          <p> 9.  Once you have received full funding for your grant, the Schools Fund will send you a check for the requested amount in your application.</p>
-          <p> 10.  Please send all receipts to the Schools Fund within 90 days of receiving funding. Failure to provide receipts may affect your ability to receive future grants.</p>
-          <p>  11.  There is no limit to how frequently you apply for grants on the Friends & Family site.</p>
-          <button class="close-button" data-close aria-label="Close modal" type="button">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <%= render 'shared/for_teachers' %>
         </div>
 
          <!-- For friends and Families modal -->
         <li><a class="dropdown-links align-center" data-open="friendModal" >For Friends and Family</a></li>
-        
+        <div class="reveal" id="friendModal" data-reveal>
+          <%= render 'shared/for_friends_and_family' %>
+        </div>
+
       </ul>
     </li>
 
