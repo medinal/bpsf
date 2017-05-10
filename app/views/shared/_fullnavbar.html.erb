@@ -14,15 +14,29 @@
 
     <li>
       <h1><%= fa_icon "users" %></h1>
-      <a class="main-links align-center"  href="#">About Us</a>
+      <a class="main-links align-center" data-open="aboutModal">About</a>
+        <div class="reveal" id="aboutModal" data-reveal>
+          <%= render 'shared/about' %>
+        </div>
     </li>
 
     <li>
       <h1><%= fa_icon "question-circle-o" %></h1>
       <a class="main-links align-center"  href="#">FAQ</a>
       <ul class="menu">
-        <li><a class="dropdown-links align-center"  href="#">For Teachers</a></li>
-        <li><a class="dropdown-links align-center"  href="#">For Friends and Family</a></li>
+
+        <!-- For teachers modal -->
+        <li><a class="dropdown-links align-center" data-open="teacherModal">For Teachers</a></li>
+        <div class="reveal" id="teacherModal" data-reveal>
+          <%= render 'shared/for_teachers' %>
+        </div>
+
+         <!-- For friends and Families modal -->
+        <li><a class="dropdown-links align-center" data-open="friendModal" >For Friends and Family</a></li>
+        <div class="reveal" id="friendModal" data-reveal>
+          <%= render 'shared/for_friends_and_family' %>
+        </div>
+
       </ul>
     </li>
 
@@ -45,3 +59,5 @@
     </li>
   </ul>
 </div>
+
+
