@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170503193844) do
+ActiveRecord::Schema.define(version: 20170512231338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,13 +18,11 @@ ActiveRecord::Schema.define(version: 20170503193844) do
   create_table "grants", force: :cascade do |t|
     t.text     "title"
     t.text     "summary"
-    t.text     "subject_areas"
     t.text     "grade_level"
     t.text     "duration"
     t.integer  "num_classes"
     t.integer  "num_students"
     t.integer  "total_budget"
-    t.text     "funds_will_pay_for"
     t.text     "budget_desc"
     t.text     "purpose"
     t.text     "methods"
@@ -41,6 +39,8 @@ ActiveRecord::Schema.define(version: 20170503193844) do
     t.date     "deadline"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.integer  "subject_areas"
+    t.integer  "funds_will_pay_for"
     t.index ["school_id"], name: "index_grants_on_school_id", using: :btree
     t.index ["user_id"], name: "index_grants_on_user_id", using: :btree
   end
