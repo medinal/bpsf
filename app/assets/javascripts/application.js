@@ -48,4 +48,16 @@ $(document).on('turbolinks:load', function() {
     $(`.account-section-info .${id}`).show();
   });
 
+  $('#submit').on('click', function(e){
+    $('#status').val('pending');
+    $('.input').children().prop('required',true);
+    $('#new-grant').click();
+  });
+
+  $('#draft').on('click', function(e){
+    $('#status').val('draft');
+    $('.input').children().prop('required',false);
+    $('#new-grant').click();
+  });
+
 });

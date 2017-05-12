@@ -1,4 +1,4 @@
-<%= simple_form_for @grant do |f| %>
+<%= simple_form_for @grant, url: grants_path, method: 'POST' do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
@@ -22,9 +22,11 @@
     <%= f.input :video %>
     <%= f.input :image %>
     <%= f.input :deadline %>
+    <%= f.hidden_field :status, id: "status" %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+    <%= f.button :submit, class: 'hide', id: "new-grant" %>
+    <a href="<%= grants_path %>"><button type="button" name="button" class="button primary hollow">Back</button></a>
+    <button type="button" name="button" id="submit" class="button float-right warning hollow"><strong>Submit</strong></button>
+    <button type="button" name="button" id="draft" class="button float-right secondary hollow"><strong>Save as Draft</strong></button>
 <% end %>
