@@ -1,0 +1,14 @@
+  <div class="row">
+    <div class="medium-7 medium-centered">
+      <h1>Contact Us!</h1>
+        <%= form_for @contact_form do |f| %>
+          
+            <%= f.label :email, 'Email' %>
+            <%= f.text_field :email, class: :input %>
+            <%= f.label :message, 'Message' %>
+            <%= f.text_area :message, class: [:textarea, :input], rows: 5 %>
+            <%= f.submit 'Send message' %>
+        <% end %>
+
+    </div>
+  </div>

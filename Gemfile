@@ -55,6 +55,7 @@ gem 'jquery-ui-rails'
 gem 'rails-jquery-autocomplete'
 # Font Awesome for Icons
 gem "font-awesome-rails"
+gem 'mail_form'
 
 # For use when deploying to heroku
 gem 'rails_12factor', group: :production
