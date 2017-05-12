@@ -50,6 +50,7 @@ class GrantsController < ApplicationController
   # POST /grants
   def create
     @grant = Grant.new(grant_params)
+    @grant.user = current_user
     if @grant.save
       redirect_to @grant, notice: 'Grant was successfully created.'
     else
