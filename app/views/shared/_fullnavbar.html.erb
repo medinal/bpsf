@@ -5,9 +5,9 @@
       <h1><%= fa_icon "file-text-o" %></h1>
       <a class="main-links align-center"  href="#">Grants</a>
       <ul class="menu">
-        <li><a class="dropdown-links align-center"  href="#">View All</a></li>
-        <% if current_user and current_user.teacher? %>
-          <li><a class="dropdown-links align-center"  href="#">Create New</a></li>
+        <li><a class="dropdown-links align-center"  href="<%= grants_path %>">View All</a></li>
+        <% if current_user and current_user.teacher? and current_user.approved? %>
+          <li><a class="dropdown-links align-center"  href="<%= new_grant_path %>">Create New</a></li>
         <% end %>
       </ul>
     </li>
@@ -53,6 +53,9 @@
           <li><%= link_to "Sign In", new_user_session_path, class: "dropdown-links align-center" %></li>
           <li><%= link_to "Register", new_user_registration_path, class: "dropdown-links align-center" %></li>
         <% else %>
+          <% if current_user.admin? %>
+          <li><%= link_to "Admin Dashboard", rails_admin_path, class: "dropdown-links align-center" %></li>
+          <% end %>
           <li><%= link_to "Sign Out", destroy_user_session_path, method: "delete", class: "dropdown-links align-center" %></li>
         <% end %>
       </ul>

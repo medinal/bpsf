@@ -1,12 +1,12 @@
 # t.text     "title"
 # t.text     "summary"
-# t.text     "subject_areas"
+# t.integer  "subject_areas"
 # t.text     "grade_level"
 # t.text     "duration"
 # t.integer  "num_classes"
 # t.integer  "num_students"
 # t.integer  "total_budget"
-# t.text     "funds_will_pay_for"
+# t.integer  "funds_will_pay_for"
 # t.text     "budget_desc"
 # t.text     "purpose"
 # t.text     "methods"
@@ -27,6 +27,7 @@
 # t.index ["user_id"], name: "index_grants_on_user_id", using: :btree
 
 class GrantsController < ApplicationController
+  before_action :permission, except: [:index, :show]
   before_action :set_grant, only: [:show, :edit, :update, :destroy]
 
   # GET /grants
@@ -51,6 +52,7 @@ class GrantsController < ApplicationController
   def create
     @grant = Grant.new(grant_params)
     @grant.user = current_user
+    @grant.school = School.find(current_user.school_id)
     if @grant.save
       redirect_to @grant, notice: 'Grant was successfully created.'
     else
@@ -60,6 +62,9 @@ class GrantsController < ApplicationController
 
   # PATCH/PUT /grants/1
   def update
+    if !@grant.state_transition(grant_params[:status])
+      render :edit, notice: 'That is not a valid state transition'
+    end
     if @grant.update(grant_params)
       redirect_to @grant, notice: 'Grant was successfully updated.'
     else
@@ -88,4 +93,9 @@ class GrantsController < ApplicationController
                                     :collaborators, :comments, :user_id, :state,
                                     :video, :image, :school_id, :status, :deadline)
     end
+
+    def permission
+      redirect_to grants_path unless current_user and ((current_user.teacher? and current_user.approved?) or current_user.admin?)
+    end
+
 end
