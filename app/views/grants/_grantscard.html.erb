@@ -1,0 +1,12 @@
+<%= link_to grant_path(grant), class: "grant-row-partial" do %>
+  <div class="card grant-row row">
+    <img src="http://i.imgur.com/TN9KKO9.jpg" alt="" class="grant-partial-image float-center">
+    <div class="columns medium-6 large-8 small-12">
+      <h3 class="text-center hover-orange">This is just a Test</h3>
+      <p class="text-center"><%= grant.user.first_name %> <%= grant.user.last_name %></p>
+      <p class="text-center"><%= grant.school.name %></p>
+      <h6 class="text-justify">This is a test for what is working and what isn't working.</6>
+      <h4 class="text-center"><span class="amount">$246</span> of $300 left with 26 days left</h4>
+    </div>
+  </div>
+<% end %>

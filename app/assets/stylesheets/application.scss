@@ -178,3 +178,39 @@
 #draft {
   margin-right: 10px;
 }
+
+.grant-partial-image {
+  max-height: 200px;
+}
+
+.grant-row {
+  padding: 1em;
+}
+
+.grant-row:hover {
+  transition: .3s ease-in;
+  background-color: #e6e6e6;
+  border: 1px solid #ff5400;
+}
+
+.grant-container {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.grant-row-partial {
+  color: black;
+}
+
+.grant-row-partial:hover {
+  color: black;
+}
+
+.grant-row-partial:hover .hover-orange {
+  color: #ff5400;
+  transition: .3s ease-in;
+}
+
+.amount {
+  color: #ff5400;
+}

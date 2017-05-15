@@ -1,1 +1,10 @@
-Test
+<div class="grant-container show-for-medium">
+  <% @grants.each do |grant| %>
+    <%= render "grantspartial", grant: grant %>
+  <% end %>
+</div>
+<div class="grant-container hide-for-medium">
+  <% @grants.each do |grant| %>
+    <%= render "grantscard", grant: grant %>
+  <% end %>
+</div>
