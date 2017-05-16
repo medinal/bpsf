@@ -7,7 +7,7 @@
       <h3 class="hover-orange"><%= grant.title %></h3>
       <p><%= grant.user.first_name %> <%= grant.user.last_name %> | <%= grant.school.name %></p>
       <h6><%= grant.summary %></6>
-      <h4><span class="amount">$<%= grant.amount_raised %></span> of $<%= grant.total_budget %> left with <%= grant.days_left %> days left</h4>
+      <h4><span class="amount">$<%= grant.amount_raised %></span> of $<%= grant.total_budget %> left with <%= pluralize(grant.days_left, 'day') %> left</h4>
       <div class="progress" role="progressbar" tabindex="0" aria-valuenow="<%= grant.amount_raised %>" aria-valuemin="0" aria-valuemax="<%= grant.total_budget %>">
         <div class="progress-meter" style="width: <%= grant.percent_complete %>%"></div>
       </div>
