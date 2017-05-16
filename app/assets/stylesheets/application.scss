@@ -99,6 +99,25 @@
   color: black;
 }
 
+.dropdown-li a:hover{
+  border: 1px solid #ff5400;
+}
+
+.dropdown-li a h2{
+  display: flex;
+  align-items: center;
+  margin-bottom: 0px;
+}
+
+
+.dropdown-li a h2 i{
+  color: #cacaca;
+}
+
+.dropdown-li a h2:hover i{
+  color: #ff5400;
+}
+
 .title-bar {
   margin-top: 10px;
   border: 1px solid #ff5400 !important;

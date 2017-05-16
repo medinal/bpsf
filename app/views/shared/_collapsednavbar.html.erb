@@ -4,25 +4,37 @@
 </div>
 
 <div class="top-bar hide-for-medium" id="example-animated-menu" data-animate="fade-in fade-out">
-  <div class="top-bar-left align-middle">
+  <div class="top-bar-left">
     <ul class="vertical dropdown menu" data-dropdown-menu>
-      <li>
-        <h1><%= fa_icon "file-text-o", class:"float-left"  %><small><a class="main-links align-center" href="#">Grants</a></small></h1>
+      <li class="dropdown-li">
+        <%= link_to grants_path do %>
+          <h2><%= fa_icon "file-text-o", class:"float-left" %><span class="main-links float-center">Grants</span></h2>
+        <% end %>
       </li>
-      <li>
-        <h1><%= fa_icon "users", class:"float-left"  %><small><a class="main-links align-center"  href="#">About Us</a></small></h1>
+      <li class="dropdown-li">
+        <a href="#">
+          <h2><%= fa_icon "users", class:"float-left"  %><span class="main-links float-center"  href="#">About Us</span></h2>
+        </a>
       </li>
-      <li>
-        <h1><%= fa_icon "question-circle-o", class:"float-left"  %><small><a class="main-links align-center"  href="#">For Teachers</a></small></h1>
+      <li class="dropdown-li">
+        <a href="#">
+          <h2><%= fa_icon "question-circle-o", class:"float-left"  %><span class="main-links float-center">For Teachers</span></h2>
+        </a>
       </li>
-      <li>
-        <h1><%= fa_icon "question-circle-o", class:"float-left"  %><small><a class="main-links align-center"  href="#">For Friends and Family</a></small></h1>
+      <li class="dropdown-li">
+        <a href="#">
+          <h2><%= fa_icon "question-circle-o", class:"float-left"  %><span class="main-links float-center">For Friends and Family</span></h2>
+        </a>
       </li>
-      <li>
-        <h1><%= fa_icon "envelope-o", class:"float-left"  %><small><a class="main-links align-center"  href="#">Contact</a></small></h1>
+      <li class="dropdown-li">
+        <a href="#">
+          <h2><%= fa_icon "envelope-o", class:"float-left"  %><span class="main-links float-center">Contact</span></h2>
+        </a>
       </li>
-      <li>
-        <h1><%= fa_icon "user-o", class:"float-left" %><small><a class="main-links align-center"  href="#">Account</a></small></h1>
+      <li class="dropdown-li">
+        <a href="#">
+          <h2><%= fa_icon "user-o", class:"float-left" %><span class="main-links float-center">Account</span></h2>
+        </a>
       </li>
     </ul>
   </div>
