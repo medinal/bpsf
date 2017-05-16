@@ -1,0 +1,10 @@
+<h1 class="text-center warning-color">New Donation</h1>
+<hr>
+
+<div class="grant-container show-for-medium">
+  <%= render "/grants/grantspartial", grant: @grant %>
+</div>
+<div class="grant-container hide-for-medium">
+  <%= render "/grants/grantscard", grant: @grant %>
+</div>
+<%= render "form" %>

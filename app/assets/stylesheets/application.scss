@@ -66,28 +66,25 @@
 
 .nav {
   border-bottom: 2px solid #ff5400;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
-.menu {
-  text-align: center;
+.icon-in-menu  {
   color: #cacaca;
 }
 
 .main-links {
   color: #ff5400;
-  font-weight: bolder;
-  padding-top: 0px !important;
 }
 
-.menu li:hover a {
-  background-color: #e6e6e6;
-  color: #ff5400;
+.menu li a {
+  text-align: center;
+  display: block;
 }
 
-.menu li:hover {
-  background-color: #e6e6e6;
+.menu-item:hover, .menu-item:hover .icon-in-menu {
+  background-color: #cacaca;
   color: #ff5400;
 }
 
@@ -100,6 +97,25 @@
 .dropdown-links:hover {
   background-color: #cacaca !important;
   color: black;
+}
+
+.dropdown-li a:hover{
+  border: 1px solid #ff5400;
+}
+
+.dropdown-li a h2{
+  display: flex;
+  align-items: center;
+  margin-bottom: 0px;
+}
+
+
+.dropdown-li a h2 i{
+  color: #cacaca;
+}
+
+.dropdown-li a h2:hover i{
+  color: #ff5400;
 }
 
 .title-bar {
@@ -172,9 +188,56 @@
 
 .modal {
   height: 80vh;
-  width: 50vw;
 }
 
 #draft {
   margin-right: 10px;
+}
+
+.grant-partial-image {
+  max-height: 200px;
+}
+
+.grant-row {
+  padding: 1em;
+}
+
+.grant-row:hover {
+  transition: .3s ease-in;
+  background-color: #e6e6e6;
+  border: 1px solid #ff5400;
+}
+
+.grant-container {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.grant-row-partial {
+  color: black;
+}
+
+.grant-row-partial:hover {
+  color: black;
+}
+
+.grant-row-partial:hover .hover-orange {
+  color: #ff5400;
+  transition: .3s ease-in;
+}
+
+.amount {
+  color: #ff5400;
+}
+
+.grant-section-title {
+  font-weight: bold;
+}
+
+.grant-content {
+  text-align: justify;
+}
+
+.progress-meter {
+  border-radius: 25px;
 }

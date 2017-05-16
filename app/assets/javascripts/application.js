@@ -60,4 +60,8 @@ $(document).on('turbolinks:load', function() {
     $('#new-grant').click();
   });
 
+  $('#filter-select').on('change', function(){
+    $('#filter-form').submit();
+  });
+
 });

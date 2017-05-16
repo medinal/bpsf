@@ -246,7 +246,7 @@ $button-fill: solid;
 $button-background: $primary-color;
 $button-background-hover: scale-color($button-background, $lightness: -15%);
 $button-color: $white;
-$button-color-alt: $black;
+$button-color-alt: $white;
 $button-radius: $global-radius;
 $button-sizes: (
   tiny: 0.6rem,
@@ -483,8 +483,8 @@ $pagination-arrows: true;
 $progress-height: 1rem;
 $progress-background: $medium-gray;
 $progress-margin-bottom: $global-margin;
-$progress-meter-background: $primary-color;
-$progress-radius: $global-radius;
+$progress-meter-background: #ff5400;
+$progress-radius: 25px;
 
 // 28. Responsive Embed
 // --------------------
