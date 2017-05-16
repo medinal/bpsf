@@ -26,13 +26,31 @@
 # t.index ["school_id"], name: "index_grants_on_school_id", using: :btree
 # t.index ["user_id"], name: "index_grants_on_user_id", using: :btree
 
+# enum status: { "draft" => 0, "pending" => 1, "approved" => 2, "rejected" => 3, "failed" => 4, "successful" =>5}
+#
+# enum subject_areas: ['After School Program', 'Arts / Music', 'Arts / Dance', 'Arts / Drama',
+#   'Arts / Visual', 'Community Service', 'Computer / Media', 'Computer Science',
+#   'Foreign Language / ELL / TWI','Gardening','History & Social Studies / Multi-culturalism',
+#   'Mathematics','Multi-subject','Nutrition','Physical Education', 'Reading & Writing / Communication','Science & Ecology',
+#   'Special Ed','Student / Family Support / Mental Health']
+#
+# enum funds_will_pay_for: ['Supplies','Books','Equipment','Technology / Media',
+#   'Professional Guest (Consultant, Speaker, Artist, etc.)','Professional Development',
+#   'Field Trips / Transportation','Assembly']
+
 class GrantsController < ApplicationController
   before_action :permission, except: [:index, :show]
   before_action :set_grant, only: [:show, :edit, :update, :destroy]
+  before_action :owner, only: [:edit, :update, :destroy]
 
   # GET /grants
   def index
-    @grants = Grant.all
+    if params[:filter] && params[:filter] != "all" && ['approved', 'failed', 'successful'].include?(params[:filter])
+      @grants = Grant.where(status: params[:filter]).paginate(page: params[:page], per_page: 5).order(deadline: :asc)
+      @filter = params[:filter]
+    else
+      @grants = Grant.where(status: [:approved, :failed, :successful]).paginate(page: params[:page], per_page: 5).order(deadline: :asc)
+    end
   end
 
   # GET /grants/1
@@ -81,7 +99,11 @@ class GrantsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_grant
-      @grant = Grant.find(params[:id])
+      if !Grant.exists?(params[:id])
+        redirect_to grants_path
+      else
+        @grant = Grant.find(params[:id])
+      end
     end
 
     # Only allow a trusted parameter "white list" through.
@@ -96,6 +118,10 @@ class GrantsController < ApplicationController
 
     def permission
       redirect_to grants_path unless current_user and ((current_user.teacher? and current_user.approved?) or current_user.admin?)
+    end
+
+    def owner
+      redirect_to grant_path(@grant) unless (@grant.user == current_user || current_user.admin?)
     end
 
 end

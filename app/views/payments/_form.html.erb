@@ -1,0 +1,10 @@
+<%= simple_form_for @payment, url: "/grants/#{@grant.id}/payments" do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :amount, id: "donation-amount", required: true, input_html: { min: '1' } %>
+    <%= f.submit :onclick => "return confirm('Are you sure you want to donate $'+ $('#payment_amount').val() + ' to #{@grant.title}?' )", class: "float-center button warning" %>
+  </div>
+
+
+<% end %>

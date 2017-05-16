@@ -1,28 +1,28 @@
 <div class="nav show-for-medium">
   <ul class="dropdown menu expanded" data-dropdown-menu>
 
-    <li>
-      <h1><%= fa_icon "file-text-o" %></h1>
-      <a class="main-links align-center"  href="#">Grants</a>
-      <ul class="menu">
-        <li><a class="dropdown-links align-center"  href="<%= grants_path %>">View All</a></li>
-        <% if current_user and current_user.teacher? and current_user.approved? %>
-          <li><a class="dropdown-links align-center"  href="<%= new_grant_path %>">Create New</a></li>
-        <% end %>
-      </ul>
+    <li class="menu-item">
+      <%= link_to grants_path do %>
+        <h1><%= fa_icon "file-text-o", class: "icon-in-menu" %></h1>
+        <h6 class="main-links align-center">Grants</h6>
+      <% end %>
     </li>
 
-    <li>
-      <h1><%= fa_icon "users" %></h1>
-      <a class="main-links align-center" data-open="aboutModal">About</a>
-        <div class="reveal" id="aboutModal" data-reveal>
-          <%= render 'shared/about' %>
-        </div>
+    <li class="menu-item">
+      <a class="main-links align-center" data-open="aboutModal">
+        <h1><%= fa_icon "users", class: "icon-in-menu" %></h1>
+        <h6 class="main-links align-center">About Us</h6>
+      </a>
+      <div class="reveal" id="aboutModal" data-reveal>
+        <%= render 'shared/about' %>
+      </div>
     </li>
 
-    <li>
-      <h1><%= fa_icon "question-circle-o" %></h1>
-      <a class="main-links align-center"  href="#">FAQ</a>
+    <li class="menu-item">
+      <a class="main-links align-center">
+        <h1><%= fa_icon "question-circle-o", class: "icon-in-menu" %></h1>
+        <h6 class="main-links align-center">FAQ</h6>
+      </a>
       <ul class="menu">
 
         <!-- For teachers modal -->
@@ -31,34 +31,41 @@
           <%= render 'shared/for_teachers' %>
         </div>
 
-         <!-- For friends and Families modal -->
+        <!-- For friends and Families modal -->
         <li><a class="dropdown-links align-center" data-open="friendModal" >For Friends and Family</a></li>
         <div class="reveal" id="friendModal" data-reveal>
           <%= render 'shared/for_friends_and_family' %>
         </div>
-
       </ul>
     </li>
 
-    <li>
-      <h1><%= fa_icon "envelope-o" %></h1>
-        <%= link_to "Contact", new_contact_form_path, class: "main-links align-center" %>
-      </li>
+    <li class="menu-item">
+      <%= link_to new_contact_form_path do %>
+        <h1><%= fa_icon "envelope-o", class: "icon-in-menu" %></h1>
+        <h6 class="main-links align-center">Contact<h6>
+      <% end %>
+    </li>
 
-    <li>
-      <h1><%= fa_icon "user-o" %></h1>
-      <a class="main-links align-center"  href="#">Account</a>
+
+    <li class="menu-item">
+      <a class="main-links align-center">
+        <h1><%= fa_icon "user-o", class: "icon-in-menu" %></h1>
+        <h6 class="main-links align-center">Account</h6>
+      </a>
+
       <ul class="menu">
         <% if !current_user %>
-          <li><%= link_to "Sign In", new_user_session_path, class: "dropdown-links align-center" %></li>
-          <li><%= link_to "Register", new_user_registration_path, class: "dropdown-links align-center" %></li>
+        <li><%= link_to "Sign In", new_user_session_path, class: "dropdown-links align-center" %></li>
+        <li><%= link_to "Register", new_user_registration_path, class: "dropdown-links align-center" %></li>
         <% else %>
-          <% if current_user.admin? %>
-          <li><%= link_to "Admin Dashboard", rails_admin_path, class: "dropdown-links align-center" %></li>
-          <% end %>
-          <li><%= link_to "Sign Out", destroy_user_session_path, method: "delete", class: "dropdown-links align-center" %></li>
+        <% if current_user.admin? %>
+        <li><%= link_to "Admin Dashboard", rails_admin_path, class: "dropdown-links align-center" %></li>
+        <% end %>
+        <li><%= link_to "Sign Out", destroy_user_session_path, method: "delete", class: "dropdown-links align-center" %></li>
         <% end %>
       </ul>
+
     </li>
+
   </ul>
 </div>

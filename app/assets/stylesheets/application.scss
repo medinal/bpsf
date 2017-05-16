@@ -66,28 +66,25 @@
 
 .nav {
   border-bottom: 2px solid #ff5400;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
-.menu {
-  text-align: center;
+.icon-in-menu  {
   color: #cacaca;
 }
 
 .main-links {
   color: #ff5400;
-  font-weight: bolder;
-  padding-top: 0px !important;
 }
 
-.menu li:hover a {
-  background-color: #e6e6e6;
-  color: #ff5400;
+.menu li a {
+  text-align: center;
+  display: block;
 }
 
-.menu li:hover {
-  background-color: #e6e6e6;
+.menu-item:hover, .menu-item:hover .icon-in-menu {
+  background-color: #cacaca;
   color: #ff5400;
 }
 
@@ -213,4 +210,16 @@
 
 .amount {
   color: #ff5400;
+}
+
+.grant-section-title {
+  font-weight: bold;
+}
+
+.grant-content {
+  text-align: justify;
+}
+
+.progress-meter {
+  border-radius: 25px;
 }

@@ -18,6 +18,22 @@ class Grant < ApplicationRecord
   validate :state_transition, on: :save
   validates :user, :school, :status, presence: true
 
+  def days_left
+    ((Time.now - self.deadline.to_time).to_i / 1.day).abs
+  end
+
+  def amount_raised
+    total = 0
+    self.payments.each do |payment|
+      total += payment.amount
+    end
+    total
+  end
+
+  def percent_complete
+    (self.amount_raised/self.total_budget.to_f)*100
+  end
+
   def state_transition(status)
     if      self.draft?     &&  ["pending"].include?(status)
       return true
