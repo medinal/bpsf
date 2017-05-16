@@ -41,13 +41,6 @@ $(document).on('turbolinks:load', function() {
     }
   })
 
-  $('.profile.account').show();
-  $('.profile-section').on('click', function(){
-    $('.account-section-info .profile').hide();
-    id = this.id;
-    $(`.account-section-info .${id}`).show();
-  });
-
   $('#submit').on('click', function(e){
     $('#status').val('pending');
     $('.input').children().prop('required',true);

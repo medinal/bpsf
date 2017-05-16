@@ -58,9 +58,10 @@
         <li><%= link_to "Sign In", new_user_session_path, class: "dropdown-links align-center" %></li>
         <li><%= link_to "Register", new_user_registration_path, class: "dropdown-links align-center" %></li>
         <% else %>
-        <% if current_user.admin? %>
-        <li><%= link_to "Admin Dashboard", rails_admin_path, class: "dropdown-links align-center" %></li>
-        <% end %>
+          <% if current_user.admin? %>
+          <li><%= link_to "Admin Dashboard", rails_admin_path, class: "dropdown-links align-center" %></li>
+          <% end %>
+        <li><%= link_to "Dashboard", user_path, method: "get", class: "dropdown-links align-center" %></li>
         <li><%= link_to "Sign Out", destroy_user_session_path, method: "delete", class: "dropdown-links align-center" %></li>
         <% end %>
       </ul>
