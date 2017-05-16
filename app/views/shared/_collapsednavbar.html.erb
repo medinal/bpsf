@@ -12,24 +12,33 @@
         <% end %>
       </li>
       <li class="dropdown-li">
-        <a href="#">
+        <a data-open="aboutModal">
           <h2><%= fa_icon "users", class:"float-left"  %><span class="main-links float-center"  href="#">About Us</span></h2>
         </a>
+        <div class="reveal" id="aboutModal" data-reveal>
+          <%= render 'shared/about' %>
+        </div>
       </li>
       <li class="dropdown-li">
-        <a href="#">
+        <a data-open="teacherModal">
           <h2><%= fa_icon "question-circle-o", class:"float-left"  %><span class="main-links float-center">For Teachers</span></h2>
         </a>
+        <div class="reveal" id="teacherModal" data-reveal>
+          <%= render 'shared/for_teachers' %>
+        </div>
       </li>
       <li class="dropdown-li">
-        <a href="#">
+        <a data-open="friendModal">
           <h2><%= fa_icon "question-circle-o", class:"float-left"  %><span class="main-links float-center">For Friends and Family</span></h2>
         </a>
+        <div class="reveal" id="friendModal" data-reveal>
+          <%= render 'shared/for_friends_and_family' %>
+        </div>
       </li>
       <li class="dropdown-li">
-        <a href="#">
+        <%= link_to new_contact_form_path do %>
           <h2><%= fa_icon "envelope-o", class:"float-left"  %><span class="main-links float-center">Contact</span></h2>
-        </a>
+        <% end %>
       </li>
       <li class="dropdown-li">
         <a href="#">
