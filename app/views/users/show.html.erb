@@ -69,6 +69,7 @@
         <thead>
           <tr>
             <th>Pledged On:</th>
+            <th>Amount:</th>
             <th>Grant Name</th>
             <th>Grant Status</th>
             <th>Payment Status</th>
@@ -78,6 +79,7 @@
           <% @payments.each do |payment| %>
           <tr>
             <td><%= payment.created_at.strftime('%B %d, %Y') %></td>
+            <td>$<%= payment.amount %></td>
             <td><%= link_to payment.grant.title, grant_path(payment.grant) %></td>
             <td><%= payment.grant.status %></td>
             <td><%= payment.status %></td>
