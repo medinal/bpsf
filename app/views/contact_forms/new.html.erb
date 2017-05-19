@@ -2,7 +2,8 @@
     <div class="medium-7 medium-centered">
       <h1>Contact Us!</h1>
         <%= form_for @contact_form do |f| %>
-          
+            <%= f.label :name, 'Name' %>
+            <%= f.text_field :name, class: :input %>
             <%= f.label :email, 'Email' %>
             <%= f.text_field :email, class: :input %>
             <%= f.label :message, 'Message' %>

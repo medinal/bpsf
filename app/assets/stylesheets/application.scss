@@ -124,9 +124,11 @@
 
 .profile.row {
   text-align: center;
-  border-top: 2px solid black;
-  border-bottom: 2px solid black;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
   min-height: 40px;
+  margin-bottom: 20px;
+
 }
 
 .profile-section {
@@ -154,6 +156,7 @@
 
 .user-attribute-values p {
   margin-left: 20px;
+  font-weight: bold;
 }
 
 @media (max-width: 640px){
@@ -283,3 +286,4 @@ justify-content: center;
 .blocked {
 flex: 1;
 }
+
