@@ -245,7 +245,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   cancancan
-  carrierwave (~> 1.0)
+  carrierwave
   datagrid
   date_validator
   devise
