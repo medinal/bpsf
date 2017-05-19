@@ -1,7 +1,11 @@
 <%= simple_form_for @grant do |f| %>
   <%= f.error_notification %>
-
+  <div>
+    <img src="#" id="grant-img-preview">   
+  </div>
+  <button class="succes button" id="crop-img">crop!</button>
   <div class="form-inputs">
+    <%= f.input :image %>
     <%= f.input :title %>
     <%= f.input :summary %>
     <%= f.input :subject_areas %>
@@ -20,7 +24,6 @@
     <%= f.input :comments %>
     <%= f.input :state %>
     <%= f.input :video %>
-    <%= f.input :image %>
     <%= f.input :deadline %>
     <%= f.hidden_field :status, id: "status" %>
   </div>

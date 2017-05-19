@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
-
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag    "https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.4/cropper.css" %>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.4/cropper.js'%>
     <%= csrf_meta_tags %>
   </head>
 

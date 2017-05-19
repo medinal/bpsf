@@ -279,3 +279,12 @@
 .apple_pagination a:hover, .apple_pagination a:focus {
       text-decoration: underline;
 }
+
+#blur-div {
+  display: none;
+  z-index = 2;
+  background-color:
+  position: fixed;
+  left:0;
+  top:0
+}
