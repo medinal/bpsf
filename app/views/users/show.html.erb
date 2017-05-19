@@ -8,16 +8,40 @@
   <div class="profile account">
     <div class="row">
       <div class="user-attributes small-6">
+        <% if @user.role == "friends and family" %>
         <p>Email:</p>
         <p>Relationship:</p>
         <p>Address:</p>
         <p>Phone:</p>
+        <% else %>
+        <p>Email:</p>
+        <p>School:</p>
+        <p>Years of Experience:</p>
+        <p>Grade Level(s):</p>
+        <p>Subject(s):</p>
+        <p>Teacher Background</p>
+        <p>Address:</p>
+        <p>Work Phone:</p>
+        <p>Home Phone:</p>
+        <% end %>       
       </div>
       <div class="user-attribute-values small-6">
+        <% if @user.role == "friends and family" %>
         <p> <%= @user.email %> </p>
-        <p> <%= @user.role %> </p>
+        <p> <%= @user.profile.relationship %> </p>
         <p> <%= @user.profile.address %> </p>
         <p> <%= @user.profile.home_phone %> </p>
+        <% else %>
+        <p> <%= @user.email %> </p>
+        <p> <%= @school.name %> </p>
+        <p> <%= time_ago_in_words(@start) %> </p>
+        <p> <%= @user.profile.grade %> </p>
+        <p> <%= @user.profile.subject %>    </p>
+        <p> <%= @user.profile.about %> </p>
+        <p> <%= @user.profile.address %> </p>
+        <p> <%= @user.profile.work_phone %> </p>
+        <p> <%= @user.profile.home_phone %> </p>
+        <% end %>
       </div>
     </div>
   </div>
