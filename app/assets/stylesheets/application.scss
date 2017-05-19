@@ -139,6 +139,10 @@
   line-height: 40px !important;
 }
 
+.orange {
+    border-bottom: 5px solid #ff5400;
+}
+
 .profile-section:hover {
   background-color: #cacaca;
   cursor: pointer;
@@ -278,4 +282,8 @@
 
 .apple_pagination a:hover, .apple_pagination a:focus {
       text-decoration: underline;
+}
+
+.tabs-title {
+  width: 200%
 }
