@@ -1,6 +1,8 @@
 class PaymentsController < ApplicationController
 
+  before_action :authenticate_user!
   before_action :set_payment, only: [:show, :edit, :update, :destroy]
+  before_action :owner_or_admin?, only: [:edit, :update, :destroy]
 
   def index
     @payments = Payment.all
@@ -42,6 +44,10 @@ class PaymentsController < ApplicationController
 
   def set_payment
     @payment = Payment.find(params[:id])
+  end
+
+  def owner_or_admin?
+    redirect_to grants_path unless @payment.user == current_user or current_user.admin?
   end
 
 end

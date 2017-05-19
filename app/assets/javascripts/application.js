@@ -41,15 +41,6 @@ $(document).on('turbolinks:load', function() {
     }
   })
 
-  $('.profile.account').show();
-  $('.profile-section').on('click', function(){
-    $('.profile-section').removeClass("orange");
-    $('.account-section-info .profile').hide();
-    id = this.id;
-    $(`.account-section-info .${id}`).show();
-    $(`#${id}`).addClass("orange")
-  });
-
   $('#submit').on('click', function(e){
     $('#status').val('pending');
     $('.input').children().prop('required',true);
