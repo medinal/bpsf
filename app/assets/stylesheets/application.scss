@@ -137,12 +137,16 @@
   line-height: 40px !important;
 }
 
-.tabs-title:hover {
+.accordion-title {
+  color: black;
+}
+
+.tabs-title:hover, .accordion-item.is-active .accordion-title {
   border-bottom: 4px solid #e6e6e6;
   cursor: pointer;
 }
 
-.tabs-title.is-active {
+.tabs-title.is-active, .accordion-item.is-active .accordion-title {
   border-bottom: 4px solid #ff5400;
 }
 

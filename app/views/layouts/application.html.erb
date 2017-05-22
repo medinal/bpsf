@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "BPSF Friends and Family" %></title>
+
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= stylesheet_link_tag    "https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.4/cropper.css" %>
@@ -13,7 +14,7 @@
   </head>
 
   <body>
-    
+
     <div class="page">
       <%= render "shared/header" %>
       <%= render "shared/fullnavbar" %>
