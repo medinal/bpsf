@@ -1,0 +1,104 @@
+<ul class="tabs block-width" data-tabs data-match-height="true" id="account-tabs">
+  <li class="tabs-title is-active blocked"><a class="text-center" href="#user-profile" aria-selected="true">Profile</a></li>
+  <li class="tabs-title blocked"><a class="text-center" href="#account">Account Settings</a></li>
+  <li class="tabs-title blocked"><a class="text-center" href="#payment">Payment History</a></li>
+  <li class="tabs-title blocked"><a class="text-center" href="#credit-card">Payment Settings</a></li>
+</ul>
+
+<div class="tabs-content" data-tabs-content="account-tabs">
+  <div class="tabs-panel is-active" id="user-profile">
+    <div class="row">
+      <% if !@user.profile %>
+        <div class="float-center">
+          <%= button_to "Create Profile", new_user_profile_path, method: "get", class: "button warning" %>
+        </div>
+      <% else %>
+        <div class="columns small-6">
+          <% if current_user.teacher? %>
+            <p class="text-right">About:</p>
+            <p class="text-right">Position:</p>
+            <p class="text-right">Subject:</p>
+            <p class="text-right">Teacher Since:</p>
+          <% end %>
+          <p class="text-right">Address:</p>
+          <p class="text-right">City:</p>
+          <p class="text-right">State:</p>
+          <p class="text-right">Zip:</p>
+          <p class="text-right">Home Phone:</p>
+          <p class="text-right">Work Phone:</p>
+        </div>
+        <div class="user-attribute-values columns small-6">
+        <% if current_user.teacher? %>
+          <p><%= @profile.about %></p>
+          <p><%= @profile.position %></p>
+          <p><%= @profile.subject %></p>
+          <p><%= @profile.started_teaching %></p>
+        <% end %>
+          <p><%= @profile.address %></p>
+          <p><%= @profile.city %></p>
+          <p><%= @profile.state %></p>
+          <p><%= @profile.zipcode %></p>
+          <p><%= @profile.home_phone %></p>
+          <p><%= @profile.work_phone %></p>
+        </div>
+      <% end %>
+    </div>
+    <div class="columns small-12">
+      <%= button_to "Edit Profile", edit_user_profiles_path, class: "button warning float-center", method: "get" %>
+    </div>
+  </div>
+  <div class="tabs-panel" id="account">
+    <div class="row">
+      <div class="user-attributes small-6">
+        <p class="text-right">First Name:</p>
+        <p class="text-right">Last Name:</p>
+        <p class="text-right">Email:</p>
+        <p class="text-right">Relationship:</p>
+      </div>
+      <div class="user-attribute-values small-6">
+        <p> <%= @user.first_name %> </p>
+        <p> <%= @user.last_name %> </p>
+        <p> <%= @user.email %> </p>
+        <p> <%= @user.role %> </p>
+      </div>
+    </div>
+    <div class="columns small-12">
+      <%= button_to "Edit Account Settings", edit_user_registration_path, class: "button warning float-center", method: "get" %>
+    </div>
+  </div>
+  <div class="tabs-panel" id="payment">
+    <div class="row">
+      <% if @payments.length == 0 %>
+        <h4 class="float-center">You have not pledged to any grants.</h4>
+      <% else %>
+      <table>
+        <thead>
+          <tr>
+            <th>Pledged On:</th>
+            <th>Amount:</th>
+            <th>Grant Name</th>
+            <th>Grant Status</th>
+            <th>Payment Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @payments.each do |payment| %>
+          <tr>
+            <td><%= payment.created_at.strftime('%B %d, %Y') %></td>
+            <td>$<%= payment.amount %></td>
+            <td><%= link_to payment.grant.title, grant_path(payment.grant) %></td>
+            <td><%= payment.grant.status %></td>
+            <td><%= payment.status %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <% end %>
+    </div>
+  </div>
+  <div class="tabs-panel" id="credit-card">
+    <div class="row">
+      <p>Update your credit card info here</p>
+    </div>
+  </div>
+</div>
