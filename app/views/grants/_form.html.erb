@@ -1,11 +1,14 @@
+<div id="blur-div">
+  <div id="crop-contain">
+    <img src="#" id="grant-img-preview">
+  </div>
+  <button class="succes button crop-img">Save</button>
+</div>
 <%= simple_form_for @grant do |f| %>
   <%= f.error_notification %>
-  <div>
-    <img src="#" id="grant-img-preview">   
-  </div>
-  <button class="succes button" id="crop-img">crop!</button>
+  <img src="#" class="final-crop">
   <div class="form-inputs">
-    <%= f.input :image %>
+    <%= f.input :image, class: "button" %>
     <%= f.input :title %>
     <%= f.input :summary %>
     <%= f.input :subject_areas %>
