@@ -99,7 +99,7 @@ $(document).on('turbolinks:load', function() {
       });
     }
   });
-  
+
   // CREATE NEW JPEG FILE WHEN YOU SAVE CROPPED IMG
   $('.crop-img').on('click', function(){
     $('#grant-img-preview').cropper('getCroppedCanvas').toBlob(function (blob) {
