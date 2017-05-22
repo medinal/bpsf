@@ -14,7 +14,6 @@
  *= require_self
  *= require font-awesome
  *= require foundation_and_overrides
-
  */
 
 .page {
@@ -109,7 +108,6 @@
   margin-bottom: 0px;
 }
 
-
 .dropdown-li a h2 i{
   color: #cacaca;
 }
@@ -139,14 +137,13 @@
   line-height: 40px !important;
 }
 
-.profile-section:hover {
-  background-color: #cacaca;
+.tabs-title:hover {
+  border-bottom: 4px solid #e6e6e6;
   cursor: pointer;
 }
 
-#payment{
-  border-left: 1px solid lightgray;
-  border-right: 1px solid lightgray;
+.tabs-title.is-active {
+  border-bottom: 4px solid #ff5400;
 }
 
 .account-section-info .profile {
@@ -273,18 +270,48 @@
 
 .apple_pagination a {
     text-decoration: none;
-    color: black; 
+    color: black;
 }
 
 .apple_pagination a:hover, .apple_pagination a:focus {
       text-decoration: underline;
 }
 
+.block-width {
+display: flex;
+flex-direction: row;
+justify-content: center;
+}
+
+.blocked {
+flex: 1;
+}
+
 #blur-div {
-  display: none;
-  z-index = 2;
-  background-color:
+  background: rgba(128, 128, 128, .8);
   position: fixed;
+  z-index: -1;
+  opacity: 0;
   left:0;
-  top:0
+  top:0;
+  height: 100%;
+  width: 100%;
+  padding-top: 100px;
+  text-align: center;
+}
+
+#crop-contain {
+  max-width: 1000px;
+  width: 80%;
+  margin-left: 10%;
+}
+
+.crop-img {
+  margin-top: 40px;
+}
+
+.final-crop {
+  display: none;
+  margin-left: 20%;
+  width: 60%;
 }

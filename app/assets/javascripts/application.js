@@ -21,7 +21,6 @@
 
 $(document).on('turbolinks:load', function() {
   $(function(){ $(document).foundation(); });
-
   $(".friend-family-p").hide();
   $(".teacher-p").hide();
   $(".school-input").hide();
@@ -40,13 +39,6 @@ $(document).on('turbolinks:load', function() {
       $(".school-input").val('')
     }
   })
-
-  $('.profile.account').show();
-  $('.profile-section').on('click', function(){
-    $('.account-section-info .profile').hide();
-    id = this.id;
-    $(`.account-section-info .${id}`).show();
-  });
 
   $('#submit').on('click', function(e){
     $('#status').val('pending');
@@ -71,10 +63,8 @@ $(document).on('turbolinks:load', function() {
       var reader = new FileReader();
       reader.onload = function (e) {
         $('#grant-img-preview').attr('src', e.target.result);
-        $('.resize-img').css('display', 'inline');
         $('#grant-img-preview').cropper({
           aspectRatio: 16 / 9,
-          background: false,
           scalable: false,
           movable: false,
           zoomable: false
@@ -83,42 +73,45 @@ $(document).on('turbolinks:load', function() {
       reader.readAsDataURL(input.files[0]);
     }
   }
+
+  // SHOW CROP MODAL ON FILE UPLOAD
   $("#grant_image").on('change', function(e){
     readURL(this);
+    $("#blur-div").css('z-index', 1)
+    $("#blur-div").fadeTo('slow',1);
+    $('.crop-img').focus();
   });
-  // FOR CROPPING GRANT IMG
+
+  // ON GRANT UPDATE: IF CROPPED IMG USE AJAX CALL
   $('#new-grant').on('click', function(e){
-    e.preventDefault();
-    debugger;
-  });
-
-  $('#crop-img').on('click', function(e){
-    e.preventDefault();
-    $("#blur-div").height($(window).height());
-    $("#blur-div").width($(window).width());
-
-  });
-
-  $('#img-button').on('click', function(){
-    $('#resize-img').html(`
-      <img src="#" id="grant-img-preview">
-    `);
-    $('#grant-img-preview').cropper('getCroppedCanvas').toBlob(function (blob) {
-      var name = $('#grant-img')[0].files[0].name.split(".")[0] + Math.floor(Math.random() * 10000000).toString() + ".jpg"
-      var new_img = new File([blob], name, {type: "image/jpeg"});
-      url = URL.createObjectURL(new_img);
-      $('#final-crop').attr('src', url);
-      var formdata = new FormData();
-      var user_id = $('form')[0].id.split("_")[2]
-      formdata.append(name, new_img);
-      formdata.append("name", name)
+    var img = $('form').data('file');
+    if (img) {
+      e.preventDefault();
+      var user_id = $('form')[0].id.split("_")[2];
+      var formdata = new FormData($('form')[0]);
+      formdata.append("file", img);
       $.ajax({
         method: "PATCH",
-        url: ("/user/avatar/" + user_id),
+        url: (`/grants/${user_id}/`),
         data: formdata,
         processData: false,
         contentType: false
       });
+    }
+  });
+  
+  // CREATE NEW JPEG FILE WHEN YOU SAVE CROPPED IMG
+  $('.crop-img').on('click', function(){
+    $('#grant-img-preview').cropper('getCroppedCanvas').toBlob(function (blob) {
+      var name = $('#grant_image')[0].files[0].name.split(".")[0] + Math.floor(Math.random() * 10000000).toString() + ".jpg"
+      var new_img = new File([blob], name, {type: "image/jpeg"});
+      $('form').data('file', new_img);
+      url = URL.createObjectURL(new_img);
+      $('.final-crop').attr('src', url);
+      $('.final-crop').show();
+      $('#grant-img-preview').cropper('destroy');
+      $('#blur-div').css('z-index', -1);
+      $('#blur-div').css('opacity', 0);
     });
   });
 });
