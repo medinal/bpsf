@@ -1,6 +1,6 @@
 <h2 style="text-align: center"><%= @user.first_name%> <%= @user.last_name%></h2>
 
-<ul class="tabs block-width" data-tabs id="account-tabs">
+<ul class="tabs block-width" data-tabs data-match-height="true" id="account-tabs">
   <li class="tabs-title is-active blocked"><a class="text-center" href="#user-profile" aria-selected="true">Profile</a></li>
   <li class="tabs-title blocked"><a class="text-center" href="#account">Account Settings</a></li>
   <li class="tabs-title blocked"><a class="text-center" href="#payment">Payment History</a></li>
@@ -29,11 +29,13 @@
           <p class="text-right">Home Phone:</p>
           <p class="text-right">Work Phone:</p>
         </div>
-        <div class="columns small-6">
+        <div class="user-attribute-values columns small-6">
+        <% if current_user.teacher? %>
           <p><%= @profile.about %></p>
           <p><%= @profile.position %></p>
           <p><%= @profile.subject %></p>
           <p><%= @profile.started_teaching %></p>
+        <% end %>
           <p><%= @profile.address %></p>
           <p><%= @profile.city %></p>
           <p><%= @profile.state %></p>
@@ -42,6 +44,9 @@
           <p><%= @profile.work_phone %></p>
         </div>
       <% end %>
+    </div>
+    <div class="columns small-12">
+      <%= button_to "Edit Profile", edit_user_profiles_path, class: "button warning float-center", method: "get" %>
     </div>
   </div>
   <div class="tabs-panel" id="account">
@@ -58,6 +63,9 @@
         <p> <%= @user.email %> </p>
         <p> <%= @user.role %> </p>
       </div>
+    </div>
+    <div class="columns small-12">
+      <%= button_to "Edit Account Settings", edit_user_registration_path, class: "button warning float-center", method: "get" %>
     </div>
   </div>
   <div class="tabs-panel" id="payment">

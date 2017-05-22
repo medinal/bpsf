@@ -7,7 +7,7 @@ resources "contact_forms", only: [:new, :create]
   root to: "home#index"
 
   resource :user, only: [:show] do
-    resources :profile, except: [:index, :show, :delete]
+    resource :profiles, path: "profile", except: [:index, :show, :delete]
   end
 
   resources :grants do
