@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+  body
+    h1
+      | #{@recipient.name} has just submitted a new grant!
+    p
+      | #{@recipient.name} has just submitted a new grant called #{@grant.title}.
+      br/
+    p
+      | To view the grant's page, just follow this link: #{@url}.
