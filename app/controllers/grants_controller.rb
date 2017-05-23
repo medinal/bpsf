@@ -53,6 +53,16 @@ class GrantsController < ApplicationController
     end
   end
 
+  # GET user/grants
+  def usergrants
+    if params[:filter] && params[:filter] != "all" && ['draft', 'pending', 'rejected', 'approved', 'failed', 'successful'].include?(params[:filter])
+      @grants = current_user.grants.where(status: params[:filter]).paginate(page: params[:page], per_page: 5).order(deadline: :asc)
+      @filter = params[:filter]
+    else
+      @grants = current_user.grants.where(status: [:draft, :pending, :rejected, :approved, :failed, :successful]).paginate(page: params[:page], per_page: 5).order(deadline: :asc)
+    end
+  end
+
   # GET /grants/1
   def show
   end
@@ -83,10 +93,12 @@ class GrantsController < ApplicationController
     parameters = grant_params
     if params[:file]
       parameters[:image] = params[:file]
+      p "FILE -----------", parameters[:image]
     end
     if !@grant.state_transition(grant_params[:status])
       render :edit, notice: 'That is not a valid state transition'
     elsif @grant.update(parameters)
+      p "UPDATED---------------"
       redirect_to @grant, notice: 'Grant was successfully updated.'
     else
       render :edit

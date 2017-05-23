@@ -4,6 +4,9 @@
   </div>
   <div class="columns small-12">
     <h5 class="text-center">By <%= @grant.user.first_name %> <%= @grant.user.last_name %> at <%= @grant.school.name %></h5>
+    <% if current_user && @grant.user == current_user %>
+      <a href="<%= edit_grant_path(@grant) %>" id="edit-button" class="float-center button warning"><%= fa_icon "pencil 2x" %></a>
+    <% end %>
     <hr>
   </div>
 </div>
