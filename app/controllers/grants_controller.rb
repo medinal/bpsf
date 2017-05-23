@@ -68,7 +68,12 @@ class GrantsController < ApplicationController
 
   # POST /grants
   def create
-    @grant = Grant.new(grant_params)
+    parameters = grant_params
+    if params[:file]
+      parameters[:image] = params[:file]
+    end
+
+    @grant = Grant.new(parameters)
     @grant.user = current_user
     @grant.school = School.find(current_user.school_id)
     if @grant.save
