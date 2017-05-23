@@ -300,13 +300,14 @@ flex: 1;
   top:0;
   height: 100%;
   width: 100%;
-  padding-top: 100px;
+  padding-top: 20px;
   text-align: center;
 }
 
 #crop-contain {
-  max-width: 1000px;
+  max-width: 80vw;
   width: 80%;
+  max-height: 80vh;
   margin-left: 10%;
 }
 

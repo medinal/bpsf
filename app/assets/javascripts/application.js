@@ -90,13 +90,23 @@ $(document).on('turbolinks:load', function() {
       var user_id = $('form')[0].id.split("_")[2];
       var formdata = new FormData($('form')[0]);
       formdata.append("file", img);
-      $.ajax({
-        method: "PATCH",
-        url: (`/grants/${user_id}/`),
-        data: formdata,
-        processData: false,
-        contentType: false
-      });
+      if (user_id){
+        $.ajax({
+          method: "PATCH",
+          url: (`/grants/${user_id}/`),
+          data: formdata,
+          processData: false,
+          contentType: false
+        });
+      }else{
+        $.ajax({
+          method: "POST",
+          url: ("/grants/"),
+          data: formdata,
+          processData: false,
+          contentType: false
+        });
+      }
     }
   });
 
