@@ -80,10 +80,13 @@ class GrantsController < ApplicationController
 
   # PATCH/PUT /grants/1
   def update
+    parameters = grant_params
+    if params[:file]
+      parameters[:image] = params[:file]
+    end
     if !@grant.state_transition(grant_params[:status])
       render :edit, notice: 'That is not a valid state transition'
-    end
-    if @grant.update(grant_params)
+    elsif @grant.update(parameters)
       redirect_to @grant, notice: 'Grant was successfully updated.'
     else
       render :edit

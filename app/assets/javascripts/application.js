@@ -21,7 +21,6 @@
 
 $(document).on('turbolinks:load', function() {
   $(function(){ $(document).foundation(); });
-
   $(".friend-family-p").hide();
   $(".teacher-p").hide();
   $(".school-input").hide();
@@ -57,4 +56,62 @@ $(document).on('turbolinks:load', function() {
     $('#filter-form').submit();
   });
 
+  // FOR READING URL TO DISPLAY IMG FILE
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      console.log('FILE:', input.files[0]);
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $('#grant-img-preview').attr('src', e.target.result);
+        $('#grant-img-preview').cropper({
+          aspectRatio: 16 / 9,
+          scalable: false,
+          movable: false,
+          zoomable: false
+        });
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  // SHOW CROP MODAL ON FILE UPLOAD
+  $("#grant_image").on('change', function(e){
+    readURL(this);
+    $("#blur-div").css('z-index', 1)
+    $("#blur-div").fadeTo('slow',1);
+    $('.crop-img').focus();
+  });
+
+  // ON GRANT UPDATE: IF CROPPED IMG USE AJAX CALL
+  $('#new-grant').on('click', function(e){
+    var img = $('form').data('file');
+    if (img) {
+      e.preventDefault();
+      var user_id = $('form')[0].id.split("_")[2];
+      var formdata = new FormData($('form')[0]);
+      formdata.append("file", img);
+      $.ajax({
+        method: "PATCH",
+        url: (`/grants/${user_id}/`),
+        data: formdata,
+        processData: false,
+        contentType: false
+      });
+    }
+  });
+
+  // CREATE NEW JPEG FILE WHEN YOU SAVE CROPPED IMG
+  $('.crop-img').on('click', function(){
+    $('#grant-img-preview').cropper('getCroppedCanvas').toBlob(function (blob) {
+      var name = $('#grant_image')[0].files[0].name.split(".")[0] + Math.floor(Math.random() * 10000000).toString() + ".jpg"
+      var new_img = new File([blob], name, {type: "image/jpeg"});
+      $('form').data('file', new_img);
+      url = URL.createObjectURL(new_img);
+      $('.final-crop').attr('src', url);
+      $('.final-crop').show();
+      $('#grant-img-preview').cropper('destroy');
+      $('#blur-div').css('z-index', -1);
+      $('#blur-div').css('opacity', 0);
+    });
+  });
 });
