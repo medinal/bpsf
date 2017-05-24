@@ -17,12 +17,25 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    @payment = Payment.new(payment_params)
+
+    if !current_user.stripe_token
+      Stripe.api_key = ENV["stripe_api_key"]
+      customer = Stripe::Customer.create(
+        :description => "Customer for #{current_user.first_name} #{current_user.last_name}",
+        :source => "#{params[:stripeToken]}"
+        )
+      current_user.stripe_token = customer.id
+      current_user.save
+    end
+
+    grant = Grant.find(params[:grant_id])
+    @payment = Payment.new
     @payment.user = current_user
     @payment.grant = Grant.find(params[:grant_id])
+    @payment.amount = params[:amount]
     @payment.pending!
     if @payment.save
-      redirect_to grant_path(@payment.grant), notice: 'You successfully donated!'
+      redirect_to grant_path(@payment.grant), notice: "You have successfully pledged #{@payment.amount}!"
     else
       render :new
     end
@@ -39,7 +52,7 @@ class PaymentsController < ApplicationController
   private
 
   def payment_params
-    params.require(:payment).permit(:amount, :grant_id, :status)
+    params.permit(:amount, :grant_id, :stripeToken)
   end
 
   def set_payment

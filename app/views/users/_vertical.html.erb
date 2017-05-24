@@ -10,7 +10,7 @@
     <div class="row">
       <% if !@user.profile %>
         <div class="float-center">
-          <%= button_to "Create Profile", new_user_profile_path, method: "get", class: "button warning" %>
+          <%= button_to "Create Profile", new_user_profiles_path, method: "get", class: "button warning" %>
         </div>
       <% else %>
         <div class="columns small-6">
@@ -43,9 +43,11 @@
         </div>
       <% end %>
     </div>
-    <div class="columns small-12">
-      <%= button_to "Edit Profile", edit_user_profiles_path, class: "button warning float-center", method: "get" %>
-    </div>
+    <% if @user.profile %>
+      <div class="columns small-12">
+        <%= button_to "Edit Profile", edit_user_profiles_path, class: "button warning float-center", method: "get" %>
+      </div>
+    <% end %>
   </div>
   <div class="tabs-panel" id="account-v">
     <div class="row">
