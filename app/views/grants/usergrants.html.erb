@@ -1,0 +1,16 @@
+<%= form_tag(user_grants_path, :method => "get", enforce_utf8: false, id: "filter-form") do %>
+  <%= select_tag :filter, options_for_select({All: "all", Draft: "draft", Submitted: "pending", Rejected: "rejected", Funding: "approved", Failed: "failed", Successful: "successful"}, @filter), id: "filter-select" %>
+<% end %>
+<div class="grant-container show-for-medium">
+  <% @grants.each do |grant| %>
+    <%= render "grantspartial", grant: grant %>
+  <% end %>
+</div>
+<div class="grant-container hide-for-medium">
+  <% @grants.each do |grant| %>
+    <%= render "grantscard", grant: grant %>
+  <% end %>
+</div>
+<div class="small-12 columns">
+  <%= will_paginate @grants, class: "apple_pagination" %>
+</div>

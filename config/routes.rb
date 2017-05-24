@@ -10,10 +10,9 @@ resources "contact_forms", only: [:new, :create]
     resource :profiles, path: "profile", except: [:index, :show, :delete]
   end
 
+  get '/user/grants' => 'grants#usergrants', as: 'user_grants'
+
   resources :grants do
-    member do
-      get 'preview'
-    end
     resources :payments, except: [:index]
   end
 

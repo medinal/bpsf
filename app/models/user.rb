@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_one :profile
   has_many :payments
+  has_many :grants
   belongs_to :school
   validates :first_name, :last_name, :email, :role, presence: true
 
