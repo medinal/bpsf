@@ -82,11 +82,7 @@ class GrantsController < ApplicationController
     if params[:file]
       parameters[:image] = params[:file]
     end
-    console.log(params)
-    console.log(@grant)
-    if params[:status] == "pending"
-      GrantSubmittedJob.new.async.perform(@grant)
-    end
+    
 
     @grant = Grant.new(parameters)
     @grant.user = current_user
@@ -96,18 +92,21 @@ class GrantsController < ApplicationController
     else
       render :new
     end
+    if grant_params[:status] == "pending" 
+      GrantSubmittedJob.new.async.perform(Grant.last)
+    end
   end
 
   # PATCH/PUT /grants/1
   def update
     parameters = grant_params
     if params[:file]
+
       parameters[:image] = params[:file]
     end
-    if params[:status] == "pending"
+    if @grant.draft? && grant_params[:status] == "pending"
       GrantSubmittedJob.new.async.perform(@grant)
     end
-    
     if !@grant.state_transition(grant_params[:status])
       render :edit, notice: 'That is not a valid state transition'
     elsif @grant.update(parameters)
