@@ -55,7 +55,11 @@ gem 'jquery-ui-rails'
 gem 'rails-jquery-autocomplete'
 # Font Awesome for Icons
 gem "font-awesome-rails"
+# contact form mailer
 gem 'mail_form'
+# async mailjob framework
+gem 'sucker_punch', '~> 2.0'
+
 
 # For use when deploying to heroku
 gem 'rails_12factor', group: :production
