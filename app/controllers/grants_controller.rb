@@ -82,6 +82,7 @@ class GrantsController < ApplicationController
     if params[:file]
       parameters[:image] = params[:file]
     end
+    
 
     @grant = Grant.new(parameters)
     @grant.user = current_user
@@ -91,13 +92,20 @@ class GrantsController < ApplicationController
     else
       render :new
     end
+    if grant_params[:status] == "pending" 
+      GrantSubmittedJob.new.async.perform(Grant.last)
+    end
   end
 
   # PATCH/PUT /grants/1
   def update
     parameters = grant_params
     if params[:file]
+
       parameters[:image] = params[:file]
+    end
+    if @grant.draft? && grant_params[:status] == "pending"
+      GrantSubmittedJob.new.async.perform(@grant)
     end
     if !@grant.state_transition(grant_params[:status])
       render :edit, notice: 'That is not a valid state transition'
@@ -133,6 +141,7 @@ class GrantsController < ApplicationController
                                     :collaborators, :comments, :user_id, :state,
                                     :video, :image, :school_id, :status, :deadline)
     end
+
 
     def permission
       redirect_to grants_path unless current_user and ((current_user.teacher? and current_user.approved?) or current_user.admin?)
