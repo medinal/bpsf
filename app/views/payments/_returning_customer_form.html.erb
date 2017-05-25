@@ -1,0 +1,14 @@
+<%= form_tag grant_payments_path do %>
+  <div id="error_explanation">
+    <% if flash[:error].present? %>
+      <p><%= flash[:error] %></p>
+    <% end %>
+  </div>
+  <div class="input-group">
+    <%= label_tag(:amount, '$USD:', class: "input-group-label") %>
+    <%= text_field_tag :amount, "", class: "input-group-field" %>
+    <div class="input-group-button">
+      <input type="submit" class="button warning" value="Donate">
+    </div>
+  </div>
+<% end %>

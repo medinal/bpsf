@@ -23,7 +23,9 @@
     <div class="progress" role="progressbar" tabindex="0" aria-valuenow="<%= @grant.amount_raised %>" aria-valuemin="0" aria-valuemax="<%= @grant.total_budget %>">
       <div class="progress-meter" style="width: <%= @grant.percent_complete %>%"></div>
     </div>
-    <%= button_to "Donate!", new_grant_payment_path(@grant), method: "get", class: "button warning large float-center" %>
+    <% if @grant.approved? %>
+      <%= button_to "Donate!", new_grant_payment_path(@grant), method: "get", class: "button warning large float-center" %>
+    <% end %>
   </div>
 </div>
 <hr>
