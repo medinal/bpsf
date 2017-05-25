@@ -1,25 +1,31 @@
-doctype html
-html
-  head
-    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
-  body
-    h1
-      | #{@recipient.name}'s grant, #{@grant.title}, has reached its crowdfund goal and successfully been funded!
-    p
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/css/mdb.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+  <body>
+    <h1>
+      | <%= @recipient.name %>'s grant, <%= @grant.title %>, has reached its crowdfund goal and successfully been funded!      </h1>
+    <p>
       | Here are some details about the grant:
-    p
-      | Teacher name: #{@recipient.first_name} #{@recipient.last_name}
-      br/
-      | Teacher work phone number: #{@recprof.work_phone}
-      br/
-      | Teacher home phone number: #{@recprof.home_phone}
-      br/
-      | Teacher address: #{@recprof.address + ", " + @recprof.city + ", " + @recprof.state + " " + @recprof.zipcode}
-      br/
-      | Grant title: #{@grant.title}
-      br/
-      | Amount to pay the teacher (without administrator fee): $#{@grant.current_funds-@grant.admin_cost}
-      br/
-      | Amount of administrator fee: $#{@grant.admin_cost}
-    p
-      | To view the grant page, follow this link: #{@url}.
+      </p>
+    <p>| Teacher name: <%= @recipient.first_name %> <%= @recipient.last_name %>
+      <br>
+      | Teacher work phone number: <%= @recprof.work_phone %>
+      <br>
+      | Teacher home phone number: <%= @recprof.home_phone} %>
+      <br>
+      | Teacher address: <%= @recprof.address + ", " + @recprof.city + ", " + @recprof.state + " " + @recprof.zipcode %>
+      <br>
+      | Grant title: <%= @grant.title %>
+      <br>
+      | Amount to pay the teacher (without administrator fee): $<%= @grant.current_funds-@grant.admin_cost %>
+      <br>
+      | Amount of administrator fee: $<%= @grant.admin_cost %>
+    </p>
+    <p>| To view the grant page, follow this link: <%= @url %>.</p>
+    
+  </body>

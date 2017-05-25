@@ -1,12 +1,18 @@
-doctype html
-html
-  head
-    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
-  body
-    h1
-      | Your grant, #{@grant.title}, will finish crowdfunding in three days.
-    p
-      | You have three days left to crowdfund your grant! Your grant is currently #{@grant.crowdfunder.progress} funded.
-      br/
-    p
-      | To help reach your goal in the next three days, make sure to share your grant's page using this link: #{@url}.
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/css/mdb.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+  <body>
+    <h1>
+      | Your grant, <%= @grant.title %>, will finish crowdfunding in three days.
+    </h1>
+    <p>| You have three days left to crowdfund your grant! Your grant is currently <%= @grant.crowdfunder.progress %> funded.
+      <br>
+    </p>
+    <p>| To help reach your goal in the next three days, make sure to share your grant's page using this link: <%= @url %>.
+    </p>
+  </body>

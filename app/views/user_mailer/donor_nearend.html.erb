@@ -1,12 +1,14 @@
-doctype html
-html
-  head
-    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
-  body
-    h1
-      | #{@grant.title}, a grant you have donated to, is at 80% completion!
-    p
-      | #{@grant.recipient.name}'s grant, #{@grant.title}, is almost at its goal! If you would like, please consider helping top off the remainder of its goal with a small donation. Every dollar counts!
-      br/
-    p
-      | To view the grant's progress or donate an additional sum, visit the grant's page at this link: #{@url}.
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/css/mdb.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+  <body>
+    <h1>| <%= @grant.title %>, a grant you have donated to, is at 80% completion!</h1>
+    <p>| <%= @grant.recipient.name %>'s grant, <%= @grant.title %>, is almost at its goal! If you would like, please consider helping top off the remainder of its goal with a small donation. Every dollar counts!</p>
+    <p>| To login to the site, just follow this link: <%= @url %>.</p>
+    <p> Thanks for joining and have a great day!</p>
+  </body>

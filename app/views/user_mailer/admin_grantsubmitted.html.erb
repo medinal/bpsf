@@ -1,12 +1,19 @@
-doctype html
-html
-  head
-    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
-  body
-    h1
-      | #{@recipient.name} has just submitted a new grant!
-    p
-      | #{@recipient.name} has just submitted a new grant called #{@grant.title}.
-      br/
-    p
-      | To view the grant's page, just follow this link: #{@url}.
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/css/mdb.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+  <body>
+    <h1>
+      | <%= @recipient.name %> has just submitted a new grant!
+      </h1>
+    <p>| <%= @recipient.name %> has just submitted a new grant called <%= @grant.title%>.
+    </p>
+      <br>
+    <p>| To view the grant's page, just follow this link: <%= @url %>.</p>
+
+    
+  </body>

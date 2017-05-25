@@ -1,9 +1,15 @@
-doctype html
-html
-  head
-    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
-  body
-    h1
-      | A grant you donated to, #{@grant.title}, has failed to meet its crowdfund goal by its deadline.
-    p
-      | The grant #{@grant.title} was not able to meet its crowdfund goal by its deadline. As a result, your card will not be charged for the amount you've pledged. Keep an eye out for new grants that you can help out with instead!
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/css/mdb.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+  <body>
+    <h1>
+      | A grant you donated to, <%= @grant.title %>, has failed to meet its crowdfund goal by its deadline. </h1>
+    <p>
+      | The grant <%= @grant.title %> was not able to meet its crowdfund goal by its deadline. As a result, your card will not be charged for the amount you've pledged. Keep an eye out for new grants that you can help out with instead!      
+    </p>
+  </body>
