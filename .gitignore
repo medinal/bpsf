@@ -40,7 +40,7 @@ config/initializers/secret_token.rb
 .byebug_history
 
 # Ignore Local Image Uploads
-/public/uploads
+/public/uploads/grant
 
 # Ignore application configuration
 /config/application.yml
