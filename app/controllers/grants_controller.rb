@@ -107,6 +107,9 @@ class GrantsController < ApplicationController
     if @grant.draft? && grant_params[:status] == "pending"
       GrantSubmittedJob.new.async.perform(@grant)
     end
+    if @grant.approved? && grant_params[:status] == "failed"
+      AdminCrowdfailedJob.new.async.perform(@grant, @grant.user)
+    end
     if !@grant.state_transition(grant_params[:status])
       render :edit, notice: 'That is not a valid state transition'
     elsif @grant.update(parameters)
@@ -141,7 +144,6 @@ class GrantsController < ApplicationController
                                     :collaborators, :comments, :user_id, :state,
                                     :video, :image, :school_id, :status, :deadline)
     end
-
 
     def permission
       redirect_to grants_path unless current_user and ((current_user.teacher? and current_user.approved?) or current_user.admin?)
