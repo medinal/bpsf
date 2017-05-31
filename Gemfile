@@ -45,7 +45,8 @@ gem 'cancancan'
 # Use Datagrid to create sortable tables
 gem 'datagrid'
 # admin portal
-gem 'rails_admin'
+# gem 'rails_admin'
+gem 'activeadmin'
 # Date Validation
 gem 'validates_timeliness', '~> 4.0'
 gem 'date_validator'
