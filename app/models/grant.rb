@@ -20,7 +20,7 @@ class Grant < ApplicationRecord
   validates :user, :school, :status, presence: true
 
   def days_left
-    ((Time.now - self.deadline.to_time).to_i / 1.day).abs
+    ((self.deadline.to_time - Time.now).to_i / 1.day)
   end
 
   def amount_raised
