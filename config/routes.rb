@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   devise_for :users
 
-match '/contact_forms/new',     to: 'contact_forms#new',             via: 'get'
-resources "contact_forms", only: [:new, :create]
+  match '/contact_forms/new',     to: 'contact_forms#new',             via: 'get'
+  resources "contact_forms", only: [:new, :create]
   root to: "home#index"
 
   resource :user, only: [:show] do
