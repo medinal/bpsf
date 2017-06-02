@@ -11,4 +11,9 @@ class User < ApplicationRecord
 
 
   enum role: {"friends_and_family" => 0, "teacher" => 1, "admin" => 2}
+
+  def full_name
+    first_name + " " + last_name
+  end
+
 end
