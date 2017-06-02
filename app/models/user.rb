@@ -10,5 +10,10 @@ class User < ApplicationRecord
   validates :first_name, :last_name, :email, :role, presence: true
 
 
-  enum role: {"friends_and_family" => 0, "teacher" => 1, "admin" => 2}
+  enum role: {"friends_and_family" => 0, "teacher" => 1}
+
+  def full_name
+    first_name + " " + last_name
+  end
+
 end
