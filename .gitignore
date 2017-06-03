@@ -40,5 +40,8 @@ config/initializers/secret_token.rb
 # Ignore Byebug command history file.
 .byebug_history
 
+# Ignore Local Image Uploads
+/public/uploads/grant
+
 # Ignore application configuration
 /config/application.yml
