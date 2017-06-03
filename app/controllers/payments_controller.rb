@@ -60,7 +60,7 @@ class PaymentsController < ApplicationController
   end
 
   def owner_or_admin?
-    redirect_to grants_path unless @payment.user == current_user or current_user.admin?
+    redirect_to grants_path unless @payment.user == current_user or current_admin_user
   end
 
 end

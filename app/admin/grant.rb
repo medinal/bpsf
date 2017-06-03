@@ -13,7 +13,7 @@ permit_params :title, :summary, :subject_areas, :grade_level,
 #
 # permit_params do
 #   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
+#   permitted << :other if params[:action] == 'create' && current_admin_user
 #   permitted
 # end
 
