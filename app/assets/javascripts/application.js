@@ -28,12 +28,12 @@ $(document).on('turbolinks:load', function() {
   $(".role").change(function(){
     $(".friend-family-p").hide();
     $(".teacher-p").hide();
-
-    if($(this).val()=== "Teacher"){
+    console.log($(this).val())
+    if($(this).val()=== "teacher"){
       $(".teacher-p").show();
       $(".school-input").show();
     }
-    else if($(this).val()=== "Friend/Family Member"){
+    else if($(this).val()=== "friends_and_family"){
       $(".friend-family-p").show();
       $(".school-input").hide();
       $(".school-input").val('')
