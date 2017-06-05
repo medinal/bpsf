@@ -166,5 +166,9 @@ $(document).on('turbolinks:load', function() {
     handler.close();
   });
 
+  //Disable Button to prevent duplicate payments
+  $('form').on('submit', function(){
+    $('.donation').attr('disabled', true);
+  });
 
 });
