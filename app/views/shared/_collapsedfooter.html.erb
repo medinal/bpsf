@@ -2,22 +2,22 @@
   <div class="row">
     <div class="medium-2 small-12 columns">
       <h5>Explore</h5>
-      <p>Home</p>
-      <p>About Us</p>
-      <p>Volunteer</p>
+      <p><%= link_to "Home", root_path %></p>
+      <p><a data-open="aboutModal">About Us</a></p>
+      <p><%= link_to "Volunteer", "https://www.berkeleypublicschoolsfund.org/volunteer/" %></p>
       <hr>
     </div>
     <div class="medium-2 small-12 columns">
       <h5>Account</h5>
-      <p>Sign in</p>
-      <p>Sign up</p>
+      <p><%= link_to "Sign In", new_user_session_path %></p>
+      <p><%= link_to "Sign Up", new_user_registration_path %></p>
       <hr>
     </div>
     <div class="medium-2 small-12 columns">
       <h5>Contact</h5>
-      <p>schoolsfund@berkeley.net</p>
+      <p><a href="mailto:schoolsfund@berkeley.net">schoolsfund@berkeley.net</a></p>
       <p>510-644-6244</p>
-      <p>facebook</p>
+      <p><%= link_to "Facebook", "https://www.facebook.com/berkeleypublicschoolsfund/" %></p>
       <hr>
     </div>
     <div class="large-5 large-offset-1 medium-4 medium-offset-2 small-12 columns">

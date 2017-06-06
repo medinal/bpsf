@@ -7,13 +7,7 @@
 <div class="grant-container hide-for-medium">
   <%= render "/grants/grantscard", grant: @grant %>
 </div>
-<% if current_user and current_user.stripe_token %>
-  <div class="columns small-12 medium-6 medium-offset-3">
-    <%= render "returning_customer_form" %>
-  </div>
-<% else %>
 <div class="columns small-12 medium-6 medium-offset-3">
-  <%= render "new_customer_form" %>
+  <%= render "customer_form" %>
 </div>
-<% end %>
 <br>
