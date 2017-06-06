@@ -101,11 +101,11 @@ class GrantsController < ApplicationController
   def update
     parameters = grant_params
     if params[:file]
-
       parameters[:image] = params[:file]
     end
     if @grant.draft? && grant_params[:status] == "pending"
       GrantSubmittedJob.new.async.perform(@grant)
+      p "heloo"
     end
     if @grant.approved? && grant_params[:status] == "failed"
       AdminCrowdfailedJob.new.async.perform(@grant, @grant.user)
@@ -113,7 +113,11 @@ class GrantsController < ApplicationController
     if !@grant.state_transition(grant_params[:status])
       render :edit, notice: 'That is not a valid state transition'
     elsif @grant.update(parameters)
+      if grant_params[:status] == "draft"
       redirect_to @grant, notice: 'Grant was successfully updated.'
+      elsif grant_params[:status] == "pending"
+      redirect_to @grant, notice: 'Grant was successfully submitted.'
+      end
     else
       render :edit
     end
