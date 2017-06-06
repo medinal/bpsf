@@ -8,6 +8,21 @@ permit_params :title, :summary, :subject_areas, :grade_level,
               :purpose, :methods, :background, :num_collabs,
               :collaborators, :comments, :user_id, :state,
               :video, :image, :school_id, :status, :deadline
+
+
+
+
+    # controller do
+    #   # This code is evaluated within the controller class
+
+    #   def destroy
+    #     Instance method
+    #     if @grant.draft? && grant_params[:status] == "pending"
+    #       GrantSubmittedJob.new.async.perform(@grant)
+    #     end
+    #   end
+    # end
+
 #
 # or
 #
