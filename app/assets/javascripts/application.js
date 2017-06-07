@@ -161,6 +161,14 @@ $(document).on('turbolinks:load', function() {
         amount: Math.round(amount)
       })
     }
+    else{
+      var title = $('.grant-row .columns h3')[0].innerHTML;
+      var amount = $('#amount').val()
+      if(confirm(`Are you sure you want to donate $${amount} to ${title}?`)){
+      }else{
+        e.preventDefault();
+      }
+    }
   });
 
   $(window).on('popstate', function() {
