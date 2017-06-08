@@ -22,19 +22,14 @@ permit_params :title, :summary, :subject_areas, :grade_level,
             end
             if @grant.draft? && grant_params[:status] == "pending"
               GrantSubmittedJob.new.async.perform(@grant)
-              p "heloo"
             end
             if @grant.approved? && grant_params[:status] == "failed"
               AdminCrowdfailedJob.new.async.perform(@grant, @grant.user)
             end
             if !@grant.state_transition(grant_params[:status])
-              render :edit, notice: 'That is not a valid state transition'
+              redirect_to admin_grant_path(@grant), notice: 'That is not a valid state transition'
             elsif @grant.update(parameters)
-              if grant_params[:status] == "draft"
-              redirect_to @grant, notice: 'Grant was successfully updated.'
-              elsif grant_params[:status] == "pending"
-              redirect_to @grant, notice: 'Grant was successfully submitted.'
-              end
+              redirect_to admin_grant_path(@grant), notice: 'Grant was successfully updated.'
             else
               render :edit
             end
