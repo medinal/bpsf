@@ -20,9 +20,6 @@ permit_params :title, :summary, :subject_areas, :grade_level,
             if params[:file]
               parameters[:image] = params[:file]
             end
-            if @grant.draft? && grant_params[:status] == "pending"
-              GrantSubmittedJob.new.async.perform(@grant)
-            end
             if @grant.approved? && grant_params[:status] == "failed"
               AdminCrowdfailedJob.new.async.perform(@grant, @grant.user)
             end
