@@ -19,6 +19,8 @@ class Grant < ApplicationRecord
   validate :state_transition, on: :save
   validates :user, :school, :status, presence: true
 
+  after_save :crowdsuccess
+
   def days_left
     time = ((self.deadline.to_time - Time.now)/1.day).ceil
   end
@@ -35,6 +37,16 @@ class Grant < ApplicationRecord
     (self.amount_raised/self.total_budget.to_f)*100
   end
 
+  def with_admin_cost
+    # 9% cost added
+    (total_budget * 1.09).to_i
+  end
+
+  def admin_cost
+    with_admin_cost - total_budget
+  end
+
+
   def state_transition(status)
     if      self.draft?     &&  ["pending"].include?(status)
       return true
@@ -49,5 +61,7 @@ class Grant < ApplicationRecord
       return false
     end
   end
+
+  
 
 end
