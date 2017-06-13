@@ -2,7 +2,8 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :users
+  devise_for :users,
+             :controllers => { :registrations => "custom/registrations" }
 
   match '/contact_forms/new',     to: 'contact_forms#new',             via: 'get'
   resources "contact_forms", only: [:new, :create]
