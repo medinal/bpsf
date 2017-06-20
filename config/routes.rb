@@ -12,7 +12,13 @@ Rails.application.routes.draw do
     resource :profiles, path: "profile", except: [:index, :show, :delete]
   end
 
-  get '/user/grants' => 'grants#usergrants', as: 'user_grants'
+  get '/user/grants', to: 'grants#usergrants', as: 'user_grants'
+
+  post '/user/card', to: 'users#create_card', as: 'create_card'
+
+  delete '/user/card', to: 'users#delete_card', as: 'delete_card'
+
+  post '/user/card/edit', to: 'users#edit_card', as: 'edit_card'
 
   resources :grants do
     resources :payments, except: [:index]
