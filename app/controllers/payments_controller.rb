@@ -26,14 +26,23 @@ class PaymentsController < ApplicationController
       current_user.stripe_token = customer.id
       current_user.save
     end
-
-    grant = Grant.find(params[:grant_id])
+    #grant before adding new payment
+    oldgrant = Grant.find(params[:grant_id])
+    total = oldgrant.amount_raised
     @payment = Payment.new
     @payment.user = current_user
     @payment.grant = Grant.find(params[:grant_id])
     @payment.amount = params[:amount]
     @payment.pending!
+    @admins = AdminUser.all
+    #grant after adding new payment
+    grant = Grant.find(params[:grant_id])
     if @payment.save
+      if total < grant.total_budget && total + @payment.amount >= grant.total_budget
+        @admins.each do |admin|
+          AdminCrowdsuccessJob.new.async.perform(grant, admin)
+        end
+      end
       redirect_to grant_path(@payment.grant), notice: "You have successfully pledged #{@payment.amount}!"
     else
       render :new
@@ -49,6 +58,8 @@ class PaymentsController < ApplicationController
   end
 
   private
+
+
 
   def payment_params
     params.permit(:amount, :grant_id, :stripeToken)
