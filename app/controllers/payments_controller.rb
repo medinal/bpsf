@@ -17,7 +17,6 @@ class PaymentsController < ApplicationController
   end
 
   def create
-
     if !current_user.stripe_token
       Stripe.api_key = ENV["stripe_api_key"]
       customer = Stripe::Customer.create(

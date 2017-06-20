@@ -34,7 +34,9 @@ class Grant < ApplicationRecord
   end
 
   def percent_complete
-    (self.amount_raised/self.total_budget.to_f)*100
+    percent = (self.amount_raised/self.total_budget.to_f)*100
+    percent = 100 if percent > 100
+    percent
   end
 
   def with_admin_cost
