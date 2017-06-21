@@ -37,6 +37,18 @@ class Grant < ApplicationRecord
     (self.amount_raised/self.total_budget.to_f)*100
   end
 
+  def check_total(total, admins, payment)
+    if total < self.total_budget && total + payment.amount >= self.total_budget
+      admins.each do |admin|
+        AdminCrowdsuccessJob.new.async.perform(self, admin)
+      end
+    elsif self.amount_raised >= (self.total_budget * 0.8) && (self.amount_raised < self.total_budget)
+      DonorNearendJob.new.async.perform(self, payment.user)
+    end
+  end
+
+       
+
   def with_admin_cost
     # 9% cost added
     (total_budget * 1.09).to_i

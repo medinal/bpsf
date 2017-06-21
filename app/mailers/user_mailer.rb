@@ -81,12 +81,12 @@ class UserMailer < ActionMailer::Base
 #     mail(to: @recipient.email, subject: 'Your grant did not reach its crowdfund goal.')
 #   end
 
-#   def donor_nearend(grant, user)
-#     @grant = grant
-#     @user = user
-#     @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
-#     mail(to: @user.email, subject: 'A grant you have donated to is at 80% completion!')
-#   end
+  def donor_nearend(grant, user)
+    @grant = grant
+    @user = user
+    @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
+    mail(to: @user.email, subject: 'A grant you have donated to is at 80% completion!')
+  end
 
 #   def admin_grantsubmitted(grant, admin)
 #     @grant = grant
