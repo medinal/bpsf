@@ -8,7 +8,7 @@
   </head>
   <body>
     <h1>| <%= @grant.title %>, a grant you have donated to, is at 80% completion!</h1>
-    <p>| <%= @grant.recipient.name %>'s grant, <%= @grant.title %>, is almost at its goal! If you would like, please consider helping top off the remainder of its goal with a small donation. Every dollar counts!</p>
+    <p>| <%= @grant.user.first_name %><%= @grant.user.last_name %>'s grant, <%= @grant.title %>, is almost at its goal! If you would like, please consider helping top off the remainder of its goal with a small donation. Every dollar counts!</p>
     <p>| To login to the site, just follow this link: <%= @url %>.</p>
     <p> Thanks for joining and have a great day!</p>
   </body>
