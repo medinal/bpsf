@@ -100,7 +100,60 @@
   </div>
   <div class="tabs-panel" id="credit-card">
     <div class="row">
-      <p>Update your credit card info here</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Default</th>
+            <th>Name On Card</th>
+            <th>Last Four</th>
+            <th>Expiration Date</th>
+            <th>Provider</th>
+            <th>Card Type</th>
+            <th>Billing Address</th>
+            <th>Edit Card</th>
+            <th>Delete Card</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @customer.sources.each_with_index do |card, index| %>
+            <tr id="card<%= index %>">
+              <td style="text-align: center;">
+                <% if card.id == @customer.default_source %>
+                  <span class="badge success"><%= fa_icon "check" %></span>
+                <% end %>
+              </td>
+              <td><%= card.name %></td>
+              <td><%= card.last4 %></td>
+              <td><%= Date.new(card.exp_year, card.exp_month).strftime('%B %Y') %></td>
+              <td><%= card.brand %></td>
+              <td><%= card.funding %></td>
+              <td>
+                <%if card.address_line1%>
+                  <%=  "#{card.address_line1}  #{card.address_line2} #{card.address_city}, #{card.address_state}, #{card.address_zip}" %>
+                <% end %>
+              </td>
+              <td style="text-align: center;"><span class="badge click warning"><%= fa_icon "pencil", style: "color: white;"%></span></td>
+              <td style="text-align: center;">
+                <% if card.id == @customer.default_source %>
+                  <span class="badge secondary"><%= fa_icon "times" %></i></span>
+                <% else %>
+                  <%= form_tag delete_card_path, method: 'delete' do %>
+                    <%= hidden_field_tag :card_id %>
+                    <span class="badge click alert"><%= fa_icon "times" %></i></span>
+                  <% end %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="button warning new-card">Add Card</div>
+      <%= render "new_card"%>
+      <% @customer.sources.each_with_index do |card, index| %>
+        <div class="edit-card-form card<%= index %>" style="width: 100%; display: none;">
+          <%= render "edit_card", card: card %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

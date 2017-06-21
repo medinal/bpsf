@@ -59,7 +59,6 @@ $(document).on('turbolinks:load', function() {
   // FOR READING URL TO DISPLAY IMG FILE
   function readURL(input) {
     if (input.files && input.files[0]) {
-      console.log('FILE:', input.files[0]);
       var reader = new FileReader();
       reader.onload = function (e) {
         $('#grant-img-preview').attr('src', e.target.result);
@@ -180,4 +179,81 @@ $(document).on('turbolinks:load', function() {
     $('.donation').attr('disabled', true);
   });
 
+  $('.new-card').on('click', function(){
+    $('.new-card-form').show();
+    $('#credit-card table').hide();
+    $(this).hide();
+  });
+
+  var stripe = Stripe('pk_test_3oCK6GUkzy4PZFbsaDld0gTY');
+  var elements = stripe.elements();
+  var style = {
+    base: {
+      fontSize: '20px',
+      fontFamily: 'MuseoSans300'
+    },
+    complete: {
+      color: 'green'
+    }
+  };
+  var card = elements.create('card', {style: style});
+  if($('#card-element')[0]){
+    card.mount('#card-element');
+  }
+
+  // SHOW EDIT CARD FORM
+  $('.badge.click.warning').on('click', function(){
+    $('#credit-card table').hide();
+    $('.new-card').hide();
+    var cardForm = $(this).closest('tr').attr('id');
+    $(`.${cardForm}`).show();
+  });
+
+  // TO DELETE CARD
+  $('.badge.click.alert').on('click', function(){
+    var cardForm = $(this).closest('tr').attr('id');
+    var id = $(`.${cardForm} input#card_id`).val();
+    $(this).siblings('input#card_id').val(id);
+    $(this).closest('form').submit();
+  });
+
+  // SHOW TABLE ON TAB CLICK
+  $('#credit-card-label').on('click', function(){
+    $('.edit-card-form').hide();
+    $('.new-card-form').hide();
+    $('.new-card').show();
+    $('#credit-card table').show();
+  });
+
+  // SHOW TABLE ON CANCEL CLICK
+  $('.cancel-edit').on('click', function(){
+    $('#credit-card table').show();
+    $(this).closest('form').parent().hide();
+    $('.new-card').show();
+  });
+
+  // CREATE NEW CARD
+  $('#card_submit').on('click', function(e){
+    e.preventDefault();
+    var me = this;
+    var owner = {
+      name: $('#name').val(),
+      address_line1: $('#address_line1').val(),
+      address_line2: $('#address_line2').val(),
+      address_city: $('#address_city').val(),
+      address_state: $('#address_state').val(),
+      address_country: $('#address_country').val(),
+    }
+    stripe.createToken(card, owner).then(function(result) {
+      if (result.error) {
+        // Inform the user if there was an error
+        $('p.alert').text(result.error.message);
+        $(window).scrollTop($('p.alert').position().top);
+      } else {
+        // Send the token to your server
+        $('#card_token').val(result.token.id);
+        $(me).closest('form').submit();
+      }
+    });
+  });
 });
