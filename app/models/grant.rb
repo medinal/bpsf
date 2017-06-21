@@ -19,8 +19,6 @@ class Grant < ApplicationRecord
   validate :state_transition, on: :save
   validates :user, :school, :status, presence: true
 
-  after_save :crowdsuccess
-
   def days_left
     time = ((self.deadline.to_time - Time.now)/1.day).ceil
   end
@@ -37,6 +35,26 @@ class Grant < ApplicationRecord
     percent = (self.amount_raised/self.total_budget.to_f)*100
     percent = 100 if percent > 100
     percent
+  end
+
+  # def status_change
+  #   if 
+  # end
+
+  def days_left
+    (deadline - Date.today).to_i
+  end
+
+  def past_deadline?
+    days_left <= 0
+  end
+
+  def crowdfailed
+    @admins = SuperUser.all
+    @admins.each do |admin|
+      AdminCrowdfailedJob.new.async.perform(self, admin)
+    end
+    GrantCrowdfailedJob.new.async.perform(self)
   end
 
   def with_admin_cost

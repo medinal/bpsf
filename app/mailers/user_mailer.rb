@@ -19,6 +19,7 @@ class UserMailer < ActionMailer::Base
   #   mail(to: @user.email, subject: 'Your account with the Schools Fund has been approved!')
   # end
 
+     #skip? Seems redundant
   # def goal_met(grant, admin)
   #   @grant = grant
   #   @admin = admin
@@ -81,11 +82,11 @@ class UserMailer < ActionMailer::Base
 #     mail(to: @recipient.email, subject: 'Your grant is reaching its deadline.')
 #   end
 
-#   def grant_crowdfailed(grant)
-#     @grant = grant
-#     @recipient = @grant.recipient
-#     mail(to: @recipient.email, subject: 'Your grant did not reach its crowdfund goal.')
-#   end
+  def grant_crowdfailed(grant)
+    @grant = grant
+    @recipient = @grant.user
+    mail(to: @recipient.email, subject: 'Your grant did not reach its crowdfund goal.')
+  end
 
 #   def donor_nearend(grant, user)
 #     @grant = grant

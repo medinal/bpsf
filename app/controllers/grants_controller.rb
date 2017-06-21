@@ -82,8 +82,6 @@ class GrantsController < ApplicationController
     if params[:file]
       parameters[:image] = params[:file]
     end
-    
-
     @grant = Grant.new(parameters)
     @grant.user = current_user
     @grant.school = School.find(current_user.school_id)
@@ -99,27 +97,13 @@ class GrantsController < ApplicationController
 
   # PATCH/PUT /grants/1
   def update
+    @admins = AdminUser.all
     parameters = grant_params
     if params[:file]
       parameters[:image] = params[:file]
     end
-    if @grant.draft? && grant_params[:status] == "pending"
-      GrantSubmittedJob.new.async.perform(@grant)
-      p "heloo"
-    end
-    if @grant.approved? && grant_params[:status] == "failed"
-      AdminCrowdfailedJob.new.async.perform(@grant, @grant.user)
-    end
-    if !@grant.state_transition(grant_params[:status])
-      render :edit, notice: 'That is not a valid state transition'
-    elsif @grant.update(parameters)
-      if grant_params[:status] == "draft"
-      redirect_to @grant, notice: 'Grant was successfully updated.'
-      elsif grant_params[:status] == "pending"
-      redirect_to @grant, notice: 'Grant was successfully submitted.'
-      end
-    else
-      render :edit
+    if @grant.status != grant_params[:status]
+      status_change
     end
   end
 
@@ -136,6 +120,29 @@ class GrantsController < ApplicationController
         redirect_to grants_path
       else
         @grant = Grant.find(params[:id])
+      end
+    end
+
+    def status_change
+      if @grant.draft? && grant_params[:status] == "pending"
+        GrantSubmittedJob.new.async.perform(@grant)
+      end
+      if @grant.approved? && grant_params[:status] == "failed"
+        @admins.each do |admin|
+          AdminCrowdfailedJob.new.async.perform(@grant, admin)
+        end
+        GrantCrowdfailedJob.new.async.perform(@grant)
+      end
+      if !@grant.state_transition(grant_params[:status])
+        render :edit, notice: 'That is not a valid state transition'
+      elsif @grant.update(grant_params)
+        if grant_params[:status] == "draft"
+        redirect_to @grant, notice: 'Grant was successfully updated.'
+        elsif grant_params[:status] == "pending"
+        redirect_to @grant, notice: 'Grant was successfully submitted.'
+        end
+      else
+        render :edit
       end
     end
 
