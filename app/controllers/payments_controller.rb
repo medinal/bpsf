@@ -37,12 +37,9 @@ class PaymentsController < ApplicationController
     @admins = AdminUser.all
     #grant after adding new payment
     grant = Grant.find(params[:grant_id])
+    #Check amount raised and send mailer if grant is funded or near funded
     if @payment.save
-      if total < grant.total_budget && total + @payment.amount >= grant.total_budget
-        @admins.each do |admin|
-          AdminCrowdsuccessJob.new.async.perform(grant, admin)
-        end
-      end
+      grant.check_total(total, @admins, @payment)
       redirect_to grant_path(@payment.grant), notice: "You have successfully pledged #{@payment.amount}!"
     else
       render :new
