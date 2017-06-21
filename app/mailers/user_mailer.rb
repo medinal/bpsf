@@ -78,6 +78,7 @@ class UserMailer < ActionMailer::Base
 #   end
 
   def grant_crowdfailed(grant)
+    p "Grant Crowd Failed"    
     @grant = grant
     @recipient = @grant.user
     mail(to: @recipient.email, subject: 'Your grant did not reach its crowdfund goal.')
@@ -116,9 +117,12 @@ class UserMailer < ActionMailer::Base
   end
 
   def admin_crowdfailed(grant, admin)
+    p "CROWD FAILED"
     @grant = grant
+    p grant.title
     @recipient = @grant.user
     @admin = admin
+    p @admin.id
     @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
     mail(to: @admin.email, subject: 'A grant has failed to reach its crowdfund goal.')
   end

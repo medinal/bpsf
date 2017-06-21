@@ -127,12 +127,6 @@ class GrantsController < ApplicationController
       if @grant.draft? && grant_params[:status] == "pending"
         GrantSubmittedJob.new.async.perform(@grant)
       end
-      if @grant.approved? && grant_params[:status] == "failed"
-        @admins.each do |admin|
-          AdminCrowdfailedJob.new.async.perform(@grant, admin)
-        end
-        GrantCrowdfailedJob.new.async.perform(@grant)
-      end
       if !@grant.state_transition(grant_params[:status])
         render :edit, notice: 'That is not a valid state transition'
       elsif @grant.update(grant_params)

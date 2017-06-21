@@ -10,7 +10,14 @@ namespace :grants do
           sum += payment.amount
         end
         if sum < grant.total_budget
-          grant.status = "failed"
+          puts "failing"
+          # grant.status = "failed"
+          AdminUser.all.each do |admin|
+            puts admin.email
+            AdminCrowdfailedJob.new.perform(grant, admin)
+          end
+          GrantCrowdfailedJob.new.perform(grant)
+          puts "hhhhh"
           grant.payments.each do |payment|
             payment.cancelled!
           end
