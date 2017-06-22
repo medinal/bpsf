@@ -18,10 +18,17 @@ namespace :grants do
         if sum < grant.total_budget
           grant.status = "failed"
           AdminUser.all.each do |admin|
+            puts "before admin"
             AdminCrowdfailedJob.new.perform(grant, admin)
+            puts "after admin"
           end
+          puts "before grant"
           GrantCrowdfailedJob.new.perform(grant)
+          puts "Aafter grant"
           grant.payments.each do |payment|
+            puts "before user"
+            UserCrowdfailedJob.new.perform(payment.user, grant)
+            puts "after user"
             payment.cancelled!
           end
         else

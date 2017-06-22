@@ -37,11 +37,12 @@ class UserMailer < ActionMailer::Base
   #   mail(to: @user.email, subject: 'A grant you donated to has been successfully crowdfunded!')
   # end
 
-  # def user_crowdfailed(user,grant)
-  #   @user = user
-  #   @grant = grant
-  #   mail(to: @user.email, subject: 'A grant you donated to has not met its goal and your card will not be charged')
-  # end
+  def user_crowdfailed(user,grant)
+    p "user fail"
+    @user = user
+    @grant = grant
+    mail(to: @user.email, subject: 'A grant you donated to has not met its goal and your card will not be charged')
+  end
 
   def grant_submitted(grant)
     @grant = grant
@@ -117,6 +118,7 @@ class UserMailer < ActionMailer::Base
   end
 
   def admin_crowdfailed(grant, admin)
+    p "admin fail"
     @grant = grant
     @recipient = @grant.user
     @admin = admin
