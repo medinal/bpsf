@@ -4,13 +4,23 @@ namespace :grants do
   task update_status: :environment do
     Stripe.api_key = ENV["stripe_api_key"]
     Grant.where(status:'approved').each do |grant|
-      if grant.days_left < 1
-        sum = 0
-        grant.payments.each do |payment|
-          sum += payment.amount
+      sum = 0
+      grant.payments.each do |payment|
+        sum += payment.amount
+      end
+      if grant.days_left == 3 && sum < grant.total_budget
+        GrantEndingJob.new.perform(grant)
+        AdminUser.all.each do |admin|
+          SuperCrowdendingJob.new.perform(grant, admin)
         end
+      end
+      if grant.days_left < 1
         if sum < grant.total_budget
           grant.status = "failed"
+          AdminUser.all.each do |admin|
+            AdminCrowdfailedJob.new.perform(grant, admin)
+          end
+          GrantCrowdfailedJob.new.perform(grant)
           grant.payments.each do |payment|
             payment.cancelled!
           end
