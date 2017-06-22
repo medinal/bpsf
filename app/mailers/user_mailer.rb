@@ -22,16 +22,15 @@ class UserMailer < ActionMailer::Base
   #   mail(to: @admin.email, subject: "A grant has reached its crowdfund goal!")
   # end
 
-  # def user_pledge(user,grant,payment)
-  #   @user = user
-  #   @grant = grant
-  #   @amount = payment.amount
-  #   @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
-  #   mail(to: @user.email, subject: 'Thank you for pledging a donation!')
-  # end
+  def user_pledge(user,grant,payment)
+    @user = user
+    @grant = grant
+    @amount = payment.amount
+    @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
+    mail(to: @user.email, subject: 'Thank you for pledging a donation!')
+  end
 
   def user_crowdsuccess(user,grant)
-    p "inside malier"
     @user = user
     @grant = grant
     @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
