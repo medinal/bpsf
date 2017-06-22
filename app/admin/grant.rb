@@ -22,6 +22,8 @@ permit_params :title, :summary, :subject_areas, :grade_level,
             end
             if @grant.pending? && grant_params[:status] == "approved"
               GrantCrowdfundingJob.new.async.perform(@grant)
+            elsif @grant.pending? && grant_params[:status] == "rejected"
+              GrantRejectedJob.new.async.perform(@grant)
             end
             if !@grant.state_transition(grant_params[:status])
               redirect_to admin_grant_path(@grant), notice: 'That is not a valid state transition'

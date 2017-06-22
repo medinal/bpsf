@@ -50,11 +50,11 @@ class UserMailer < ActionMailer::Base
     mail(to: @recipient.email, subject: 'Your grant has been submitted!')
   end
 
-#   def grant_rejected(grant)
-#     @grant = grant
-#     @recipient = @grant.recipient
-#     mail(to: @recipient.email, subject: 'Your grant has been rejected.')
-#   end
+  def grant_rejected(grant)
+    @grant = grant
+    @recipient = @grant.user
+    mail(to: @recipient.email, subject: 'Your grant has been rejected.')
+  end
 
   def grant_funded(grant)
     @grant = grant
