@@ -19,6 +19,10 @@ class Grant < ApplicationRecord
   validate :state_transition, on: :save
   validates :user, :school, :status, presence: true
 
+  def progress
+    "#{([self.amount_raised/self.total_budget.to_f, 1].min * 100).to_i}%"
+  end
+
   def days_left
     time = ((self.deadline.to_time - Time.now)/1.day).ceil
   end

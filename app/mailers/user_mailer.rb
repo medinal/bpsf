@@ -70,12 +70,12 @@ class UserMailer < ActionMailer::Base
     mail(to: @recipient.email, subject: @subject)
   end
 
-#   def grant_ending(grant)
-#     @grant = grant
-#     @recipient = @grant.recipient
-#     @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
-#     mail(to: @recipient.email, subject: 'Your grant is reaching its deadline.')
-#   end
+  def grant_ending(grant)
+    @grant = grant
+    @recipient = @grant.user
+    @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
+    mail(to: @recipient.email, subject: 'Your grant is reaching its deadline.')
+  end
 
   def grant_crowdfailed(grant)
     p "Grant Crowd Failed"    
@@ -99,13 +99,13 @@ class UserMailer < ActionMailer::Base
 #     mail(to: @admin.email, subject: 'A grant has just been submitted for review.')
 #   end
 
-#   def super_crowdending(grant, admin)
-#     @grant = grant
-#     @recipient = @grant.recipient
-#     @admin = admin
-#     @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
-#     mail(to: @admin.email, subject: 'A grant is reaching its deadline.')
-#   end
+  def super_crowdending(grant, admin)
+    @grant = grant
+    @recipient = @grant.user
+    @admin = admin
+    @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
+    mail(to: @admin.email, subject: 'A grant is reaching its deadline.')
+  end
 
   def admin_crowdsuccess(grant, admin)
     @grant = grant
