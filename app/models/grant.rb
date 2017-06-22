@@ -48,9 +48,9 @@ class Grant < ApplicationRecord
 
   def crowdfailed
     @admins = SuperUser.all
-    @admins.each do |admin|
-      AdminCrowdfailedJob.new.async.perform(self, admin)
-    end
+    # @admins.each do |admin|
+    #   AdminCrowdfailedJob.new.async.perform(self, admin)
+    # end
     GrantCrowdfailedJob.new.async.perform(self)
   end
 

@@ -62,13 +62,13 @@ class UserMailer < ActionMailer::Base
 #     mail(to: @recipient.email, subject: 'Your grant has been funded!')
 #   end
 
-#   def grant_crowdfunding(grant)
-#     @grant = grant
-#     @recipient = @grant.recipient
-#     @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
-#     @subject = 'Your grant has been approved for crowdfunding by the Schools Fund.'
-#     mail(to: @recipient.email, subject: @subject)
-#   end
+  def grant_crowdfunding(grant)
+    @grant = grant
+    @recipient = @grant.user
+    @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
+    @subject = 'Your grant has been approved for crowdfunding by the Schools Fund.'
+    mail(to: @recipient.email, subject: @subject)
+  end
 
 #   def grant_ending(grant)
 #     @grant = grant
@@ -117,12 +117,9 @@ class UserMailer < ActionMailer::Base
   end
 
   def admin_crowdfailed(grant, admin)
-    p "CROWD FAILED"
     @grant = grant
-    p grant.title
     @recipient = @grant.user
     @admin = admin
-    p @admin.id
     @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
     mail(to: @admin.email, subject: 'A grant has failed to reach its crowdfund goal.')
   end

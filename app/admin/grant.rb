@@ -20,8 +20,8 @@ permit_params :title, :summary, :subject_areas, :grade_level,
             if params[:file]
               parameters[:image] = params[:file]
             end
-            if @grant.approved? && grant_params[:status] == "failed"
-              AdminCrowdfailedJob.new.async.perform(@grant, @grant.user)
+            if @grant.pending? && grant_params[:status] == "approved"
+              GrantCrowdfundingJob.new.async.perform(@grant)
             end
             if !@grant.state_transition(grant_params[:status])
               redirect_to admin_grant_path(@grant), notice: 'That is not a valid state transition'
