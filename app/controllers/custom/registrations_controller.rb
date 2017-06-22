@@ -8,7 +8,7 @@ class Custom::RegistrationsController < Devise::RegistrationsController
     
     @admins = AdminUser.all
     if @user.save
-      p "hello"
+        WelcomeEmailJob.new.async.perform(@user)
         @admins.each do |admin|
           AdminNewuserJob.new.async.perform(@user, admin)
         end

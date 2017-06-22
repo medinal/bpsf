@@ -1,26 +1,12 @@
 class UserMailer < ActionMailer::Base
   default from: "monzelb@gmail.com"
 
-  # def welcome_email(user)
-  #   @user = user
-  #   @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/users/sign_in'
-  #   mail(to: @user.email, subject: 'Thanks for registering with the Schools Fund!')
-  # end
+  def welcome_email(user)
+    @user = user
+    @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/users/sign_in'
+    mail(to: @user.email, subject: 'Thanks for registering with the Schools Fund!')
+  end
 
-  # def welcome_admin(user)
-  #   @user = user
-  #   @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/users/sign_in'
-  #   mail(to: @user.email, subject: 'Thanks for registering with the Schools Fund!')
-  # end
-
-
-     #skip? Seems redundant
-  # def goal_met(grant, admin)
-  #   @grant = grant
-  #   @admin = admin
-  #   @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
-  #   mail(to: @admin.email, subject: "A grant has reached its crowdfund goal!")
-  # end
 
   def user_pledge(user,grant,payment)
     @user = user
@@ -132,6 +118,7 @@ class UserMailer < ActionMailer::Base
     mail(to: @admin.email, subject: 'A new user has registered an account!')
   end
 
+# Ask Diane about
 #   def admin_newadmin(user,admin)
 #     @user = user
 #     @admin = admin
@@ -139,9 +126,9 @@ class UserMailer < ActionMailer::Base
 #     mail(to: @admin.email, subject: 'A new administrator account needs your approval')
 #   end
 
-#   def weekly_digest(user,grants)
-#     @user = user
-#     @grants = grants
-#     mail(to: @user.email, subject: 'Your weekly digest for the Schools Fund Friends and Family Grant Portal')
-#   end
+  # def weekly_digest(user,grants)
+  #   @user = user
+  #   @grants = grants
+  #   mail(to: @user.email, subject: 'Your weekly digest for the Schools Fund Friends and Family Grant Portal')
+  # end
 end
