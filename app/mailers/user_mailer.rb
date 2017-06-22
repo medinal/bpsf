@@ -77,13 +77,13 @@ class UserMailer < ActionMailer::Base
     mail(to: @user.email, subject: 'A grant you have donated to is at 80% completion!')
   end
 
-#   def admin_grantsubmitted(grant, admin)
-#     @grant = grant
-#     @recipient = @grant.recipient
-#     @admin = admin
-#     @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
-#     mail(to: @admin.email, subject: 'A grant has just been submitted for review.')
-#   end
+  def admin_grantsubmitted(grant, admin)
+    @grant = grant
+    @recipient = @grant.user
+    @admin = admin
+    @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
+    mail(to: @admin.email, subject: 'A grant has just been submitted for review.')
+  end
 
   def super_crowdending(grant, admin)
     @grant = grant
