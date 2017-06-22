@@ -30,15 +30,15 @@ class UserMailer < ActionMailer::Base
   #   mail(to: @user.email, subject: 'Thank you for pledging a donation!')
   # end
 
-  # def user_crowdsuccess(user,grant)
-  #   @user = user
-  #   @grant = grant
-  #   @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
-  #   mail(to: @user.email, subject: 'A grant you donated to has been successfully crowdfunded!')
-  # end
+  def user_crowdsuccess(user,grant)
+    p "inside malier"
+    @user = user
+    @grant = grant
+    @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
+    mail(to: @user.email, subject: 'A grant you donated to has been successfully crowdfunded!')
+  end
 
   def user_crowdfailed(user,grant)
-    p "user fail"
     @user = user
     @grant = grant
     mail(to: @user.email, subject: 'A grant you donated to has not met its goal and your card will not be charged')
