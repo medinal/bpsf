@@ -1,6 +1,6 @@
 namespace :grants do
   
-  desc "Check if grant deadline has been reach and update status to successful or failed"
+  desc "Check if grant deadline has been reached, update status to successful or failed, and send mailers"
   task update_status: :environment do
     Stripe.api_key = ENV["stripe_api_key"]
     Grant.where(status:'approved').each do |grant|

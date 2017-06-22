@@ -63,6 +63,7 @@ class Grant < ApplicationRecord
       admins.each do |admin|
         AdminCrowdsuccessJob.new.async.perform(self, admin)
       end
+      GrantFundedJob.new.async.perform(self)
     elsif self.amount_raised >= (self.total_budget * 0.8) && (self.amount_raised < self.total_budget)
       DonorNearendJob.new.async.perform(self, payment.user)
     end
