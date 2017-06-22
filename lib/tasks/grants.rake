@@ -1,6 +1,6 @@
 namespace :grants do
   
-  desc "Check if grant deadline has been reach and update status to successful or failed"
+  desc "Check if grant deadline has been reached, update status to successful or failed, and send mailers"
   task update_status: :environment do
     Stripe.api_key = ENV["stripe_api_key"]
     Grant.where(status:'approved').each do |grant|
@@ -18,10 +18,17 @@ namespace :grants do
         if sum < grant.total_budget
           grant.status = "failed"
           AdminUser.all.each do |admin|
+            puts "before admin"
             AdminCrowdfailedJob.new.perform(grant, admin)
+            puts "after admin"
           end
+          puts "before grant"
           GrantCrowdfailedJob.new.perform(grant)
+          puts "Aafter grant"
           grant.payments.each do |payment|
+            puts "before user"
+            UserCrowdfailedJob.new.perform(payment.user, grant)
+            puts "after user"
             payment.cancelled!
           end
         else

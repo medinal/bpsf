@@ -85,12 +85,16 @@ class GrantsController < ApplicationController
     @grant = Grant.new(parameters)
     @grant.user = current_user
     @grant.school = School.find(current_user.school_id)
+    @admins = AdminUser.all
     if @grant.save
       redirect_to @grant, notice: 'Grant was successfully created.'
     else
       render :new
     end
     if grant_params[:status] == "pending" 
+      @admins.each do |admin|
+        AdminGrantsubmittedJob.new.async.perform(@grant, admin)
+      end
       GrantSubmittedJob.new.async.perform(Grant.last)
     end
   end

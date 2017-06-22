@@ -39,6 +39,7 @@ class PaymentsController < ApplicationController
     grant = Grant.find(params[:grant_id])
     #Check amount raised and send mailer if grant is funded or near funded
     if @payment.save
+      UserPledgeJob.new.async.perform(@payment.user, grant, @payment)
       grant.check_total(total, @admins, @payment)
       redirect_to grant_path(@payment.grant), notice: "You have successfully pledged #{@payment.amount}!"
     else
