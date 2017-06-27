@@ -351,6 +351,10 @@ p.alert, p.notice {
   border-radius: 50%;
 }
 
+.has-tip{
+  cursor: pointer; 
+}
+
 .badge.click:hover {
   cursor: pointer;
   transform: scale(1.5);
