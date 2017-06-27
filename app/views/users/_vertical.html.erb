@@ -14,7 +14,7 @@
         </div>
       <% else %>
         <div class="columns small-6">
-          <% if current_user.teacher? %>
+          <% if current_user.role == "teacher" %>
             <p class="text-right">About:</p>
             <p class="text-right">Position:</p>
             <p class="text-right">Subject:</p>
@@ -28,7 +28,7 @@
           <p class="text-right">Work Phone:</p>
         </div>
         <div class="user-attribute-values columns small-6">
-        <% if current_user.teacher? %>
+        <% if current_user.role == "teacher" %>
           <p><%= @profile.about %></p>
           <p><%= @profile.position %></p>
           <p><%= @profile.subject %></p>

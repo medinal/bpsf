@@ -155,7 +155,7 @@ class GrantsController < ApplicationController
     end
 
     def permission
-      redirect_to grants_path unless current_user and ((current_user.teacher? and current_user.approved?) or current_admin_user)
+      redirect_to grants_path unless current_user and ((current_user.role == "teacher" and current_user.approved?) or current_admin_user)
     end
 
     def owner

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170607235339) do
+ActiveRecord::Schema.define(version: 20170627190410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -129,7 +129,6 @@ ActiveRecord::Schema.define(version: 20170607235339) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "stripe_token"
-    t.boolean  "teacher"
     t.boolean  "approved"
     t.integer  "school_id"
     t.integer  "role"
