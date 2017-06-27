@@ -10,7 +10,7 @@
 
       <ul class="menu">
         <li><%= link_to "View Grants", grants_path, class: "dropdown-links align-center" %></li>
-        <% if current_user && current_user.teacher? %>
+        <% if current_user && current_user.role == "teacher" %>
           <li><%= link_to "Your Grants", user_grants_path, class: "dropdown-links align-center" %></li>
         <% end %>
         <li><%= link_to "Apply", new_grant_path, class: "dropdown-links align-center" %></li>
@@ -82,7 +82,7 @@
           <li><%= link_to "Admin Dashboard", admin_root_path, class: "dropdown-links align-center" %></li>
           <% end %>
         <li><%= link_to "Dashboard", user_path, method: "get", class: "dropdown-links align-center" %></li>
-        <% if current_user && current_user.teacher? %>
+        <% if current_user && current_user.role == "teacher" %>
           <li><%= link_to "Your Grants", user_grants_path, class: "dropdown-links align-center" %></li>
         <% end %>
         <li><%= link_to "Sign Out", destroy_user_session_path, method: "delete", class: "dropdown-links align-center" %></li>
