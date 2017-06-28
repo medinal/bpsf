@@ -197,8 +197,8 @@ $(document).on('turbolinks:load', function() {
     }
   };
   var card = elements.create('card', {style: style});
-  if($('#card-element')[0]){
-    card.mount('#card-element');
+  if($('.card-element')[0]){
+    card.mount('#credit-card .card-element');
   }
 
   // SHOW EDIT CARD FORM
