@@ -7,9 +7,10 @@ class UsersController < ApplicationController
     @payments = current_user.payments
     @school = current_user.school
     Stripe.api_key = ENV['stripe_api_key']
-    @customer = Stripe::Customer.retrieve(@user.stripe_token)
-
-    # c.sources.create({source: 'src_1AV5kjJn01ZneUxaQyai5zf2'})
+    @customer = nil
+    if @user.stripe_token
+      @customer = Stripe::Customer.retrieve(@user.stripe_token)
+    end
   end
 
   def create_card
