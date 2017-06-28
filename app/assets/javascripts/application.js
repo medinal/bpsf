@@ -233,7 +233,7 @@ $(document).on('turbolinks:load', function() {
   });
 
   // CREATE NEW CARD
-  $('#card_submit').on('click', function(e){
+  $('.card_submit').on('click', function(e){
     e.preventDefault();
     var me = this;
     var form = $(me).closest('form');
