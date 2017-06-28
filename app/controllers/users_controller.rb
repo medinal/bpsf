@@ -17,9 +17,19 @@ class UsersController < ApplicationController
     Stripe.api_key = ENV['stripe_api_key']
     begin
       tok = Stripe::Token.retrieve(params[:card_token])
-      customer = Stripe::Customer.retrieve(current_user.stripe_token)
-      customer.sources.create({source: tok})
-      redirect_to current_user, notice: 'Successfully created card'
+      unless current_user.stripe_token
+        customer = Stripe::Customer.create({
+          email: current_user.email,
+          source: tok,
+        })
+        current_user.stripe_token = customer.id
+        current_user.save
+      else
+        customer = Stripe::Customer.retrieve(current_user.stripe_token)
+        customer.sources.create({source: tok})
+        breakffs
+      end
+        redirect_to current_user, notice: 'Successfully created card'
     rescue => e
       redirect_to current_user, notice: 'Could not find token to create card'
     end 
