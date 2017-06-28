@@ -33,7 +33,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Recent Payments" do
           table_for Payment.order('id desc').limit(10) do
             column("Grant") {|payment| link_to(payment.grant.title, admin_grant_path(payment.grant))}
-            column("User") {|payment| link_to(payment.user, admin_user_path(payment.user))}
+            column("User") {|payment| link_to("#{payment.user.first_name} #{payment.user.last_name}", admin_user_path(payment.user))}
             column("Amount") {|payment| payment.amount}
             column("Status") {|payment| status_tag(payment.status)}
           end
