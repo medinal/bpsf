@@ -11,23 +11,23 @@
     <%= f.input :image, class: "button" %>
     <%= f.input :title, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Name your grant. A good title summarizes the essence of the application." } %>
     <%= f.input :summary, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Give a brief explanation of your application (200 word limit)" } %>
-    <%= f.input :subject_areas, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Bla bla bla" } %>
-    <%= f.input :grade_level, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Bla bla bla" } %>
-    <%= f.input :duration, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Bla bla bla" } %>
-    <%= f.input :num_classes, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Bla bla bla" } %>
-    <%= f.input :num_students, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Bla bla bla" } %>
-    <%= f.input :total_budget, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Bla bla bla" } %>
-    <%= f.input :funds_will_pay_for, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Bla bla bla" } %>
-    <%= f.input :budget_desc, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Bla bla bla" } %>
-    <%= f.input :purpose, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Bla bla bla" } %>
-    <%= f.input :methods, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Bla bla bla" } %>
-    <%= f.input :background, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Bla bla bla" } %>
-    <%= f.input :num_collabs, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Bla bla bla" } %>
-    <%= f.input :collaborators, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Bla bla bla" } %>
-    <%= f.input :comments, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Bla bla bla" } %>
-    <%= f.input :state, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Bla bla bla" } %>
-    <%= f.input :video, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Bla bla bla" } %>
-    <%= f.input :deadline, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Bla bla bla" } %>
+    <%= f.input :subject_areas %>
+    <%= f.input :grade_level, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "List the grade levels that will be affected. Please separate different grades by commas." } %>
+    <%= f.input :duration, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "How long will the proposed activity last? Please enter a number followed by a time period (ex. 1 day, 2 weeks, 3 months). If this is not applicable then please put 'n/a'." } %>
+    <%= f.input :num_classes, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "How many different classes will be affected by the application?" } %>
+    <%= f.input :num_students, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "How many students will be affected by the application?" } %>
+    <%= f.input :total_budget, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "How much total funds will be used for your proposed activity?" } %>
+    <%= f.input :funds_will_pay_for %>
+    <%= f.input :budget_desc, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Explain in specific detail how the budget will be allotted and used." } %>
+    <%= f.input :purpose, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "What is the purpose of this grant request and proposal?" } %>
+    <%= f.input :methods, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "What methods will you employ in the implementation of this plan? Basically, what is your implementation strategy?" } %>
+    <%= f.input :background, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "What is your own background? Please explain any relevant details to yourself and the project." } %>
+    <%= f.input :num_collabs, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Not including yourself, how many people are collaborating on this application?" } %>
+    <%= f.input :collaborators, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Please list all the people with whom you will collaborate, if any, and what role they will play." } %>
+    <%= f.input :comments, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Please state any additional information that may contribute to your application." } %>
+    <%= f.input :state %>
+    <%= f.input :video, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Link to a Youtube Video about your grant." } %>
+    <%= f.input :deadline, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "When will your crowdfunding period end?" } %>
     <%= f.hidden_field :status, id: "status" %>
   </div>
 
