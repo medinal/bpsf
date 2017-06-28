@@ -49,14 +49,14 @@ class GrantsController < ApplicationController
       @grants = Grant.where(status: params[:filter]).paginate(page: params[:page], per_page: 5).order(deadline: :asc)
       @filter = params[:filter]
     else
-      @grants = Grant.where(status: [:approved, :failed, :successful]).paginate(page: params[:page], per_page: 5).order(deadline: :asc)
+      @grants = Grant.where(status: [:approved, :failed, :successful]).paginate(page: params[:page], per_page: 10).order(deadline: :asc)
     end
   end
 
   # GET user/grants
   def usergrants
     if params[:filter] && params[:filter] != "all" && ['draft', 'pending', 'rejected', 'approved', 'failed', 'successful'].include?(params[:filter])
-      @grants = current_user.grants.where(status: params[:filter]).paginate(page: params[:page], per_page: 5).order(deadline: :asc)
+      @grants = current_user.grants.where(status: params[:filter]).paginate(page: params[:page], per_page: 10).order(deadline: :asc)
       @filter = params[:filter]
     else
       @grants = current_user.grants.where(status: [:draft, :pending, :rejected, :approved, :failed, :successful]).paginate(page: params[:page], per_page: 5).order(deadline: :asc)
