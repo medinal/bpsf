@@ -26,6 +26,8 @@ gem 'jquery-turbolinks'
 gem 'foundation-rails'
 # Use Carrierwave for pictures
 gem 'carrierwave'
+# Use for picture storage
+gem 'cloudinary'
 # Use simple-forms for creating Simple-forms
 gem 'simple_form'
 # Use enum_help for enumerable types in forms
