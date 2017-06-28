@@ -236,13 +236,14 @@ $(document).on('turbolinks:load', function() {
   $('#card_submit').on('click', function(e){
     e.preventDefault();
     var me = this;
+    var form = $(me).closest('form');
     var owner = {
-      name: $('#name').val(),
-      address_line1: $('#address_line1').val(),
-      address_line2: $('#address_line2').val(),
-      address_city: $('#address_city').val(),
-      address_state: $('#address_state').val(),
-      address_country: $('#address_country').val(),
+      name: form.find('#name').val(),
+      address_line1: form.find('#address_line1').val(),
+      address_line2: form.find('#address_line2').val(),
+      address_city: form.find('#address_city').val(),
+      address_state: form.find('#address_state').val(),
+      address_country: form.find('#address_country').val(),
     }
     stripe.createToken(card, owner).then(function(result) {
       if (result.error) {
@@ -252,7 +253,7 @@ $(document).on('turbolinks:load', function() {
       } else {
         // Send the token to your server
         $('#card_token').val(result.token.id);
-        $(me).closest('form').submit();
+        form.submit();
       }
     });
   });
