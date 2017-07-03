@@ -1,6 +1,6 @@
 <%= link_to grant_path(grant), class: "grant-row-partial" do %>
   <div class="card grant-row row">
-    <%= image_tag(grant.image, class: "grant-partial-image float-center")%>
+    <%= cl_image_tag(grant.image, class: "grant-partial-image float-center")%>
     <div class="columns medium-6 large-8 small-12">
       <h3 class="text-center hover-orange"><%= grant.title %></h3>
       <p class="text-center"><%= grant.user.first_name %> <%= grant.user.last_name %></p>

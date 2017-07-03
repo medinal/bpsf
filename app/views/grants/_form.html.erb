@@ -4,7 +4,7 @@
   </div>
   <button class="succes button crop-img">Save</button>
 </div>
-<%= simple_form_for @grant do |f| %>
+<%= simple_form_for @grant, html: {multipart: true} do |f| %>
   <%= f.error_notification %>
   <img src="#" class="final-crop">
   <div class="form-inputs">

@@ -1,7 +1,7 @@
 <%= link_to grant_path(grant), class: "grant-row-partial" do %>
   <div class="grant-row row align-middle">
     <div class="columns medium-6 large-4 show-for-medium">
-      <%= image_tag(grant.image, class: "grant-partial-image")%>
+      <%= cl_image_tag(grant.image, class: "grant-partial-image")%>
     </div>
     <div class="columns medium-6 large-8 small-12">
       <h3 class="hover-orange"><%= grant.title %></h3>
