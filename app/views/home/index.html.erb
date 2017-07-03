@@ -6,7 +6,7 @@
           <ul class="orbit-container">
               <li class="is-active orbit-slide">
                 <%= link_to grant_path(@grants.first) do %>
-                  <%= image_tag(@grants.first.image) %>
+                  <%= cl_image_tag(@grants.first.image) %>
                   <figcaption class="orbit-caption">
                     <h3><%= @grants.first.title %></h3>
                     <h4><span class="amount">$<%= @grants.first.amount_raised %></span> of $<%= @grants.first.total_budget %>
@@ -27,7 +27,7 @@
             <% @grants.drop(1).each do |grant| %>
                 <li class="orbit-slide">
                   <%= link_to grant_path(grant) do %>
-                  <%= image_tag(grant.image)%>
+                  <%= cl_image_tag(grant.image)%>
                   <figcaption class="orbit-caption">
                     <h3><%= grant.title %></h3>
                     <h4><span class="amount">$<%= grant.amount_raised %></span> of $<%= grant.total_budget %>
