@@ -17,12 +17,12 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    if !current_user.stripe_token
+    if current_user.stripe_token.empty?
       Stripe.api_key = ENV["stripe_api_key"]
-      customer = Stripe::Customer.create(
-        :description => "Customer for #{current_user.first_name} #{current_user.last_name}",
-        :source => "#{params[:stripeToken]}"
-        )
+      customer = Stripe::Customer.create({
+        description: "Customer for #{current_user.first_name} #{current_user.last_name}",
+        source: params[:stripeToken]
+        })
       current_user.stripe_token = customer.id
       current_user.save
     end
