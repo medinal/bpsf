@@ -62,6 +62,7 @@ gem "font-awesome-rails"
 gem 'mail_form'
 # async mailjob framework
 gem 'sucker_punch', '~> 2.0'
+gem 'seed_dump'
 
 
 # For use when deploying to heroku
