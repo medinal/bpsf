@@ -131,6 +131,7 @@ $(document).on('turbolinks:load', function() {
     locale: 'auto',
     name: 'Berkeley Public Schools Fund',
     description: 'One-time donation',
+    billingAddress: true,
     token: function(token) {
       $('input#stripeToken').val(token.id);
       $('form').submit();
@@ -185,19 +186,24 @@ $(document).on('turbolinks:load', function() {
     $(this).hide();
   });
 
-  var stripe = Stripe('pk_test_3oCK6GUkzy4PZFbsaDld0gTY');
-  var elements = stripe.elements();
-  var style = {
-    base: {
-      fontSize: '20px',
-      fontFamily: 'MuseoSans300'
-    },
-    complete: {
-      color: 'green'
-    }
-  };
-  var card = elements.create('card', {style: style});
+  var stripe;
+  var elements;
+  var style;
+  var card;
+
   if($('.card-element')[0]){
+    stripe = Stripe('pk_test_3oCK6GUkzy4PZFbsaDld0gTY');
+    elements = stripe.elements();
+    style = {
+      base: {
+        fontSize: '20px',
+        fontFamily: 'MuseoSans300'
+      },
+      complete: {
+        color: 'green'
+      }
+    };
+    card = elements.create('card', {style: style});
     card.mount('#credit-card .card-element');
   }
 
@@ -233,7 +239,7 @@ $(document).on('turbolinks:load', function() {
   });
 
   // CREATE NEW CARD
-  $('.card_submit').on('click', function(e){
+  $('.card-submit').on('click', function(e){
     e.preventDefault();
     var me = this;
     var form = $(me).closest('form');

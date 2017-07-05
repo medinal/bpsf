@@ -354,7 +354,10 @@ p.alert, p.notice {
 .has-tip{
   cursor: default;
   background-opacity: .6;
+}
 
+.tabs-panel{
+  height: 100% !important;
 }
 
 .badge.click:hover {
