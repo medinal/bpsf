@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @school = current_user.school
     Stripe.api_key = ENV['stripe_api_key']
     @customer = nil
-    if @user.stripe_token
+    unless @user.stripe_token.empty?
       @customer = Stripe::Customer.retrieve(@user.stripe_token)
     end
   end
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     Stripe.api_key = ENV['stripe_api_key']
     begin
       tok = Stripe::Token.retrieve(params[:card_token])
-      unless current_user.stripe_token
+      if current_user.stripe_token.empty?
         customer = Stripe::Customer.create({
           email: current_user.email,
           source: tok,
