@@ -65,10 +65,10 @@ class GrantsController < ApplicationController
 
   # GET /grants/1
   def show
-    youtubeId = @grant.video.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i)[1]
-    @embed = "https://www.youtube.com/embed/#{youtubeId}"
-    p @embed
-    p youtubeId
+    if @grant.video != ""
+      youtubeId = @grant.video.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i)[1]
+      @embed = "https://www.youtube.com/embed/#{youtubeId}"
+    end
   end
 
   # GET /grants/new
