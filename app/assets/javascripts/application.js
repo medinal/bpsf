@@ -42,7 +42,15 @@ $(document).on('turbolinks:load', function() {
 
   $('#submit').on('click', function(e){
     $('#status').val('pending');
-    $('.input').children().prop('required',true);
+    $('.input').children().each(function(){
+      if (this.id == "grant_image") {
+        if (!$('#has-image')[0]) {
+          $(this).prop('required',true);
+        }
+      }else{
+        $(this).prop('required',true);
+      }
+    });
     $('#new-grant').click();
   });
 
