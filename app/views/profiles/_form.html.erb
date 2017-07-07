@@ -13,7 +13,7 @@
       <%= f.input :subject %>
       <%= f.input :work_phone %>
       <%= f.input :position %>
-      <%= f.input :started_teaching %>
+      <%= f.input :started_teaching, start_year: Date.today.year - 90, end_year: Date.today.year %>
     <% end %>
   </div>
 
