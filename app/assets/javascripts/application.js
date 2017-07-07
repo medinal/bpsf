@@ -75,10 +75,12 @@ $(document).on('turbolinks:load', function() {
 
   // SHOW CROP MODAL ON FILE UPLOAD
   $("#grant_image").on('change', function(e){
-    readURL(this);
-    $("#blur-div").css('z-index', 1)
-    $("#blur-div").fadeTo('slow',1);
-    $('.crop-img').focus();
+    if (this.files && this.files[0] && this.files[0].type.includes('image')) {
+      readURL(this);
+      $("#blur-div").css('z-index', 1)
+      $("#blur-div").fadeTo('slow',1);
+      $('.crop-img').focus();
+    }
   });
 
   // ON GRANT UPDATE: IF CROPPED IMG USE AJAX CALL
