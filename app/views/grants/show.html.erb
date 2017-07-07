@@ -16,6 +16,9 @@
     <%= cl_image_tag(@grant.image, class: "text-center")%>
   </div>
   <div class="columns small-12 medium-6">
+    <iframe src= <%= @embed %> width="450" height="225"></iframe>
+  </div>
+  <div class="columns small-12 medium-6">
     <h4 class="grant-section-title text-center">Summary</h4>
     <h6 class="text-center"><%= @grant.summary %></h6>
     <hr>
