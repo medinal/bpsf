@@ -76,7 +76,22 @@ class Grant < ApplicationRecord
     end
   end
 
-       
+  def display_status
+    if self.status == "draft"
+      return "Draft Grant"
+    elsif self.status == "pending"
+      return "Pending Approval"
+    elsif self.status == "approved"
+      return "Currently Funding"
+    elsif self.status == "rejected"
+      return "Rejected Grant"
+    elsif self.status == "successful"
+      return "Successfully Funded"
+    elsif self.status == "failed"
+      return "Failed To Reach Goal"
+    end
+  end
+
   def with_admin_cost
     # 9% cost added
     (total_budget * 1.09).to_i
