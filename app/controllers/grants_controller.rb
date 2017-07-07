@@ -111,8 +111,13 @@ class GrantsController < ApplicationController
     if params[:file]
       parameters[:image] = params[:file]
     end
-    if @grant.status != grant_params[:status]
-      status_change
+    if @grant.update(parameters)
+      if @grant.status != grant_params[:status]
+        status_change
+      end
+      redirect_to @grant, notice: 'Grant was successfully updated.'
+    else
+      redirect_to @grant, notice: 'Could not update grant'
     end
   end
 
@@ -156,7 +161,7 @@ class GrantsController < ApplicationController
                                     :total_budget, :funds_will_pay_for, :budget_desc,
                                     :purpose, :methods, :background, :num_collabs,
                                     :collaborators, :comments, :user_id, :state,
-                                    :video, :image, :school_id, :status, :deadline)
+                                    :video, :school_id, :status, :deadline)
     end
 
     def permission
