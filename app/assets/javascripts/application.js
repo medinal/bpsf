@@ -42,7 +42,15 @@ $(document).on('turbolinks:load', function() {
 
   $('#submit').on('click', function(e){
     $('#status').val('pending');
-    $('.input').children().prop('required',true);
+    $('.input').children().each(function(){
+      if (this.id == "grant_image") {
+        if (!$('#has-image')[0]) {
+          $(this).prop('required',true);
+        }
+      }else{
+        $(this).prop('required',true);
+      }
+    });
     $('#new-grant').click();
   });
 
@@ -75,10 +83,12 @@ $(document).on('turbolinks:load', function() {
 
   // SHOW CROP MODAL ON FILE UPLOAD
   $("#grant_image").on('change', function(e){
-    readURL(this);
-    $("#blur-div").css('z-index', 1)
-    $("#blur-div").fadeTo('slow',1);
-    $('.crop-img').focus();
+    if (this.files && this.files[0] && this.files[0].type.includes('image')) {
+      readURL(this);
+      $("#blur-div").css('z-index', 1)
+      $("#blur-div").fadeTo('slow',1);
+      $('.crop-img').focus();
+    }
   });
 
   // ON GRANT UPDATE: IF CROPPED IMG USE AJAX CALL
