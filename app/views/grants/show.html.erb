@@ -1,8 +1,21 @@
 <div class="row">
   <div class="columns small-12">
-    <h1 class="text-center"><%= @grant.title %></h1>
-  </div>
-  <div class="columns small-12">
+    <span class = "float-left">
+      <% if @grant.status == "approved" %>
+          <div class="social-icon" data-bp-social='facebook'>
+            <a><i class="fa fa-facebook-square fa-2x"></i></a>
+          </div>
+          <div class ="social-icon" data-bp-social='twitter'>
+            <a><i class="fa fa-twitter fa-2x"></i></a>
+          </div>
+          <div class="social-icon" data-bp-social='mail'>
+            <a><i class="fa fa-envelope fa-2x"></i></a>
+          </div>
+        <% end %>
+    </span>
+    <h2 class="text-center"><%= @grant.title %>
+    </h2>
+  
     <h5 class="text-center">By <%= @grant.user.first_name %> <%= @grant.user.last_name %> at <%= @grant.school.name %></h5>
     <% if @grant.user == current_user && @grant.status == "draft"%>
       <a href="<%= edit_grant_path(@grant) %>" id="edit-button" class="float-center button warning"><%= fa_icon "pencil 2x" %></a>
@@ -11,17 +24,14 @@
     <% end %>
     <hr>
   </div>
+  
 </div>
 
 <div class="row align-middle">
   <div class="columns small-12 medium-6">
     <%= cl_image_tag(@grant.image, class: "text-center")%>
   </div>
-  <% if @grant.video != "" %>
-    <div class="columns small-12 medium-6">
-      <iframe src= <%= @embed %> width="450" height="225"></iframe>
-    </div>
-  <% end %>
+  
   <div class="columns small-12 medium-6">
     <h4 class="grant-section-title text-center">Summary</h4>
     <h6 class="text-center"><%= @grant.summary %></h6>
@@ -42,6 +52,12 @@
       <%= button_to "Donate!", new_grant_payment_path(@grant), method: "get", class: "button warning large float-center" %>
     <% end %>
   </div>
+  <% if @grant.video != "" %>
+    <div class="columns small-12">
+    <br>
+      <iframe src= <%= @embed %> width="450" height="225" class= "float-center"></iframe>
+    </div>
+  <% end %>
 </div>
 <hr>
 <div class="row">
