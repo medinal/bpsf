@@ -57,7 +57,6 @@ $(document).on('turbolinks:load', function() {
     return false;
   })
 
-
   $('#submit').on('click', function(e){
     $('#status').val('pending');
     $('.input').children().each(function(){
