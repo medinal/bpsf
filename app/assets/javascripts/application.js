@@ -41,23 +41,21 @@ $(document).on('turbolinks:load', function() {
   })
 
     //link to social media if buttons are clicked
-    
-
-            $(".fb-button").on('click', function(e){
-              window.open('http://www.facebook.com/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank');
-              e.preventDefault();
-              return false;
-            });
-            $(".tw-button").on('click', function(e){
-              window.open('https://twitter.com/share?url=' + encodeURIComponent(window.location.href), '_blank');
-              e.preventDefault();
-              return false;
-            });
-            $(".mail-button").on('click', function(e){
-              window.location.href = 'mailto:?subject=' + document.title + '&body=' + encodeURIComponent(window.location.href);
-              e.preventDefault();
-              return false;
-            })
+  $(".fb-button").on('click', function(e){
+    window.open('http://www.facebook.com/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank');
+    e.preventDefault();
+    return false;
+  });
+  $(".tw-button").on('click', function(e){
+    window.open('https://twitter.com/share?url=' + encodeURIComponent(window.location.href), '_blank');
+    e.preventDefault();
+    return false;
+  });
+  $(".mail-button").on('click', function(e){
+    window.location.href = 'mailto:?subject=' + document.title + '&body=' + encodeURIComponent(window.location.href);
+    e.preventDefault();
+    return false;
+  })
 
 
   $('#submit').on('click', function(e){

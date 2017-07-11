@@ -52,7 +52,7 @@
       <%= button_to "Donate!", new_grant_payment_path(@grant), method: "get", class: "button warning large float-center" %>
     <% end %>
   </div>
-  <% if @grant.video != "" %>
+  <% if @embed %>
     <div class="columns small-12">
     <br>
       <iframe src= <%= @embed %> width="450" height="225" class= "float-center"></iframe>
