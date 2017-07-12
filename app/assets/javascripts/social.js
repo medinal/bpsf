@@ -8,7 +8,7 @@ var social = function(){
         switch(buttonType){
           case 'facebook':
             $(socialButtons[i]).on('click', function(e){
-              window.open('http://www.facebook.com/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank');
+              window.open('http://www.facebook.com/sharer.php?u=' + encodeURIComponent(window.location.href + '&name=#{@grant.title}'), '_blank');
               e.preventDefault();
               return false;
             });
