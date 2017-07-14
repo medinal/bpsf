@@ -15,7 +15,7 @@ var social = function(){
             break;
           case 'twitter':
             $(socialButtons[i]).on('click', function(e){
-              window.open('https://twitter.com/share?url=' + encodeURIComponent(window.location.href) + '&name=', '_blank');
+              window.open('https://twitter.com/share?url=' + encodeURIComponent(window.location.href), '_blank');
               e.preventDefault();
               return false;
             });
