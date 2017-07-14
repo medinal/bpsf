@@ -1,7 +1,6 @@
 <div class="nav show-for-medium">
   <ul class="dropdown menu expanded" data-dropdown-menu data-closing-time="50">
-
-    <% if current_user && current_user.role != "friends and family" %>
+    <% if current_user && current_user.role != "friends_and_family" %>
     <li class="menu-item">
       <a class="main-links align-center">
         <h1><%= fa_icon "file-text-o", class: "icon-in-menu" %></h1>

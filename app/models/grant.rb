@@ -82,7 +82,7 @@ class Grant < ApplicationRecord
     elsif self.status == "pending"
       return "Pending Approval"
     elsif self.status == "approved"
-      return "Currently Funding"
+      return "Currently Crowdfunding"
     elsif self.status == "rejected"
       return "Rejected Grant"
     elsif self.status == "successful"
