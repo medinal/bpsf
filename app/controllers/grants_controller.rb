@@ -68,7 +68,7 @@ class GrantsController < ApplicationController
     if @grant.video != ""
       youtubeId = @grant.video.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i)
       if youtubeId
-        @embed = "https://www.youtube.com/embed/#{youtubeId[0]}"
+        @embed = "https://www.youtube.com/embed/#{youtubeId[1]}"
       end
     end
   end
