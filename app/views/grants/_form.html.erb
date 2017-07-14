@@ -28,7 +28,6 @@
     <%= f.input :num_collabs, :label => "Number of collaborators", input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Not including yourself, how many people are collaborating on this application?" } %>
     <%= f.input :collaborators, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Please list all the people with whom you will collaborate, if any, and what role they will play." } %>
     <%= f.input :comments, :label => "Other comments", input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Please state any additional information that may contribute to your application." } %>
-    <%= f.input :state %>
     <%= f.input :video, :label => "Youtube video", input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Link to a Youtube Video about your grant." } %>
     <%= f.input :deadline, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "When will your crowdfunding period end?" } %>
     <%= f.hidden_field :status, id: "status" %>
