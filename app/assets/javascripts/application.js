@@ -65,7 +65,9 @@ $(document).on('turbolinks:load', function() {
           $(this).prop('required',true);
         }
       }else{
-        $(this).prop('required',true);
+        if(!this.id === "grant_comments" || this.id === "grant.video"){
+          $(this).prop('required',true);
+        }
       }
     });
     $('#new-grant').click();

@@ -10,7 +10,7 @@ ActiveAdmin.register User do
 #   permitted << :other if params[:action] == 'create' && current_admin_user
 #   permitted
 # end
-  permit_params :email, :first_name, :last_name, :stripe_token, :school_id, :role, :approved, :teacher
+  permit_params :email, :first_name, :last_name, :stripe_token, :school_id, :role, :teacher
 
   index do
     selectable_column
@@ -19,7 +19,6 @@ ActiveAdmin.register User do
     column :last_name
     column :email
     column :role
-    column :approved
     column :stripe_token
     column :school_id do |user|
       user.school
@@ -34,7 +33,6 @@ ActiveAdmin.register User do
     f.actions
     f.semantic_errors
     f.inputs do
-      f.input :approved, label: "Approved Teacher"
       f.input :first_name
       f.input :last_name
       f.input :email

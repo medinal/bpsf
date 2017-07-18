@@ -8,7 +8,7 @@
   <%= f.error_notification %>
   <img src="#" class="final-crop">
   <div class="form-inputs">
-    <% if @grant.image %>
+    <% if !@grant.image.file.nil? %>
       <p id="has-image" hidden="true">has a image</p>
     <% end %>
     <%= f.input :image %>
