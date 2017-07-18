@@ -58,6 +58,7 @@ $(document).on('turbolinks:load', function() {
   })
 
   $('#submit').on('click', function(e){
+    e.preventDefault();
     $('#status').val('pending');
     $('.input').children().each(function(){
       if (this.id == "grant_image") {
@@ -65,7 +66,9 @@ $(document).on('turbolinks:load', function() {
           $(this).prop('required',true);
         }
       }else{
-        $(this).prop('required',true);
+        if(this.id != "grant_comments" && this.id != "grant_video"){
+          $(this).prop('required',true);
+        }
       }
     });
     $('#new-grant').click();
