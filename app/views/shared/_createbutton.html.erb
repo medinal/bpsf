@@ -1,3 +1,3 @@
-<% if current_user and current_user.role == "teacher" and current_user.approved? %>
+<% if current_user and current_user.role == "teacher" %>
   <li><a class="dropdown-links align-center"  href="<%= new_grant_path %>">Create New</a></li>
 <% end %>
