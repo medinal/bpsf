@@ -28,6 +28,36 @@ ActiveAdmin.register Grant do
     actions
   end
 
+  show do
+    attributes_table do
+      row :id
+      row :title
+      row :summary
+      row :total_budget
+      row :deadline
+      row :status
+      row :user_id do |grant|
+        grant.user
+      end
+      row :school_id do |grant|
+        grant.school
+      end
+      row :subject_areas
+      row :grade_level
+    end
+  end
+
+  form do |f|
+  f.semantic_errors 
+  f.inputs :status, :deadline, :title, :summary, :subject_areas, :grade_level,
+                :duration, :num_classes, :num_students,
+                :total_budget, :funds_will_pay_for, :budget_desc,
+                :purpose, :methods, :background, :num_collabs,
+                :collaborators, :comments, :user_id,
+                :video, :image, :school_id          
+  f.actions         
+end
+
   controller do
     # This code is evaluated within the controller class
     def update
