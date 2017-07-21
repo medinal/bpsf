@@ -45,12 +45,16 @@ class GrantsController < ApplicationController
 
   # GET /grants
   def index
-    if params[:filter] && params[:filter] != "all" && ['approved', 'failed', 'successful'].include?(params[:filter])
+    @school = School.all
+    # if has_filter
       @grants = Grant.where(status: params[:filter]).paginate(page: params[:page], per_page: 5).order(deadline: :asc)
-      @filter = params[:filter]
-    else
-      @grants = Grant.where(status: [:approved, :failed, :successful]).paginate(page: params[:page], per_page: 10).order(deadline: :asc)
-    end
+      # @filter = params[:filter]
+    # else
+    #   @grants = Grant.where(status: [:approved, :failed, :successful]).paginate(page: params[:page], per_page: 10).order(deadline: :asc)
+    # end
+    # if params[:teacher] == ""
+    #   params[:teacher] == nil
+    # end
   end
 
   # GET user/grants
@@ -165,6 +169,18 @@ class GrantsController < ApplicationController
                                     :collaborators, :comments, :user_id, :state,
                                     :video, :school_id, :status, :deadline)
     end
+
+    # def has_filter
+    #   if params[:filter] && params[:filter] != "all" && ['draft', 'pending', 'rejected', 'approved', 'failed', 'successful'].include?(params[:filter])
+    #     return true
+    #   end
+    #   if params[:school] && params[:school] != "all"
+    #     return true
+    #   end
+    #   if params[:teacher] && params[:teacher] != "" 
+    #     return true
+    #   end
+    # end
 
     def permission
       redirect_to grants_path unless current_user and ((current_user.role == "teacher") or current_admin_user)

@@ -83,6 +83,9 @@ $(document).on('turbolinks:load', function() {
   $('#filter-select').on('change', function(){
     $('#filter-form').submit();
   });
+  $('#school-select').on('change', function(){
+    $('#filter-form').submit();
+  });
 
   // FOR READING URL TO DISPLAY IMG FILE
   function readURL(input) {
