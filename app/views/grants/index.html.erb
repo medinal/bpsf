@@ -2,8 +2,10 @@
 <div class ="medium-5 columns">
 <h4>Filter by status:</h4>
 <%= form_tag(grants_path, :method => "get", enforce_utf8: false, id: "filter-form") do %>
-  <%= select_tag :filter, options_for_select({All: "all", Funding: "approved", Successful: "successful"} ), id: "filter-select" %>
-  <%= select_tag :school_id, options_from_collection_for_select(@school, "id", "name"), id: "school-select", include_blank: "All" %>
+  <%= select_tag :filter, options_for_select({All: 1, Funding: "approved", Successful: "successful"}, params[:filter] ), id: "filter-select" %>
+  <%= select_tag :school_id, options_from_collection_for_select(@school, "id", "name", params[:school_id]), id: "school-select", include_blank: "All" %>
+  <%= text_field_tag :teacher, params[:teacher] %> 
+  <%= submit_tag %>
 <% end %>
 </div>
 <div class="medium-1 columns">
