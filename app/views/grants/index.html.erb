@@ -1,31 +1,46 @@
-<div class="row">
-<div class ="medium-5 columns">
+
 <h4>Filter by status:</h4>
 <%= form_tag(grants_path, :method => "get", enforce_utf8: false, id: "filter-form") do %>
+<div class = "row">
+  <div class="medium-3 columns">
+  <%= label_tag :filter, "Status" %>
   <%= select_tag :filter, options_for_select({All: 1, Funding: "approved", Successful: "successful"}, params[:filter] ), id: "filter-select" %>
+  </div>
+  <div class="medium-3 columns">
+  <%= label_tag :school_id, "School" %>
   <%= select_tag :school_id, options_from_collection_for_select(@school, "id", "name", params[:school_id]), id: "school-select", include_blank: "All" %>
-  <%= text_field_tag :teacher, params[:teacher] %> 
-  <%= submit_tag %>
+  </div>
+    <div class="medium-3 columns">
+  <%= label_tag :teacher, "Teacher" %>
+  <%= text_field_tag :teacher, params[:teacher], placeholder: "Teacher's last name" %> 
+  </div>
+  <div class="medium-3 columns">
+  <%= label_tag :filter, "Status" %>
+  <%= text_field_tag :teacher, params[:teacher], placeholder: "Teacher's last name" %> 
+  </div>
+  <div class="medium-3 columns">
+  <%= submit_tag "Apply filters" %>
+  </div>
+  </div>
 <% end %>
-</div>
-<div class="medium-1 columns">
-  <h4>or</h4>
-</div>
-<div class="medium-5 columns">
-  <h4>Search by teacher, school, title, or subject area</h4>
-  <input type = "text">
-</div>
-</div>
-<div class="grant-container show-for-medium">
-  <% @grants.each do |grant| %>
-    <%= render "grantspartial", grant: grant %>
-  <% end %>
-</div>
-<div class="grant-container hide-for-medium">
-  <% @grants.each do |grant| %>
-    <%= render "grantscard", grant: grant %>
-  <% end %>
-</div>
-<div class="small-12 columns">
-  <%= will_paginate @grants, class: "apple_pagination" %>
-</div>
+<hr>
+
+<% if @grants %>
+  <div class="grant-container show-for-medium">
+    <% @grants.each do |grant| %>
+      <%= render "grantspartial", grant: grant %>
+    <% end %>
+  </div>
+  <div class="grant-container hide-for-medium">
+    <% @grants.each do |grant| %>
+      <%= render "grantscard", grant: grant %>
+    <% end %>
+  </div>
+  <div class="small-12 columns">
+    <%= will_paginate @grants, class: "apple_pagination" %>
+  </div>
+<% else %>
+  <br>
+  <p> No results found</p>
+<% end %>
+
