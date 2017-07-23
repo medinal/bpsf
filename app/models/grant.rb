@@ -4,10 +4,6 @@ class Grant < ApplicationRecord
   has_many :payments
   mount_uploader :image, ImageUploader
 
-  scope :status, -> (status) { where status: status }
-  scope :school, -> (school_id) { where school_id: school_id }
-  scope :teacher, -> (first_name) { where("first_name like ?", "#{first_name}%")}
-
   enum status: { "draft" => 0, "pending" => 1, "approved" => 2, "rejected" => 3, "failed" => 4, "successful" =>5}
 
   enum subject_areas: ['After School Program', 'Arts / Music', 'Arts / Dance', 'Arts / Drama',
