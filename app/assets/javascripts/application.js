@@ -149,6 +149,7 @@ $(document).on('turbolinks:load', function() {
       $('#grant-img-preview').cropper('destroy');
       $('#blur-div').css('z-index', -1);
       $('#blur-div').css('opacity', 0);
+      $('#grant_image').val("");
     });
   });
 
