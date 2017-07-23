@@ -59,24 +59,12 @@ $(document).on('turbolinks:load', function() {
 
   $('#submit').on('click', function(e){
     e.preventDefault();
-    $('#status').val('pending');
-    $('.input').children().each(function(){
-      if (this.id == "grant_image") {
-        if (!$('#has-image')[0]) {
-          $(this).prop('required',true);
-        }
-      }else{
-        if(this.id != "grant_comments" && this.id != "grant_video"){
-          $(this).prop('required',true);
-        }
-      }
-    });
     $('#new-grant').click();
   });
 
   $('#draft').on('click', function(e){
     $('#status').val('draft');
-    $('.input').children().prop('required',false);
+    $('.input').children().removeAttr('required');
     $('#new-grant').click();
   });
 
@@ -114,7 +102,7 @@ $(document).on('turbolinks:load', function() {
   // ON GRANT UPDATE: IF CROPPED IMG USE AJAX CALL
   $('#new-grant').on('click', function(e){
     var img = $('form').data('file');
-    if (img) {
+    if (img && isValid()) {
       e.preventDefault();
       var user_id = $('form')[0].id.split("_")[2];
       var formdata = new FormData($('form')[0]);
@@ -139,6 +127,16 @@ $(document).on('turbolinks:load', function() {
     }
   });
 
+  // FOR CHECKING IF FORM INPUTS ARE FILLED OUT
+  function isValid(){
+    let valid = true
+    $('form [required]').each(function(){
+      if ($(this).is(':invalid')){
+        valid = false;
+      }
+    });
+    return valid;
+  }
   // CREATE NEW JPEG FILE WHEN YOU SAVE CROPPED IMG
   $('.crop-img').on('click', function(){
     $('#grant-img-preview').cropper('getCroppedCanvas').toBlob(function (blob) {
@@ -151,6 +149,7 @@ $(document).on('turbolinks:load', function() {
       $('#grant-img-preview').cropper('destroy');
       $('#blur-div').css('z-index', -1);
       $('#blur-div').css('opacity', 0);
+      $('#grant_image').val("");
     });
   });
 
