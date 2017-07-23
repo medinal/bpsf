@@ -59,24 +59,12 @@ $(document).on('turbolinks:load', function() {
 
   $('#submit').on('click', function(e){
     e.preventDefault();
-    $('#status').val('pending');
-    $('.input').children().each(function(){
-      if (this.id == "grant_image") {
-        if (!$('#has-image')[0]) {
-          $(this).prop('required',true);
-        }
-      }else{
-        if(this.id != "grant_comments" && this.id != "grant_video"){
-          $(this).prop('required',true);
-        }
-      }
-    });
     $('#new-grant').click();
   });
 
   $('#draft').on('click', function(e){
     $('#status').val('draft');
-    $('.input').children().prop('required',false);
+    $('.input').children().removeAttr('required');
     $('#new-grant').click();
   });
 
