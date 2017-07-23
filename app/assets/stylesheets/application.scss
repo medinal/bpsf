@@ -80,6 +80,7 @@
 
 .menu {
   min-width: 0px !important;
+  border: none;
 }
 
 
@@ -231,7 +232,6 @@
 .grant-row:hover {
   transition: .3s ease-in;
   background-color: #e6e6e6;
-  border: 1px solid #ff5400;
 }
 
 .grant-container {
