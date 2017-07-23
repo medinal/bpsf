@@ -102,7 +102,7 @@ $(document).on('turbolinks:load', function() {
   // ON GRANT UPDATE: IF CROPPED IMG USE AJAX CALL
   $('#new-grant').on('click', function(e){
     var img = $('form').data('file');
-    if (img) {
+    if (img && isValid()) {
       e.preventDefault();
       var user_id = $('form')[0].id.split("_")[2];
       var formdata = new FormData($('form')[0]);
@@ -127,6 +127,16 @@ $(document).on('turbolinks:load', function() {
     }
   });
 
+  // FOR CHECKING IF FORM INPUTS ARE FILLED OUT
+  function isValid(){
+    let valid = true
+    $('form [required]').each(function(){
+      if ($(this).is(':invalid')){
+        valid = false;
+      }
+    });
+    return valid;
+  }
   // CREATE NEW JPEG FILE WHEN YOU SAVE CROPPED IMG
   $('.crop-img').on('click', function(){
     $('#grant-img-preview').cropper('getCroppedCanvas').toBlob(function (blob) {
