@@ -11,7 +11,7 @@
   <%= select_tag :school_id, options_from_collection_for_select(@school, "id", "name", params[:school_id]), id: "school-select", include_blank: "All" %>
   </div>
     <div class="medium-3 columns">
-  <%= label_tag :teacher, "Teacher" %>
+  <%= label_tag :teacher, "Teacher's last name" %>
   <%= text_field_tag :teacher, params[:teacher], placeholder: "Teacher's last name" %> 
   </div>
   <div class="medium-3 columns">
