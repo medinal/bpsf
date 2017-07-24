@@ -45,11 +45,24 @@ class GrantsController < ApplicationController
 
   # GET /grants
   def index
-    if params[:filter] && params[:filter] != "all" && ['approved', 'failed', 'successful'].include?(params[:filter])
-      @grants = Grant.where(status: params[:filter]).paginate(page: params[:page], per_page: 5).order(deadline: :asc)
-      @filter = params[:filter]
-    else
-      @grants = Grant.where(status: [:approved, :failed, :successful]).paginate(page: params[:page], per_page: 10).order(deadline: :asc)
+    @school = School.all
+    @grants = Grant.all.where(status: "approved").paginate(page: params[:page], per_page: 5).order(deadline: :asc)
+  # @user = User.where(first_name: params[:teacher]) && User.where(last_name: params[:teacher])
+    if params[:filter] && params[:filter] != "all" && [ 'approved', 'successful'].include?(params[:filter])
+      @grants = @grants.where(status: params[:filter]).paginate(page: params[:page], per_page: 5).order(deadline: :asc)
+    end
+    if params[:filter] && params[:filter] == "all"
+      @grant = Grant.all.where(status: "approved").paginate(page: params[:page], per_page: 5).order(deadline: :asc)
+    end
+    if params[:school_id] && params[:school_id] != ""
+      @grants = @grants.where(school_id: params[:school_id]).paginate(page: params[:page], per_page: 5).order(deadline: :asc)
+    end
+    if params[:teacher] && params[:teacher] != ""
+      if @grants.joins(:user).where(users: {last_name: params[:teacher].capitalize}).length > 0
+        @grants = @grants.joins(:user).where(users: {last_name: params[:teacher].capitalize})
+      else 
+        @grants = nil
+      end
     end
   end
 
