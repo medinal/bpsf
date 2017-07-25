@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :grants
   belongs_to :school
   validates :first_name, :last_name, :email, :role, presence: true
+  before_save :format_name
 
 
   enum role: {"friends_and_family" => 0, "teacher" => 1}
@@ -16,4 +17,10 @@ class User < ApplicationRecord
     first_name + " " + last_name
   end
 
+  private
+
+  def format_name
+    self.first_name = self.first_name.capitalize
+    self.last_name = self.last_name.capitalize
+  end
 end
