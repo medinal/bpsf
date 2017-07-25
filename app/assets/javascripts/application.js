@@ -202,6 +202,8 @@ $(document).on('turbolinks:load', function() {
 
   //Disable Button to prevent duplicate payments
   $('form').on('submit', function(){
+    $('button#draft').attr('disabled', true)
+    $('button#submit').attr('disabled', true)
     $('.donation').attr('disabled', true);
   });
 
