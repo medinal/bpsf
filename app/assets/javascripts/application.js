@@ -68,14 +68,7 @@ $(document).on('turbolinks:load', function() {
     $('#new-grant').click();
   });
 
-  // $('#filter-select').on('change', function(){
-  //   $('#filter-form').submit();
-  // });
-  // $('#school-select').on('change', function(){
-  //   $('#filter-form').submit();
-  // });
-
-  // // FOR READING URL TO DISPLAY IMG FILE
+  // FOR READING URL TO DISPLAY IMG FILE
   function readURL(input) {
     if (input.files && input.files[0]) {
       var reader = new FileReader();
