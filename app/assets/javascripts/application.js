@@ -68,14 +68,7 @@ $(document).on('turbolinks:load', function() {
     $('#new-grant').click();
   });
 
-  // $('#filter-select').on('change', function(){
-  //   $('#filter-form').submit();
-  // });
-  // $('#school-select').on('change', function(){
-  //   $('#filter-form').submit();
-  // });
-
-  // // FOR READING URL TO DISPLAY IMG FILE
+  // FOR READING URL TO DISPLAY IMG FILE
   function readURL(input) {
     if (input.files && input.files[0]) {
       var reader = new FileReader();
@@ -209,6 +202,8 @@ $(document).on('turbolinks:load', function() {
 
   //Disable Button to prevent duplicate payments
   $('form').on('submit', function(){
+    $('button#draft').attr('disabled', true)
+    $('button#submit').attr('disabled', true)
     $('.donation').attr('disabled', true);
   });
 
