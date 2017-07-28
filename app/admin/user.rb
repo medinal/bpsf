@@ -10,7 +10,7 @@ ActiveAdmin.register User do
 #   permitted << :other if params[:action] == 'create' && current_admin_user
 #   permitted
 # end
-  permit_params :email, :first_name, :last_name, :stripe_token, :school_id, :role, :teacher
+  permit_params :email, :first_name, :last_name, :stripe_token, :school_id, :role, :teacher, :password, :password_confirmation
 
   index do
     selectable_column
@@ -30,16 +30,16 @@ ActiveAdmin.register User do
   end
 
   form do |f|
-    f.actions
-    f.semantic_errors
-    f.inputs do
+    f.inputs "New User"do
       f.input :first_name
       f.input :last_name
       f.input :email
+      f.input :password
+      f.input :password_confirmation
       f.input :role
       f.input :school
-      f.input :stripe_token
     end
+    f.actions
   end
 
 end
