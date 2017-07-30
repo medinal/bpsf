@@ -62,15 +62,16 @@ ActiveAdmin.register Grant do
   end
 
   form do |f|
-  f.semantic_errors 
-  f.inputs :status, :deadline, :title, :summary, :subject_areas, :grade_level,
-                :duration, :num_classes, :num_students,
-                :total_budget, :funds_will_pay_for, :budget_desc,
-                :purpose, :methods, :background, :num_collabs,
-                :collaborators, :comments, :user_id,
-                :video, :image, :school_id          
-  f.actions         
-end
+    f.semantic_errors
+    f.actions
+    f.inputs :status, :deadline, :title, :summary, :subject_areas, :grade_level,
+                  :duration, :num_classes, :num_students,
+                  :total_budget, :funds_will_pay_for, :budget_desc,
+                  :purpose, :methods, :background, :num_collabs,
+                  :collaborators, :comments, :user_id,
+                  :video, :image, :school_id          
+    f.actions
+  end
 
   controller do
     # This code is evaluated within the controller class
