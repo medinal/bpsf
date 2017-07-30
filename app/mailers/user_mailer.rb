@@ -3,7 +3,7 @@ class UserMailer < ActionMailer::Base
 
   def welcome_email(user)
     @user = user
-    @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/users/sign_in'
+    @url = 'https://bpsfgrants.herokuapp.com/users/sign_in'
     mail(to: @user.email, subject: 'Thanks for registering with the Schools Fund!')
   end
 
@@ -12,14 +12,14 @@ class UserMailer < ActionMailer::Base
     @user = user
     @grant = grant
     @amount = payment.amount
-    @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
+    @url = 'https://bpsfgrants.herokuapp.com/grants/' + (@grant.id).to_s
     mail(to: @user.email, subject: 'Thank you for pledging a donation!')
   end
 
   def user_crowdsuccess(user,grant)
     @user = user
     @grant = grant
-    @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
+    @url = 'https://bpsfgrants.herokuapp.com/grants/' + (@grant.id).to_s
     mail(to: @user.email, subject: 'A grant you donated to has been successfully crowdfunded!')
   end
 
@@ -32,7 +32,7 @@ class UserMailer < ActionMailer::Base
   def grant_submitted(grant)
     @grant = grant
     @recipient = @grant.user
-    @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
+    @url = 'https://bpsfgrants.herokuapp.com/grants/' + (@grant.id).to_s
     mail(to: @recipient.email, subject: 'Your grant has been submitted!')
   end
 
@@ -51,7 +51,7 @@ class UserMailer < ActionMailer::Base
   def grant_crowdfunding(grant)
     @grant = grant
     @recipient = @grant.user
-    @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
+    @url = 'https://bpsfgrants.herokuapp.com/grants/' + (@grant.id).to_s
     @subject = 'Your grant has been approved for crowdfunding by the Schools Fund.'
     mail(to: @recipient.email, subject: @subject)
   end
@@ -59,7 +59,7 @@ class UserMailer < ActionMailer::Base
   def grant_ending(grant)
     @grant = grant
     @recipient = @grant.user
-    @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
+    @url = 'https://bpsfgrants.herokuapp.com/grants/' + (@grant.id).to_s
     mail(to: @recipient.email, subject: 'Your grant is reaching its deadline.')
   end
 
@@ -73,7 +73,7 @@ class UserMailer < ActionMailer::Base
   def donor_nearend(grant, user)
     @grant = grant
     @user = user
-    @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
+    @url = 'https://bpsfgrants.herokuapp.com/grants/' + (@grant.id).to_s
     mail(to: @user.email, subject: 'A grant you have donated to is at 80% completion!')
   end
 
@@ -81,7 +81,7 @@ class UserMailer < ActionMailer::Base
     @grant = grant
     @recipient = @grant.user
     @admin = admin
-    @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
+    @url = 'https://bpsfgrants.herokuapp.com/grants/' + (@grant.id).to_s
     mail(to: @admin.email, subject: 'A grant has just been submitted for review.')
   end
 
@@ -89,7 +89,7 @@ class UserMailer < ActionMailer::Base
     @grant = grant
     @recipient = @grant.user
     @admin = admin
-    @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
+    @url = 'https://bpsfgrants.herokuapp.com/grants/' + (@grant.id).to_s
     mail(to: @admin.email, subject: 'A grant is reaching its deadline.')
   end
 
@@ -98,7 +98,7 @@ class UserMailer < ActionMailer::Base
     @recipient = @grant.user
     @admin = admin
     @recprof = @recipient.profile
-    @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
+    @url = 'https://bpsfgrants.herokuapp.com/grants/' + (@grant.id).to_s
     mail(to: @admin.email, subject: 'A grant has been successfully funded!')
   end
 
@@ -107,14 +107,14 @@ class UserMailer < ActionMailer::Base
     @grant = grant
     @recipient = @grant.user
     @admin = admin
-    @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (@grant.id).to_s
+    @url = 'https://bpsfgrants.herokuapp.com/grants/' + (@grant.id).to_s
     mail(to: @admin.email, subject: 'A grant has failed to reach its crowdfund goal.')
   end
 
   def admin_newuser(user,admin)
     @user = user
     @admin = admin
-    @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/user/' + (@user.id).to_s
+    @url = 'https://bpsfgrants.herokuapp.com/user/' + (@user.id).to_s
     mail(to: @admin.email, subject: 'A new user has registered an account!')
   end
 
@@ -122,7 +122,7 @@ class UserMailer < ActionMailer::Base
 #   def admin_newadmin(user,admin)
 #     @user = user
 #     @admin = admin
-#     @url = 'http://schoolsfund-friendsandfamily.herokuapp.com/admin'
+#     @url = 'https://bpsfgrants.herokuapp.com/admin'
 #     mail(to: @admin.email, subject: 'A new administrator account needs your approval')
 #   end
 

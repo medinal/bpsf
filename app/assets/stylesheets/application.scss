@@ -390,3 +390,22 @@ p.alert, p.notice {
   border-color: darkgreen;
   color: darkgreen
 }
+
+.subject-option, .fund-option {
+  display: inline-block;
+  margin: 3px;
+  padding: 0px 2px;
+  background: lightgray;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.invis {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+.subject-option:hover, .fund-option:hover {
+  cursor: pointer;
+}

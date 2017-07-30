@@ -6,25 +6,25 @@ class Grant < ApplicationRecord
 
   enum status: { "draft" => 0, "pending" => 1, "approved" => 2, "rejected" => 3, "failed" => 4, "successful" =>5}
 
-  enum subject_areas: ['After School Program', 'Arts / Music', 'Arts / Dance', 'Arts / Drama',
-    'Arts / Visual', 'Community Service', 'Computer / Media', 'Computer Science',
-    'Foreign Language / ELL / TWI','Gardening','History & Social Studies / Multi-culturalism',
-    'Mathematics','Multi-subject','Nutrition','Physical Education', 'Reading & Writing / Communication','Science & Ecology',
-    'Special Ed','Student / Family Support / Mental Health']
+  def subject_areas_options
+    [nil,'After School Program', 'Arts / Music', 'Arts / Dance', 'Arts / Drama',
+      'Arts / Visual', 'Community Service', 'Computer / Media', 'Computer Science',
+      'Foreign Language / ELL / TWI','Gardening','History & Social Studies / Multi-culturalism',
+      'Mathematics','Multi-subject','Nutrition','Physical Education', 'Reading & Writing / Communication',
+      'Science & Ecology','Special Ed','Student / Family Support / Mental Health']
+  end
 
-  enum funds_will_pay_for: ['Supplies','Books','Equipment','Technology / Media',
-    'Professional Guest (Consultant, Speaker, Artist, etc.)','Professional Development',
-    'Field Trips / Transportation','Assembly']
+  def funds_will_pay_for_options
+    [nil,'Supplies','Books','Equipment','Technology / Media',
+      'Professional Guest (Consultant, Speaker, Artist, etc.)','Professional Development',
+      'Field Trips / Transportation','Assembly']
+  end
 
   validate :state_transition, on: :save
   validates :user, :school, :status, presence: true
 
   def progress
     "#{([self.amount_raised/self.total_budget.to_f, 1].min * 100).to_i}%"
-  end
-
-  def days_left
-    time = ((self.deadline.to_time - Time.now)/1.day).ceil
   end
 
   def amount_raised
@@ -43,7 +43,7 @@ class Grant < ApplicationRecord
 
 
   def days_left
-    (deadline - Date.today).to_i
+    (self.deadline - Time.now.getlocal("-07:00").to_date).to_i
   end
 
   def past_deadline?

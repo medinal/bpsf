@@ -59,11 +59,13 @@ $(document).on('turbolinks:load', function() {
 
   $('#submit').on('click', function(e){
     e.preventDefault();
+    fillGrantValues();
     $('#new-grant').click();
   });
 
   $('#draft').on('click', function(e){
     $('#status').val('draft');
+    fillGrantValues();
     $('.input').children().removeAttr('required');
     $('#new-grant').click();
   });
@@ -201,10 +203,8 @@ $(document).on('turbolinks:load', function() {
   });
 
   //Disable Button to prevent duplicate payments
-  $('form').on('submit', function(){
-    $('button#draft').attr('disabled', true)
-    $('button#submit').attr('disabled', true)
-    $('.donation').attr('disabled', true);
+  $('form').on('submit', function(e){
+    $('button').attr('disabled', true);
   });
 
   $('.new-card').on('click', function(){
@@ -290,4 +290,44 @@ $(document).on('turbolinks:load', function() {
       }
     });
   });
+
+  // PUT VALUES INTO FORM FOR GRANTS
+  function fillGrantValues(){
+    let subjects = "", funds = "";
+    $('.subject-option').each(function(){
+      console.log("subject: ", this.innerText, this);
+      subjects += `${this.innerText.trim()}, `
+    });
+
+    $('.fund-option').each(function(){
+      funds += `${this.innerText.trim()}, `
+    })
+    subjects = subjects.slice(0,-2);
+    funds = funds.slice(0,-2);
+    $('#grant_subject_areas').val(subjects);
+    $('#grant_funds_will_pay_for').val(funds);
+    console.log(funds);
+  }
+
+  // ADD SUBJECT AREA TAGS
+  $('#subject_options').on('change', function(){
+    if (this.value && $(`p.subject-option:contains("${this.value}")`).length < 1) {
+      $(this).before(`<p class="subject-option"> ${this.value} <i class="fa fa-times"></i></p>`);
+    }
+  });
+
+  // ADD FUNDS WILL PAY FOR TAGS
+  $('#fund_options').on('change', function(){
+    if (this.value && $(`p.fund-option:contains("${this.value}")`).length < 1) {
+      $(this).before(`<p class="fund-option"> ${this.value} <i class="fa fa-times"></i></p>`);
+    }
+  });
+
+  // DELETE TAGS ON CLICK
+  $('form').on('click', "p[class*='option']", function(){
+    $(this).remove();
+    $('#subject_options').val("");
+    $('#fund_options').val("");
+  });
+
 });

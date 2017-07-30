@@ -89,6 +89,7 @@ class GrantsController < ApplicationController
 
   # GET /grants/1/edit
   def edit
+    redirect_to @grant_path, notice: "Grant has already been submitted" unless @grant.draft?
   end
 
   # POST /grants
@@ -176,7 +177,7 @@ class GrantsController < ApplicationController
     end
 
     def permission
-      redirect_to grants_path unless current_user and ((current_user.role == "teacher") or current_admin_user)
+      redirect_to grants_path unless ((current_user and current_user.role == "teacher") or current_admin_user)
     end
 
     def owner
