@@ -11,13 +11,23 @@
     <%= f.input :image %>
     <%= f.input :title, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Name your grant. A good title summarizes the essence of the application." }, required: true %>
     <%= f.input :summary, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Give a brief explanation of your application (200 word limit)" }, required: true %>
-    <%= f.input :subject_areas, required: true %>
+    <%= f.input :subject_areas, required: true, wrapper_html: {:class => "invis"} %>
+    <label class="text"><abbr>*</abbr> Subject areas</label>
+    <% @grant.subject_areas.split(", ").each do |subject| %>
+      <p class="subject-option"><%= subject %> <i class="fa fa-times"></i></p>
+    <% end %>
+    <%= select_tag :subject_options, options_for_select(@grant.subject_areas_options) %>
     <%= f.input :grade_level, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "List the grade levels that will be affected. Please separate different grades by commas." }, required: true %>
     <%= f.input :duration, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "How long will the proposed activity last? Please enter a number followed by a time period (ex. 1 day, 2 weeks, 3 months). If this is not applicable then please put 'n/a'." }, required: true %>
     <%= f.input :num_classes, :label => "Number of classes",  input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "How many different classes will be affected by the application?" }, required: true %>
     <%= f.input :num_students, :label => "Number of students", input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "How many students will be affected by the application?" }, required: true %>
     <%= f.input :total_budget, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "How much total funds will be used for your proposed activity?" }, required: true %>
-    <%= f.input :funds_will_pay_for, required: true %>
+    <%= f.input :funds_will_pay_for, required: true, wrapper_html: {:class => "invis"} %>
+    <label class="text"><abbr>*</abbr> Funds will pay for</label>
+    <% @grant.funds_will_pay_for.split(", ").each do |fund| %>
+      <p class="fund-option"><%= fund %> <i class="fa fa-times"></i></p>
+    <% end %>
+    <%= select_tag :fund_options, options_for_select(@grant.funds_will_pay_for_options) %>
     <%= f.input :budget_desc, :label => "Budget description", input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "Explain in specific detail how the budget will be allotted and used." }, required: true %>
     <%= f.input :purpose, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "What is the purpose of this grant request and proposal?" }, required: true %>
     <%= f.input :methods, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip", :title => "What methods will you employ in the implementation of this plan? Basically, what is your implementation strategy?" }, required: true %>
