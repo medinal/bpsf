@@ -24,6 +24,7 @@ ActiveAdmin.register Grant do
       grant.school
     end
     column :subject_areas
+    column :funds_will_pay_for
     column :grade_level
     actions
   end
@@ -43,6 +44,7 @@ ActiveAdmin.register Grant do
         grant.school
       end
       row :subject_areas
+      row :funds_will_pay_for
       row :grade_level
     end
   end
