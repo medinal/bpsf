@@ -15,7 +15,7 @@
         <br>
       </h2>
       <p>
-        | You only have <%= g.days_left %> days left until your deadline! Try sharing your grant on social media to raise the last $<%= g.total_budget-g.crowdfunder.pledged_total %>. Here is the link to your grant: <%= 'http://schoolsfund-friendsandfamily.herokuapp.com/grants/' + (g.id).to_s %>.
+        | You only have <%= g.days_left %> days left until your deadline! Try sharing your grant on social media to raise the last $<%= g.total_budget-g.amount_raised %>. Here is the link to your grant: <%= 'https://bpsfgrants.herokuapp.com/grants/' + (g.id).to_s %>.
         <br>
       </p>
     <% end %>
