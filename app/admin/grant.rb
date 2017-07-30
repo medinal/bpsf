@@ -35,6 +35,7 @@ ActiveAdmin.register Grant do
       row :title
       row :summary
       row :total_budget
+      row :budget_desc
       row :deadline
       row :status
       row :user_id do |grant|
@@ -43,9 +44,20 @@ ActiveAdmin.register Grant do
       row :school_id do |grant|
         grant.school
       end
+      row :duration
       row :subject_areas
       row :funds_will_pay_for
       row :grade_level
+      row :num_classes
+      row :num_students
+      row :collaborators
+      row :num_collabs
+      row :purpose
+      row :methods
+      row :background
+      row :comments
+      row :video
+      row :image
     end
   end
 
