@@ -27,10 +27,6 @@ class Grant < ApplicationRecord
     "#{([self.amount_raised/self.total_budget.to_f, 1].min * 100).to_i}%"
   end
 
-  def days_left
-    time = ((self.deadline.to_time - Time.now)/1.day).ceil
-  end
-
   def amount_raised
     total = 0
     self.payments.each do |payment|
@@ -47,7 +43,7 @@ class Grant < ApplicationRecord
 
 
   def days_left
-    (deadline - Date.today).to_i
+    (self.deadline - Time.now.getlocal("-07:00").to_date).to_i
   end
 
   def past_deadline?
