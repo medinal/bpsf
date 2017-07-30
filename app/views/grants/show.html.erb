@@ -73,10 +73,6 @@
           <td><p class="grant-content"><%= @grant.purpose %></p></td>
         </tr>
         <tr>
-          <td valign="top"><h5 class="grant-section-title">Subject Areas:</h5></td>
-          <td><p class="grant-content"><%= @grant.subject_areas %></p></td>
-        </tr>
-        <tr>
           <td valign="top"><h5 class="grant-section-title">Methods:</h5></td>
           <td><p class="grant-content"><%= @grant.methods %></p></td>
         </tr>
@@ -122,7 +118,13 @@
           <td><h5 class="grant-section-title">Collaborators:</h5></td>
         </tr>
         <tr>
-          <td><h5><%= @grant.collaborators %></h5></td>
+          <td><p><%= @grant.collaborators %></p></td>
+        </tr>
+        <tr>
+          <td><h5 class="grant-section-title">Subject Areas:</h5></td>
+        </tr>
+        <tr>
+          <td><p><%= @grant.subject_areas %></p></td>
         </tr>
       </tbody>
     </table>
