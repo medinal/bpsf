@@ -30,6 +30,9 @@ ActiveAdmin.register Grant do
   end
 
   show do
+    h4 style: "text-align:center" do 
+      link_to "View Grant", grant_path, class: "button"
+    end
     attributes_table do
       row :id
       row :title
