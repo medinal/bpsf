@@ -42,6 +42,7 @@ class GrantsController < ApplicationController
   before_action :permission, except: [:index, :show]
   before_action :set_grant, only: [:show, :edit, :update, :destroy]
   before_action :owner, only: [:edit, :update, :destroy]
+  before_action :already_submitted, only: [:edit, :update]
 
   # GET /grants
   def index
@@ -89,7 +90,6 @@ class GrantsController < ApplicationController
 
   # GET /grants/1/edit
   def edit
-    redirect_to @grant_path, notice: "Grant has already been submitted" unless @grant.draft?
   end
 
   # POST /grants
@@ -181,7 +181,11 @@ class GrantsController < ApplicationController
     end
 
     def owner
-      redirect_to grant_path(@grant) unless (@grant.user == current_user || current_admin_user)
+      redirect_to grant_path(@grant), notice: "Don't have required permissions" unless (@grant.user == current_user || current_admin_user)
+    end
+
+    def already_submitted
+      redirect_to grant_path(@grant), notice: "Grant has already been submitted" unless (@grant.draft? || current_admin_user)
     end
 
 end

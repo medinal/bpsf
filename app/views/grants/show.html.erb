@@ -18,10 +18,9 @@
     <h2 class="text-center"><%= @grant.title %>
     </h2>
     <h5 class="text-center">By <%= @grant.user.first_name %> <%= @grant.user.last_name %> at <%= @grant.school.name %></h5>
-    <% if (@grant.user == current_user or current_admin_user) && @grant.draft?%>
+    <h4 class="text-center"><%= @grant.display_status %></h4>
+    <% if (@grant.user == current_user && @grant.draft?) or current_admin_user %>
       <a href="<%= edit_grant_path(@grant) %>" id="edit-button" class="float-center button warning"><%= fa_icon "pencil 2x" %></a>
-    <% else %>
-      <h4 class="text-center"><%= @grant.display_status %></h4>
     <% end %>
     <hr>
   </div>
