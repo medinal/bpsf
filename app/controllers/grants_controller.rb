@@ -43,6 +43,7 @@ class GrantsController < ApplicationController
   before_action :set_grant, only: [:show, :edit, :update, :destroy]
   before_action :owner, only: [:edit, :update, :destroy]
   before_action :already_submitted, only: [:edit, :update]
+  before_action :has_profile?, except: [:index, :usergrants, :show]
 
   # GET /grants
   def index
@@ -186,6 +187,10 @@ class GrantsController < ApplicationController
 
     def already_submitted
       redirect_to grant_path(@grant), notice: "Grant has already been submitted" unless (@grant.draft? || current_admin_user)
+    end
+
+    def has_profile?
+      redirect_to new_user_profiles_path, alert: "Please create a profile first." unless current_user.profile or current_admin_user
     end
 
 end

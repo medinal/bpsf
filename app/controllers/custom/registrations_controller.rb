@@ -15,7 +15,7 @@ class Custom::RegistrationsController < Devise::RegistrationsController
         @admins.each do |admin|
           AdminNewuserJob.new.async.perform(@user, admin)
         end
-        flash[:notice] = "Thanks for signing up! Please create a Profile for your account"
+        flash[:notice] = "Thanks for signing up! Please create a profile for your account"
     end
   end
 
