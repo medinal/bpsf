@@ -34,6 +34,9 @@ ActiveAdmin.register Grant do
       link_to "View Grant", grant_path, class: "button"
     end
     attributes_table do
+      row :image do |grant|
+        render inline: "<%= cl_image_tag(grant.image, style: 'width:50%;')%>", locals: {grant: grant}
+      end
       row :id
       row :title
       row :summary
@@ -90,7 +93,7 @@ ActiveAdmin.register Grant do
         GrantRejectedJob.new.async.perform(@grant)
       end
       if !@grant.state_transition(grant_params[:status])
-        redirect_to admin_grant_path(@grant), notice: 'That is not a valid state transition'
+        redirect_to admin_grant_path(@grant), alert: 'That is not a valid state transition'
       elsif @grant.update(parameters)
         redirect_to admin_grant_path(@grant), notice: 'Grant was successfully updated.'
       else
