@@ -59,7 +59,7 @@ class PaymentsController < ApplicationController
   private
 
   def has_profile?
-    redirect_to new_user_profiles_path, alert: "Please create a profile first." unless current_user.profile or current_admin_user
+    redirect_to new_user_profiles_path, alert: "Please create a profile first." unless current_admin_user or (current_user and current_user.profile)
   end
 
   def payment_params

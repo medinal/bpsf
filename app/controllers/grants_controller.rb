@@ -130,7 +130,7 @@ class GrantsController < ApplicationController
       end
       redirect_to @grant, notice: 'Grant was successfully updated.'
     else
-      redirect_to @grant, notice: 'Could not update grant'
+      redirect_to @grant, alert: 'Could not update grant'
     end
   end
 
@@ -155,7 +155,7 @@ class GrantsController < ApplicationController
         GrantSubmittedJob.new.async.perform(@grant)
       end
       if !@grant.state_transition(grant_params[:status])
-        render :edit, notice: 'That is not a valid state transition'
+        render :edit, alert: 'That is not a valid state transition'
       elsif @grant.update(grant_params)
         if grant_params[:status] == "draft"
         redirect_to @grant, notice: 'Grant was successfully updated.'
@@ -182,15 +182,15 @@ class GrantsController < ApplicationController
     end
 
     def owner
-      redirect_to grant_path(@grant), notice: "Don't have required permissions" unless (@grant.user == current_user || current_admin_user)
+      redirect_to grant_path(@grant), alert: "Don't have required permissions" unless (@grant.user == current_user || current_admin_user)
     end
 
     def already_submitted
-      redirect_to grant_path(@grant), notice: "Grant has already been submitted" unless (@grant.draft? || current_admin_user)
+      redirect_to grant_path(@grant), alert: "Grant has already been submitted" unless (@grant.draft? || current_admin_user)
     end
 
     def has_profile?
-      redirect_to new_user_profiles_path, alert: "Please create a profile first." unless current_user.profile or current_admin_user
+      redirect_to new_user_profiles_path, alert: "Please create a profile first." unless current_admin_user or (current_user and current_user.profile)
     end
 
 end

@@ -27,11 +27,11 @@ class UsersController < ApplicationController
       else
         customer = Stripe::Customer.retrieve(current_user.stripe_token)
         customer.sources.create({source: tok})
-        breakffs
       end
+
         redirect_to current_user, notice: 'Successfully created card'
     rescue => e
-      redirect_to current_user, notice: 'Could not find token to create card'
+      redirect_to current_user, alert: 'Could not find token to create card'
     end 
   end
 
@@ -56,12 +56,12 @@ class UsersController < ApplicationController
           redirect_to current_user, notice: 'Successfully updated card'
         rescue => e
           p e
-          redirect_to current_user, notice: 'Could not update card'
+          redirect_to current_user, alert: 'Could not update card'
         end
         break
       end
     end
-    redirect_to current_user, notice: 'Could not find card' unless card_found
+    redirect_to current_user, alert: 'Could not find card' unless card_found
   end
 
   def delete_card
@@ -76,11 +76,11 @@ class UsersController < ApplicationController
           redirect_to current_user, notice: 'Successfully deleted card'
         rescue => e
           p e
-          redirect_to current_user, notice: 'Could not delete card'
+          redirect_to current_user, alert: 'Could not delete card'
         end
       end
     end
-    redirect_to current_user, notice: 'Could not find card' unless card_found
+    redirect_to current_user, alert: 'Could not find card' unless card_found
   end
 
   private
