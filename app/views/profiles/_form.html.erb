@@ -7,9 +7,9 @@
     <%= f.input :city %>
     <%= f.input :state %>
     <%= f.input :zipcode %>
-    <%= f.input :grade %>
     <%= f.input :home_phone %>
     <% if current_user.role == "teacher" %>
+      <%= f.input :grade %>
       <%= f.input :subject %>
       <%= f.input :work_phone %>
       <%= f.input :position %>

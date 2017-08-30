@@ -42,7 +42,7 @@ class PaymentsController < ApplicationController
     if @payment.save
       UserPledgeJob.new.async.perform(@payment.user, grant, @payment)
       grant.check_total(total, @admins, @payment)
-      redirect_to grant_path(@payment.grant), notice: "You have successfully pledged #{@payment.amount}!"
+      redirect_to grant_path(@payment.grant), notice: "You have successfully pledged $#{@payment.amount}!"
     else
       render :new
     end
