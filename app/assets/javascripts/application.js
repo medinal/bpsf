@@ -21,6 +21,10 @@
 
 $(document).on('turbolinks:load', function() {
   $(function(){ $(document).foundation(); });
+  setTimeout(function(){
+    if ($('p.notice').text()) {$('p.notice').slideUp(800);}
+    if ($('p.alert').text()) {$('p.alert').slideUp(800);}
+  }, 5000);
   $(".friend-family-p").hide();
   $(".teacher-p").hide();
   $(".school-input").hide();

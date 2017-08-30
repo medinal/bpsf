@@ -316,6 +316,16 @@ flex: 1;
 p.alert, p.notice {
   font-weight: bold;
   font-size: 20px;
+  text-align: center;
+  color: white;
+}
+
+p.alert {
+  background-color: crimson;
+}
+
+p.notice {
+  background-color: forestgreen;
 }
 
 #blur-div {

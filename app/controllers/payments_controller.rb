@@ -1,6 +1,7 @@
 class PaymentsController < ApplicationController
 
   before_action :authenticate_user!
+  before_action :has_profile?
   before_action :set_payment, only: [:show, :edit, :update, :destroy]
   before_action :owner_or_admin?, only: [:edit, :update, :destroy]
 
@@ -57,7 +58,9 @@ class PaymentsController < ApplicationController
 
   private
 
-
+  def has_profile?
+    redirect_to new_user_profiles_path, alert: "Please create a profile first." unless current_user.profile or current_admin_user
+  end
 
   def payment_params
     params.permit(:amount, :grant_id, :stripeToken)
