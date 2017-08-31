@@ -140,9 +140,24 @@
 }
 
 .title-bar {
+  display:block;
   margin-top: 10px;
   border: 1px solid #ff5400 !important;
   justify-content: center;
+  width:100%;
+  height:100%;
+  padding: 0 !important;
+}
+
+.menu-button {
+    display:inline-block;
+    width:100%;
+    height:100%;
+    padding:1em;
+}
+
+.title-bar-title{
+  color:#ff5400 !important;
 }
 
 .profile.row {
