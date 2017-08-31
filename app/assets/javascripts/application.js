@@ -32,7 +32,7 @@ $(document).on('turbolinks:load', function() {
   $(".role").change(function(){
     $(".friend-family-p").hide();
     $(".teacher-p").hide();
-    console.log($(this).val())
+    console.log($(this).val());
     if($(this).val()=== "teacher"){
       $(".teacher-p").show();
       $(".school-input").show();
@@ -40,9 +40,9 @@ $(document).on('turbolinks:load', function() {
     else if($(this).val()=== "friends_and_family"){
       $(".friend-family-p").show();
       $(".school-input").hide();
-      $(".school-input").val('')
+      $(".school-input").val('');
     }
-  })
+  });
 
     //link to social media if buttons are clicked
   $(".fb-button").on('click', function(e){
@@ -59,7 +59,7 @@ $(document).on('turbolinks:load', function() {
     window.location.href = 'mailto:?subject=' + document.title + '&body=' + encodeURIComponent(window.location.href);
     e.preventDefault();
     return false;
-  })
+  });
 
   $('#submit').on('click', function(e){
     e.preventDefault();
@@ -95,7 +95,7 @@ $(document).on('turbolinks:load', function() {
   $("#grant_image").on('change', function(e){
     if (this.files && this.files[0] && this.files[0].type.includes('image')) {
       readURL(this);
-      $("#blur-div").css('z-index', 1)
+      $("#blur-div").css('z-index', 1);
       $("#blur-div").fadeTo('slow',1);
       $('.crop-img').focus();
     }
@@ -142,7 +142,7 @@ $(document).on('turbolinks:load', function() {
   // CREATE NEW JPEG FILE WHEN YOU SAVE CROPPED IMG
   $('.crop-img').on('click', function(){
     $('#grant-img-preview').cropper('getCroppedCanvas').toBlob(function (blob) {
-      var name = $('#grant_image')[0].files[0].name.split(".")[0] + Math.floor(Math.random() * 10000000).toString() + ".jpg"
+      var name = $('#grant_image')[0].files[0].name.split(".")[0] + Math.floor(Math.random() * 10000000).toString() + ".jpg";
       var new_img = new File([blob], name, {type: "image/jpeg"});
       $('form').data('file', new_img);
       url = URL.createObjectURL(new_img);
@@ -157,24 +157,27 @@ $(document).on('turbolinks:load', function() {
 
 
   // PAYMENT FUNCTIONS
-  var handler = StripeCheckout.configure({
-    key: 'pk_test_3oCK6GUkzy4PZFbsaDld0gTY',
-    locale: 'auto',
-    name: 'Berkeley Public Schools Fund',
-    description: 'One-time donation',
-    billingAddress: true,
-    token: function(token) {
-      $('input#stripeToken').val(token.id);
-      $('form').submit();
-    }
-  });
+  var handler;
+  if ($('.donation')[0]) {
+    handler = StripeCheckout.configure({
+      key: 'pk_test_3oCK6GUkzy4PZFbsaDld0gTY',
+      locale: 'auto',
+      name: 'Berkeley Public Schools Fund',
+      description: 'One-time donation',
+      billingAddress: true,
+      token: function(token) {
+        $('input#stripeToken').val(token.id);
+        $('form').submit();
+      }
+    });
+  }
 
   $('.donation').on('click', function(e) {
 
     $('#error_explanation').html('');
 
     var amount = $('input#amount').val();
-    amount = amount.replace(/\$/g, '').replace(/\,/g, '')
+    amount = amount.replace(/\$/g, '').replace(/\,/g, '');
     amount = parseFloat(amount);
 
     if (isNaN(amount)) {
@@ -190,11 +193,11 @@ $(document).on('turbolinks:load', function() {
       amount = amount * 100; // Needs to be an integer!
       handler.open({
         amount: Math.round(amount)
-      })
+      });
     }
     else{
       var title = $('.grant-row .columns h3')[0].innerHTML;
-      var amount = $('#amount').val()
+      var amount = $('#amount').val();
       if(confirm(`Are you sure you want to donate $${amount} to ${title}?`)){
       }else{
         e.preventDefault();
@@ -300,12 +303,12 @@ $(document).on('turbolinks:load', function() {
     let subjects = "", funds = "";
     $('.subject-option').each(function(){
       console.log("subject: ", this.innerText, this);
-      subjects += `${this.innerText.trim()}, `
+      subjects += `${this.innerText.trim()}, `;
     });
 
     $('.fund-option').each(function(){
-      funds += `${this.innerText.trim()}, `
-    })
+      funds += `${this.innerText.trim()}, `;
+    });
     subjects = subjects.slice(0,-2);
     funds = funds.slice(0,-2);
     $('#grant_subject_areas').val(subjects);

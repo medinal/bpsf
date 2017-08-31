@@ -129,7 +129,7 @@
                 <td><%= card.brand %></td>
                 <td><%= card.funding %></td>
                 <td>
-                  <%if card.address_line1%>
+                  <% unless card.address_line1.empty?%>
                     <%=  "#{card.address_line1}  #{card.address_line2} #{card.address_city}, #{card.address_state}, #{card.address_zip}" %>
                   <% end %>
                 </td>
