@@ -190,7 +190,7 @@ class GrantsController < ApplicationController
     end
 
     def has_profile?
-      redirect_to new_user_profiles_path, alert: "Please create a profile first." unless current_admin_user or (current_user and current_user.profile)
+      redirect_to new_user_profiles_path + "?next=#{request.original_fullpath}", alert: "Please create a profile first." unless current_admin_user or (current_user and current_user.profile)
     end
 
 end
