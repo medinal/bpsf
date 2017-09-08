@@ -2,16 +2,16 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :about %>
     <%= f.input :address %>
     <%= f.input :city %>
     <%= f.input :state %>
     <%= f.input :zipcode %>
     <%= f.input :home_phone %>
     <% if current_user.role == "teacher" %>
+      <%= f.input :work_phone %>
+      <%= f.input :about %>
       <%= f.input :grade %>
       <%= f.input :subject %>
-      <%= f.input :work_phone %>
       <%= f.input :position %>
       <%= f.input :started_teaching, start_year: Date.today.year - 90, end_year: Date.today.year %>
     <% end %>
