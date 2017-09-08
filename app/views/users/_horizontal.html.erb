@@ -25,7 +25,9 @@
           <p class="text-right">State:</p>
           <p class="text-right">Zip:</p>
           <p class="text-right">Home Phone:</p>
-          <p class="text-right">Work Phone:</p>
+          <% if current_user.role == "teacher" %>
+            <p class="text-right">Work Phone:</p>
+          <% end %>
         </div>
         <div class="user-attribute-values columns small-6">
         <% if current_user.role == "teacher" %>
