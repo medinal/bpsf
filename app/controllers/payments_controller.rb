@@ -2,19 +2,12 @@ class PaymentsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :has_profile?
-  before_action :set_payment, only: [:show, :edit, :update, :destroy]
-  before_action :owner_or_admin?, only: [:edit, :update, :destroy]
-
-  def index
-    @payments = Payment.all
-  end
+  before_action :set_payment, only: :destroy
+  before_action :owner_or_admin?, only: :destroy
 
   def new
     @grant = Grant.find(params[:grant_id])
     @payment = Payment.new
-  end
-
-  def edit
   end
 
   def create
@@ -46,9 +39,6 @@ class PaymentsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def update
   end
 
   def destroy
