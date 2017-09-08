@@ -1,7 +1,7 @@
 class Grant < ApplicationRecord
   belongs_to :user
   belongs_to :school
-  has_many :payments
+  has_many :payments, dependent: :destroy
   mount_uploader :image, ImageUploader
 
   enum status: { "draft" => 0, "pending" => 1, "approved" => 2, "rejected" => 3, "failed" => 4, "successful" =>5}

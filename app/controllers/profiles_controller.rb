@@ -4,6 +4,7 @@ class ProfilesController < ApplicationController
 
   def new
     @profile = Profile.new
+    @next = params['next'] if params['next']
   end
 
   def edit
@@ -13,7 +14,11 @@ class ProfilesController < ApplicationController
     @profile = Profile.new(profile_params)
     @profile.user = current_user
     if @profile.save
-      redirect_to user_path(current_user), notice: 'You successfully created your profile!'
+      if params['next']
+        redirect_to params['next'], notice: 'You successfully created your profile!'
+      else
+        redirect_to user_path(current_user), notice: 'You successfully created your profile!'
+      end
     else
       render :new
     end

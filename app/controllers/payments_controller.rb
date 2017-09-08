@@ -2,19 +2,12 @@ class PaymentsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :has_profile?
-  before_action :set_payment, only: [:show, :edit, :update, :destroy]
-  before_action :owner_or_admin?, only: [:edit, :update, :destroy]
-
-  def index
-    @payments = Payment.all
-  end
+  before_action :set_payment, only: :destroy
+  before_action :owner_or_admin?, only: :destroy
 
   def new
     @grant = Grant.find(params[:grant_id])
     @payment = Payment.new
-  end
-
-  def edit
   end
 
   def create
@@ -48,9 +41,6 @@ class PaymentsController < ApplicationController
     end
   end
 
-  def update
-  end
-
   def destroy
     @payment.destroy
     redirect_to grants_url, notice: 'Payment was successfully destroyed.'
@@ -59,7 +49,7 @@ class PaymentsController < ApplicationController
   private
 
   def has_profile?
-    redirect_to new_user_profiles_path, alert: "Please create a profile first." unless current_admin_user or (current_user and current_user.profile)
+    redirect_to new_user_profiles_path + "?next=#{request.original_fullpath}", alert: "Please create a profile first." unless current_admin_user or (current_user and current_user.profile)
   end
 
   def payment_params
