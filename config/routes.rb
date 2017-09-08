@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resource :profiles, path: "profile", except: [:index, :show, :delete]
   end
 
-  get '/users', to: redirect('/users/sign_in')
+  get '/users', to: redirect('/users/sign_up')
 
   get '/user/grants', to: 'grants#usergrants', as: 'user_grants'
 
