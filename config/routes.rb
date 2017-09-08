@@ -5,13 +5,15 @@ Rails.application.routes.draw do
   devise_for :users,
              :controllers => { :registrations => "custom/registrations" }
 
-  match '/contact_forms/new',     to: 'contact_forms#new',             via: 'get'
+  match '/contact_forms/new', to: 'contact_forms#new', via: 'get'
   resources "contact_forms", only: [:new, :create]
   root to: "home#index"
 
   resource :user, only: [:show] do
     resource :profiles, path: "profile", except: [:index, :show, :delete]
   end
+
+  get '/users', to: redirect('/users/sign_up')
 
   get '/user/grants', to: 'grants#usergrants', as: 'user_grants'
 
