@@ -9,9 +9,8 @@
     <%= f.input :home_phone %>
     <% if current_user.role == "teacher" %>
       <%= f.input :work_phone %>
-      <%= f.input :about %>
-      <%= f.input :grade %>
-      <%= f.input :subject %>
+      <%= f.input :about, :label => "Teacher background" %>
+      <%= f.input :grade, :label => "Grade you teach" %>
       <%= f.input :position %>
       <%= f.input :started_teaching, start_year: Date.today.year - 90, end_year: Date.today.year %>
     <% end %>

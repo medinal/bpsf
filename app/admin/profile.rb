@@ -2,7 +2,7 @@ ActiveAdmin.register Profile do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-  permit_params :about, :address, :city, :position, :state,
+  permit_params :about, :address, :city, :state,
               :zipcode, :grade, :home_phone, :work_phone,
               :subject, :started_teaching, :user_id
 
@@ -11,10 +11,12 @@ ActiveAdmin.register Profile do
     column :user_id do |profile|
       link_to profile.user.full_name, admin_user_path(profile.user)
     end
+    column :role do |profile|
+      profile.user.role
+    end
     column :about
     column :address
     column :city
-    column :position
     column :state
     column :zipcode
     column :grade
