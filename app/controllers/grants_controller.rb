@@ -49,13 +49,9 @@ class GrantsController < ApplicationController
   def index
     @school = School.all
     @grants = Grant.where("status = '2' OR status = '5'").paginate(page: params[:page], per_page: 5).order(deadline: :asc)
-  # @user = User.where(first_name: params[:teacher]) && User.where(last_name: params[:teacher])
     if params[:filter] && params[:filter] != "All" && [ 'approved', 'successful'].include?(params[:filter])
       @grants = Grant.where(status: params[:filter]).paginate(page: params[:page], per_page: 5).order(deadline: :asc)
     end
-    # if params[:filter] && params[:filter] == "All"
-    #   @grants = Grant.where(status: "approved").paginate(page: params[:page], per_page: 5).order(deadline: :asc)
-    # end
     if params[:school_id] && params[:school_id] != ""
       @grants = @grants.where(school_id: params[:school_id]).paginate(page: params[:page], per_page: 5).order(deadline: :asc)
     end

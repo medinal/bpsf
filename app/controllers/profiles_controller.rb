@@ -17,7 +17,7 @@ class ProfilesController < ApplicationController
       if params['next']
         redirect_to params['next'], notice: 'You successfully created your profile!'
       else
-        redirect_to user_path(current_user), notice: 'You successfully created your profile!'
+        redirect_to user_path, notice: 'You successfully created your profile!'
       end
     else
       render :new
@@ -26,7 +26,7 @@ class ProfilesController < ApplicationController
 
   def update
     if @profile.update(profile_params)
-      redirect_to user_path(current_user), notice: 'Profile was successfully updated.'
+      redirect_to user_path, notice: 'Profile was successfully updated.'
     else
       render :edit
     end

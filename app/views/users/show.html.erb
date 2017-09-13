@@ -1,4 +1,12 @@
-<h2 style="text-align: center"><%= @user.first_name%> <%= @user.last_name%></h2>
+<h2 style="text-align: center"><%= current_user.first_name%> <%= current_user.last_name%></h2>
+
+<p hidden id="current-tab">
+  <% if @current_tab %>
+    <%= @current_tab %>
+  <% else %>
+    #user-profile-label
+  <% end -%>
+</p>
 
 <div class="show-for-medium">
   <%= render "horizontal" %>

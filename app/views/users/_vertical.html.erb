@@ -8,7 +8,7 @@
 <div class="tabs-content" data-tabs-content="account-tabs-v">
   <div class="tabs-panel" id="user-profile-v">
     <div class="row">
-      <% if !@user.profile %>
+      <% if !current_user.profile %>
         <div class="float-center">
           <%= button_to "Create Profile", new_user_profiles_path, method: "get", class: "button warning" %>
         </div>
@@ -43,7 +43,7 @@
         </div>
       <% end %>
     </div>
-    <% if @user.profile %>
+    <% if current_user.profile %>
       <div class="columns small-12">
         <%= button_to "Edit Profile", edit_user_profiles_path, class: "button warning float-center", method: "get" %>
       </div>
@@ -58,10 +58,10 @@
         <p class="text-right">Relationship:</p>
       </div>
       <div class="user-attribute-values small-6">
-        <p> <%= @user.first_name %> </p>
-        <p> <%= @user.last_name %> </p>
-        <p> <%= @user.email %> </p>
-        <p> <%= @user.role %> </p>
+        <p> <%= current_user.first_name %> </p>
+        <p> <%= current_user.last_name %> </p>
+        <p> <%= current_user.email %> </p>
+        <p> <%= current_user.role %> </p>
       </div>
     </div>
     <div class="columns small-12">

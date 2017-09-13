@@ -2,14 +2,16 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    @user = current_user
+    if params['current']
+      @current_tab = "##{params['current']}"
+    end
     @profile = current_user.profile
     @payments = current_user.payments
     @school = current_user.school
     Stripe.api_key = ENV['stripe_api_key']
     @customer = nil
-    if @user.stripe_token
-      @customer = Stripe::Customer.retrieve(@user.stripe_token)
+    if current_user.stripe_token
+      @customer = Stripe::Customer.retrieve(current_user.stripe_token)
     end
   end
 
@@ -29,9 +31,9 @@ class UsersController < ApplicationController
         customer.sources.create({source: tok})
       end
 
-        redirect_to current_user, notice: 'Successfully created card'
+        redirect_to user_path + "?current=credit-card-label", notice: 'Successfully created card'
     rescue => e
-      redirect_to current_user, alert: 'Could not find token to create card'
+      redirect_to user_path + "?current=credit-card-label", alert: 'Could not find token to create card'
     end 
   end
 
@@ -53,15 +55,15 @@ class UsersController < ApplicationController
             customer.default_source = card.id
             customer.save
           end
-          redirect_to current_user, notice: 'Successfully updated card'
+          redirect_to user_path + "?current=credit-card-label", notice: 'Successfully updated card'
         rescue => e
           p e
-          redirect_to current_user, alert: 'Could not update card'
+          redirect_to user_path + "?current=credit-card-label", alert: 'Could not update card'
         end
         break
       end
     end
-    redirect_to current_user, alert: 'Could not find card' unless card_found
+    redirect_to user_path + "?current=credit-card-label", alert: 'Could not find card' unless card_found
   end
 
   def delete_card
@@ -73,14 +75,14 @@ class UsersController < ApplicationController
         card_found = true
         begin
           card.delete
-          redirect_to current_user, notice: 'Successfully deleted card'
+          redirect_to user_path + "?current=credit-card-label", notice: 'Successfully deleted card'
         rescue => e
           p e
-          redirect_to current_user, alert: 'Could not delete card'
+          redirect_to user_path + "?current=credit-card-label", alert: 'Could not delete card'
         end
       end
     end
-    redirect_to current_user, alert: 'Could not find card' unless card_found
+    redirect_to user_path + "?current=credit-card-label", alert: 'Could not find card' unless card_found
   end
 
   private

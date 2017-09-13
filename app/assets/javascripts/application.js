@@ -25,6 +25,9 @@ $(document).on('turbolinks:load', function() {
     if ($('p.notice').text()) {$('p.notice').slideUp(800);}
     if ($('p.alert').text()) {$('p.alert').slideUp(800);}
   }, 5000);
+
+  $($('p#current-tab').text()).click();
+
   $(".friend-family-p").hide();
   $(".teacher-p").hide();
   $(".school-input").hide();
