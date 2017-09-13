@@ -101,6 +101,11 @@ $(document).on('turbolinks:load', function() {
     }
   });
 
+  // DELETE FILE INPUT BEFORE CHOOSING NEW IMAGE
+  $("#grant_image").click(function(){
+    $(this).val("");
+  });
+
   // ON GRANT UPDATE: IF CROPPED IMG USE AJAX CALL
   $('#new-grant').on('click', function(e){
     var img = $('form').data('file');
@@ -151,10 +156,8 @@ $(document).on('turbolinks:load', function() {
       $('#grant-img-preview').cropper('destroy');
       $('#blur-div').css('z-index', -1);
       $('#blur-div').css('opacity', 0);
-      $('#grant_image').val("");
     });
   });
-
 
   // PAYMENT FUNCTIONS
   var handler;
@@ -302,7 +305,6 @@ $(document).on('turbolinks:load', function() {
   function fillGrantValues(){
     let subjects = "", funds = "";
     $('.subject-option').each(function(){
-      console.log("subject: ", this.innerText, this);
       subjects += `${this.innerText.trim()}, `;
     });
 
@@ -313,7 +315,6 @@ $(document).on('turbolinks:load', function() {
     funds = funds.slice(0,-2);
     $('#grant_subject_areas').val(subjects);
     $('#grant_funds_will_pay_for').val(funds);
-    console.log(funds);
   }
 
   // ADD SUBJECT AREA TAGS
