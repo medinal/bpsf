@@ -20,6 +20,10 @@ class Custom::RegistrationsController < Devise::RegistrationsController
   end
 
   def update
+    def after_update_path_for(resource)
+      user_path + "?current=account-label"
+    end
+
     super # no customization, simply call the devise implementation 
   end
 
