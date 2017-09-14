@@ -17,7 +17,6 @@
           <% if current_user.role == "teacher" %>
             <p class="text-right">About:</p>
             <p class="text-right">Position:</p>
-            <p class="text-right">Subject:</p>
             <p class="text-right">Teacher Since:</p>
           <% end %>
           <p class="text-right">Address:</p>
@@ -33,7 +32,6 @@
         <% if current_user.role == "teacher" %>
           <p><%= @profile.about %></p>
           <p><%= @profile.position %></p>
-          <p><%= @profile.subject %></p>
           <p><%= @profile.started_teaching %></p>
         <% end %>
           <p><%= @profile.address %></p>
