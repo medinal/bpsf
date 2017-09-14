@@ -2,17 +2,16 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :address %>
-    <%= f.input :city %>
-    <%= f.input :state %>
-    <%= f.input :zipcode %>
-    <%= f.input :home_phone %>
+    <%= f.input :address, :input_html => { :class => 'inputs' }, required:true %>
+    <%= f.input :city, :input_html => { :class => 'inputs' }, required:true %>
+    <%= f.input :state, :input_html => { :class => 'inputs' }, :collection => us_states %>    
+    <%= f.input :zipcode, :input_html => { :class => 'inputs' }, required:true %>
+    <%= f.input :home_phone, :input_html => { :class => 'inputs' }, required:true %>
     <% if current_user.role == "teacher" %>
-      <%= f.input :work_phone %>
-      <%= f.input :about, :label => "Teacher background" %>
-      <%= f.input :grade, :label => "Grade you teach" %>
-      <%= f.input :position %>
-      <%= f.input :started_teaching, start_year: Date.today.year - 90, end_year: Date.today.year %>
+      <%= f.input :work_phone, :input_html => { :class => 'inputs' }, required:true %>
+      <%= f.input :about, :input_html => { :class => 'inputs' }, :label => "Teacher background", required:true %>
+      <%= f.input :grade, :input_html => { :class => 'inputs' }, :label => "Grade you teach", required:true %>
+      <%= f.input :started_teaching, :input_html => { :class => 'inputs' }, start_year: Date.today.year - 90, end_year: Date.today.year, required:true %>
     <% end %>
   </div>
   <% if @next %>
