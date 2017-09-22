@@ -11,7 +11,7 @@
     <%= f.input :image %>
     <%= f.input :title, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip inputs", :title => "Name your grant. A good title summarizes the essence of the application." }, required: true %>
     <%= f.input :summary, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip inputs", :title => "Give a brief explanation of your application (200 word limit)" }, required: true %>
-    <%= f.input :subject_areas, required: true, wrapper_html: {:class => "invis"} %>
+    <%= f.input :subject_areas, input_html: { tabindex: -1 }, required: true, wrapper_html: {:class => "invis"} %>
     <label class="text"><abbr>*</abbr> Subject areas</label>
     <% if @grant.subject_areas %>
       <% @grant.subject_areas.split(", ").each do |subject| %>
@@ -24,7 +24,7 @@
     <%= f.input :num_classes, :label => "Number of classes",  input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip inputs", :title => "How many different classes will be affected by the application?" }, required: true %>
     <%= f.input :num_students, :label => "Number of students", input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip inputs", :title => "How many students will be affected by the application?" }, required: true %>
     <%= f.input :total_budget, input_html: { "data-tooltip" => true, "data-disable-hover" => true, :class => "has-tip inputs", :title => "Enter total $ amount of your budget" }, required: true %>
-    <%= f.input :funds_will_pay_for, required: true, wrapper_html: {:class => "invis"} %>
+    <%= f.input :funds_will_pay_for, input_html: { tabindex: -1 }, required: true, wrapper_html: {:class => "invis"} %>
     <label class="text"><abbr>*</abbr> Funds will pay for</label>
     <% if @grant.funds_will_pay_for %>
       <% @grant.funds_will_pay_for.split(", ").each do |fund| %>
