@@ -15,7 +15,6 @@
       <% else %>
 
           <% if current_user.role == "teacher" %>
-
           <div class="columns small-6">
             <p class="text-right">About:</p>
           </div>
@@ -80,37 +79,6 @@
           <div class="user-attribute-values columns small-6">
           <p><%= @profile.zipcode %></p>
           </div>
-
-
-
-        <div class="columns small-6">
-          <% if current_user.role == "teacher" %>
-            <p class="text-right">About:</p>
-            <p class="text-right">Grade you teach:</p>
-            <p class="text-right">Teacher Since:</p>
-            <p class="text-right">Work Phone:</p>
-          <% end %>
-          <p class="text-right">Home Phone:</p>
-          <p class="text-right">Address:</p>
-          <p class="text-right">City:</p>
-          <p class="text-right">State:</p>
-          <p class="text-right">Zip:</p>
-          <% if current_user.role == "teacher" %>
-          <% end %>
-        </div>
-        <div class="user-attribute-values columns small-6">
-        <% if current_user.role == "teacher" %>
-          <p><%= @profile.about %></p>
-          <p><%= @profile.grade %></p>
-          <p><%= @profile.started_teaching %></p>
-          <p><%= @profile.work_phone %></p>
-        <% end %>
-          <p><%= @profile.home_phone %></p>
-          <p><%= @profile.address %></p>
-          <p><%= @profile.city %></p>
-          <p><%= @profile.state %></p>
-          <p><%= @profile.zipcode %></p>
-        </div>
       <% end %>
     </div>
     <% if current_user.profile %>
