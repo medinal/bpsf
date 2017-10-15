@@ -73,18 +73,18 @@
       </a>
 
       <ul class="menu">
-        <% if !current_user %>
-        <li><%= link_to "Sign In", new_user_session_path, class: "dropdown-links align-center" %></li>
-        <li><%= link_to "Register", new_user_registration_path, class: "dropdown-links align-center" %></li>
-        <% else %>
-          <% if current_admin_user %>
+        <% if current_admin_user %>
           <li><%= link_to "Admin Dashboard", admin_root_path, class: "dropdown-links align-center" %></li>
-          <% end %>
-        <li><%= link_to "Dashboard", user_path, method: "get", class: "dropdown-links align-center" %></li>
-        <% if current_user && current_user.role == "teacher" %>
-          <li><%= link_to "Your Grants", user_grants_path, class: "dropdown-links align-center" %></li>
         <% end %>
-        <li><%= link_to "Sign Out", destroy_user_session_path, method: "delete", class: "dropdown-links align-center" %></li>
+        <% if !current_user %>
+          <li><%= link_to "Sign In", new_user_session_path, class: "dropdown-links align-center" %></li>
+          <li><%= link_to "Register", new_user_registration_path, class: "dropdown-links align-center" %></li>
+        <% else %>
+          <li><%= link_to "Dashboard", user_path, method: "get", class: "dropdown-links align-center" %></li>
+          <% if current_user.role == "teacher" %>
+            <li><%= link_to "Your Grants", user_grants_path, class: "dropdown-links align-center" %></li>
+          <% end %>
+          <li><%= link_to "Sign Out", destroy_user_session_path, method: "delete", class: "dropdown-links align-center" %></li>
         <% end %>
       </ul>
 

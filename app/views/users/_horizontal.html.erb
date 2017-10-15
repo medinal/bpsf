@@ -13,72 +13,63 @@
           <%= button_to "Create Profile", new_user_profiles_path, method: "get", class: "button warning" %>
         </div>
       <% else %>
-
-          <% if current_user.role == "teacher" %>
+        <% if current_user.role == "teacher" %>
           <div class="columns small-6">
             <p class="text-right">About:</p>
           </div>
           <div class="user-attribute-values columns small-6">
             <p><%= @profile.about %></p>
           </div>
-
           <div class="columns small-6">
             <p class="text-right">Grade you teach:</p>
           </div>
           <div class="user-attribute-values columns small-6">
             <p><%= @profile.grade %></p>
           </div>
-
           <div class="columns small-6">
             <p class="text-right">Teacher Since:</p>
           </div>
           <div class="user-attribute-values columns small-6">
-          <p><%= @profile.started_teaching %></p>
+            <p><%= @profile.started_teaching %></p>
           </div>
-
           <div class="columns small-6">
             <p class="text-right">Work Phone:</p>
           </div>
           <div class="user-attribute-values columns small-6">
-          <p><%= @profile.work_phone %></p>
+            <p><%= @profile.work_phone %></p>
           </div>
+        <% end %>
 
-          <% end %>
-
-          <div class="columns small-6">
+        <div class="columns small-6">
           <p class="text-right">Home Phone:</p>
-          </div>
-          <div class="user-attribute-values columns small-6">
+        </div>
+        <div class="user-attribute-values columns small-6">
           <p><%= @profile.home_phone %></p>
-          </div>
-
-          <div class="columns small-6">
+        </div>
+        <div class="columns small-6">
           <p class="text-right">Address:</p>
-          </div>
-          <div class="user-attribute-values columns small-6">
+        </div>
+        <div class="user-attribute-values columns small-6">
           <p><%= @profile.address %></p>
-          </div>
-
-          <div class="columns small-6">
+        </div>
+        <div class="columns small-6">
           <p class="text-right">City:</p>
-          </div>
-          <div class="user-attribute-values columns small-6">
+        </div>
+        <div class="user-attribute-values columns small-6">
           <p><%= @profile.city %></p>
-          </div>
-
-          <div class="columns small-6">
+        </div>
+        <div class="columns small-6">
           <p class="text-right">State:</p>
-          </div>
-          <div class="user-attribute-values columns small-6">
+        </div>
+        <div class="user-attribute-values columns small-6">
           <p><%= @profile.state %></p>
-          </div>
-
-          <div class="columns small-6">
+        </div>
+        <div class="columns small-6">
           <p class="text-right">Zip:</p>
-          </div>
-          <div class="user-attribute-values columns small-6">
+        </div>
+        <div class="user-attribute-values columns small-6">
           <p><%= @profile.zipcode %></p>
-          </div>
+        </div>
       <% end %>
     </div>
     <% if current_user.profile %>
@@ -93,13 +84,17 @@
         <p class="text-right">First Name:</p>
         <p class="text-right">Last Name:</p>
         <p class="text-right">Email:</p>
-        <p class="text-right">Relationship:</p>
+        <% if current_user.role == "teacher" %>
+          <p class="text-right">Relationship:</p>
+        <% end %>
       </div>
       <div class="user-attribute-values small-6">
         <p> <%= current_user.first_name %> </p>
         <p> <%= current_user.last_name %> </p>
         <p> <%= current_user.email %> </p>
-        <p> <%= current_user.role %> </p>
+        <% if current_user.role == "teacher" %>
+          <p> <%= current_user.role %> </p>
+        <% end %>
       </div>
     </div>
     <div class="columns small-12">
