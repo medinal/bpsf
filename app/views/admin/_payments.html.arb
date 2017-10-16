@@ -1,11 +1,3 @@
-# <div>
-#   <h2 style="text-align: center;">Payments</h2>
-#   <% grant.payments.each do |payment| %>
-#     <h5><%= payment.amount%></h5>
-#     <h5><%= payment.status%></h5>
-#     <hr>
-#   <% end %>
-# </div>
 render inline: "<h2 style='text-align: center;'> Payments </h2>"
 table_for grant.payments do |payment|
   column :user
