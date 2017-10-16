@@ -65,6 +65,7 @@ ActiveAdmin.register Grant do
       row :video
       row :image
     end
+    render partial: 'admin/payments', locals: {grant: grant}
   end
 
   form do |f|
