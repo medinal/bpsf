@@ -1,6 +1,8 @@
 render inline: "<h2 style='text-align: center;'> Payments </h2>"
 table_for grant.payments do |payment|
   column :user
-  column :amount
+  column :amount do |pay|
+    "$#{pay.amount}"
+  end
   column :status
 end
