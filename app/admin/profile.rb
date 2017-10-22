@@ -3,8 +3,8 @@ ActiveAdmin.register Profile do
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
   permit_params :about, :address, :city, :state,
-              :zipcode, :grade, :home_phone, :work_phone,
-              :subject, :started_teaching, :user_id
+                :zipcode, :grade, :home_phone, :work_phone,
+                :started_teaching, :user_id
 
   index do
     selectable_column
@@ -22,7 +22,6 @@ ActiveAdmin.register Profile do
     column :grade
     column :home_phone
     column :work_phone
-    column :subject
     column :started_teaching
     actions
   end
