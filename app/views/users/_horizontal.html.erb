@@ -168,8 +168,8 @@
                 </td>
                 <td style="text-align: center;"><span class="badge click warning"><%= fa_icon "pencil", style: "color: white;"%></span></td>
                 <td style="text-align: center;">
-                  <% if card.id == @customer.default_source %>
-                    <span class="badge secondary"><%= fa_icon "times" %></i></span>
+                  <% if @customer.sources.data.length == 1 and !current_user.payments.where(status: 0).empty? %>
+                    <span data-tooltip aria-haspopup="true" class="has-tip badge secondary" title="You have a donation pledge pending, another card must be added before this one can be deleted"><%= fa_icon "times" %></i></span>
                   <% else %>
                     <%= form_tag delete_card_path, method: 'delete' do %>
                       <%= hidden_field_tag :card_id %>
