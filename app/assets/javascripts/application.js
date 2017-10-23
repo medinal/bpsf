@@ -181,7 +181,6 @@ $(document).on('turbolinks:load', function() {
   $('.donation').on('click', function(e) {
 
     $('#error_explanation').html('');
-
     var amount = $('input#amount').val();
     amount = amount.replace(/\$/g, '').replace(/\,/g, '');
     amount = parseFloat(amount);
@@ -203,9 +202,7 @@ $(document).on('turbolinks:load', function() {
     }
     else{
       var title = $('.grant-row .columns h3')[0].innerHTML;
-      var amount = $('#amount').val();
-      if(confirm(`Are you sure you want to donate $${amount} to ${title}?`)){
-      }else{
+      if(!confirm(`Are you sure you want to donate $${amount} to ${title}?`)){
         e.preventDefault();
       }
     }

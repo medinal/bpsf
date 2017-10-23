@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @school = current_user.school
     Stripe.api_key = ENV['stripe_api_key']
     @customer = nil
-    if current_user.stripe_token
+    if current_user.stripe_token?
       @customer = Stripe::Customer.retrieve(current_user.stripe_token)
     end
   end
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     Stripe.api_key = ENV['stripe_api_key']
     begin
       tok = Stripe::Token.retrieve(params[:card_token])
-      if !current_user.stripe_token
+      if !current_user.stripe_token?
         customer = Stripe::Customer.create({
           email: current_user.email,
           source: tok,
@@ -28,10 +28,14 @@ class UsersController < ApplicationController
         current_user.save
       else
         customer = Stripe::Customer.retrieve(current_user.stripe_token)
-        customer.sources.create({source: tok})
+        card = customer.sources.create({source: tok})
+        if params[:default]
+          customer.default_source = card.id
+          customer.save
+        end
       end
 
-        redirect_to user_path + "?current=credit-card-label", notice: 'Successfully created card'
+      redirect_to user_path + "?current=credit-card-label", notice: 'Successfully created card'
     rescue => e
       redirect_to user_path + "?current=credit-card-label", alert: 'Could not find token to create card'
     end 
