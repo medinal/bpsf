@@ -2,6 +2,7 @@ class PaymentsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :has_profile?
+  before_action :has_card?, only: :new
   before_action :set_payment, only: :destroy
   before_action :owner_or_admin?, only: :destroy
 
@@ -11,7 +12,7 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    if !current_user.stripe_token
+    if !current_user.stripe_token?
       Stripe.api_key = ENV["stripe_api_key"]
       customer = Stripe::Customer.create({
         description: "Customer for #{current_user.first_name} #{current_user.last_name}",
@@ -62,6 +63,14 @@ class PaymentsController < ApplicationController
 
   def owner_or_admin?
     redirect_to grants_path unless @payment.user == current_user or current_admin_user
+  end
+
+  def has_card?
+    if current_user and current_user.stripe_token?
+      Stripe.api_key = ENV['stripe_api_key']
+      customer = Stripe::Customer.retrieve(current_user.stripe_token)
+      redirect_to user_path + "?current=credit-card-label", alert: 'Add a new credit card before donating' unless customer.sources.total_count > 0
+    end
   end
 
 end
