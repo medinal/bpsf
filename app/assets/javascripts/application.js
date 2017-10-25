@@ -58,11 +58,6 @@ $(document).on('turbolinks:load', function() {
     e.preventDefault();
     return false;
   });
-  $(".mail-button").on('click', function(e){
-    window.location.href = 'mailto:?subject=' + document.title + '&body=' + encodeURIComponent(window.location.href);
-    e.preventDefault();
-    return false;
-  });
 
   $('#submit').on('click', function(e){
     e.preventDefault();
