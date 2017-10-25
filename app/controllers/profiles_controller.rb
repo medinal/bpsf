@@ -1,10 +1,10 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_profile, only: [:edit, :update]
+  before_action :set_next, only: [:edit, :new]
 
   def new
     @profile = Profile.new
-    @next = params['next'] if params['next']
   end
 
   def edit
@@ -26,7 +26,11 @@ class ProfilesController < ApplicationController
 
   def update
     if @profile.update(profile_params)
-      redirect_to user_path, notice: 'Profile was successfully updated.'
+      if params['next']
+        redirect_to params['next'], notice: 'Profile was successfully updated.'
+      else
+        redirect_to user_path, notice: 'Profile was successfully updated.'
+      end
     else
       render :edit
     end
@@ -46,6 +50,10 @@ class ProfilesController < ApplicationController
     params.require(:profile).permit(:about, :address, :city, :position, :state,
                                     :zipcode, :grade, :home_phone, :work_phone,
                                     :relationship, :started_teaching)
+  end
+
+  def set_next
+    @next = params['next'] if params['next']
   end
 
 

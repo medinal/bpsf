@@ -340,7 +340,7 @@ justify-content: center;
 flex: 1;
 }
 
-p.alert, p.notice {
+p.alert, p.notice, p.info {
   font-weight: bold;
   font-size: 20px;
   text-align: center;
@@ -353,6 +353,10 @@ p.alert {
 
 p.notice {
   background-color: #4c84e0;
+}
+
+p.info {
+  background-color: lightsalmon;
 }
 
 #blur-div {

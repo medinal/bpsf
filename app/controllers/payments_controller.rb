@@ -9,6 +9,7 @@ class PaymentsController < ApplicationController
   def new
     @grant = Grant.find(params[:grant_id])
     @payment = Payment.new
+    update_profile?
   end
 
   def create
@@ -70,6 +71,13 @@ class PaymentsController < ApplicationController
       Stripe.api_key = ENV['stripe_api_key']
       customer = Stripe::Customer.retrieve(current_user.stripe_token)
       redirect_to user_path + "?current=credit-card-label", alert: 'Add a new credit card before donating' unless customer.sources.total_count > 0
+    end
+  end
+
+  def update_profile?
+    if request.base_url + grant_path(@grant) == request.referer
+      flash[:info] = "Please confirm the information below before donating."
+      redirect_to edit_user_profiles_path + "?next=#{request.original_fullpath}"
     end
   end
 
