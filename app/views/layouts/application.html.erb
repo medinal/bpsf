@@ -25,6 +25,9 @@
       <%= render "shared/collapsednavbar" %>
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
+      <% if flash[:info] %>
+        <p class="info"><%= flash[:info] %></p>
+      <% end %>
 
 
 

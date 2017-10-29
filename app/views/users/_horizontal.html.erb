@@ -137,10 +137,10 @@
         <thead>
           <tr>
             <th>Default</th>
+            <th>Provider</th>
             <th>Name On Card</th>
             <th>Last Four</th>
-            <th>Expiration Date</th>
-            <th>Provider</th>
+            <th>Exp. Date</th>
             <th>Card Type</th>
             <th>Billing Address</th>
             <th>Edit Card</th>
@@ -156,10 +156,23 @@
                     <span class="badge success"><%= fa_icon "check" %></span>
                   <% end %>
                 </td>
+                <td>
+                  <% case card.brand %>
+                  <% when "Visa" %>
+                    <%= image_tag "logo-visa.jpg", class: "brand-img" %>
+                  <% when "MasterCard" %>
+                    <%= image_tag "logo-mastercard.jpg", class: "brand-img" %>
+                  <% when "American Express" %>
+                    <%= image_tag "logo-americanExpress.jpg", class: "brand-img" %>
+                  <% when "Discover" %>
+                    <%= image_tag "logo-discover.jpg", class: "brand-img" %>
+                  <% else %>
+                    <%= card.brand %>
+                  <% end %>
+                </td>
                 <td><%= card.name %></td>
                 <td><%= card.last4 %></td>
                 <td><%= Date.new(card.exp_year, card.exp_month).strftime('%B %Y') %></td>
-                <td><%= card.brand %></td>
                 <td><%= card.funding %></td>
                 <td>
                   <% if (card.address_line1 and !card.address_line1.empty?) %>
