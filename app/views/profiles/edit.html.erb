@@ -1,3 +1,5 @@
 <h1>Edit Your Profile</h1>
-
+<% if @card %>
+  <%= render "card_info" %>
+<% end %>
 <%= render "form" %>
