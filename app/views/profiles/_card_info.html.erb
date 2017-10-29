@@ -1,0 +1,29 @@
+<h4 class="text-center">Payment Info</h4>
+<div class="credit-card-info">
+  <div class="row">
+    <div class="small-5 columns">
+      <% case @card.brand %>
+      <% when "Visa" %>
+        <%= image_tag "logo-visa.jpg", class: "brand-img" %>
+      <% when "MasterCard" %>
+        <%= image_tag "logo-mastercard.jpg", class: "brand-img" %>
+      <% when "American Express" %>
+        <%= image_tag "logo-americanExpress.jpg", class: "brand-img" %>
+      <% when "Discover" %>
+        <%= image_tag "logo-discover.jpg", class: "brand-img" %>
+      <% else %>
+        <p><%= @card.brand %></p>
+      <% end %>
+      <p>####-####-####-<%= @card.last4%></p>
+    </div>
+    <div class="small-5 columns">
+      <p><span style="text-decoration: underline;">Cardholder</span>: <%= @card.name %></p>
+      <p><span style="text-decoration: underline;">Exp. Date</span>: <%= @card.exp_month%>/<%= @card.exp_year.to_s[2..3]%></p>
+    </div>
+    <div>
+      <%= link_to user_path + "?current=credit-card-label" do %> 
+        <button class="button">Update Card</button>
+      <% end %>
+    </div>
+  </div>
+</div>
