@@ -2,7 +2,7 @@ class PaymentsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :has_profile?
-  before_action :has_card?, only: :new
+  before_action :stripe_token_and_no_card?, only: :new
   before_action :set_payment, only: :destroy
   before_action :owner_or_admin?, only: :destroy
 
@@ -66,7 +66,7 @@ class PaymentsController < ApplicationController
     redirect_to grants_path unless @payment.user == current_user or current_admin_user
   end
 
-  def has_card?
+  def stripe_token_and_no_card?
     if current_user and current_user.stripe_token?
       Stripe.api_key = ENV['stripe_api_key']
       customer = Stripe::Customer.retrieve(current_user.stripe_token)
@@ -75,6 +75,7 @@ class PaymentsController < ApplicationController
   end
 
   def update_profile?
+    # Update profile if you are coming from clicking the donate button on grant show page
     if request.base_url + grant_path(@grant) == request.referer
       flash[:info] = "Please confirm the information below before donating."
       redirect_to edit_user_profiles_path + "?next=#{request.original_fullpath}"

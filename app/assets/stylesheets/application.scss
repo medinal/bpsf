@@ -451,3 +451,20 @@ p.info {
 .subject-option:hover, .fund-option:hover {
   cursor: pointer;
 }
+
+.brand-img {
+  height: 40px;
+}
+
+.credit-card-info {
+  background-color: lightgray;
+  padding: 10px;
+  box-shadow: 0px 0px 9px;
+  margin-bottom: 10px;
+}
+
+.credit-card-info button {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
