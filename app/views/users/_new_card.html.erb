@@ -42,6 +42,9 @@
         <%= label_tag :default, "Use as default payment method?" %>
         <%= check_box_tag :default %>
       </div>
+      <% if @next %>
+        <input type="hidden" name="next" value="<%= @next%>">
+      <% end %>
       <%= submit_tag "Save", class: "card-submit button warning" %>
       <div class="button warning cancel-edit">Cancel</div>
     </div>

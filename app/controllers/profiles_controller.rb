@@ -1,13 +1,14 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_profile, only: [:edit, :update]
-  before_action :set_next
+  before_action :set_next, except: [:edit]
 
   def new
     @profile = Profile.new
   end
 
   def edit
+    @next = session[:next] if session[:next]
     if current_user.stripe_token? and @next
       Stripe.api_key = ENV["stripe_api_key"]
       customer = Stripe::Customer.retrieve(current_user.stripe_token)
@@ -19,8 +20,10 @@ class ProfilesController < ApplicationController
     @profile = Profile.new(profile_params)
     @profile.user = current_user
     if @profile.save
-      if @next
-        redirect_to @next, notice: 'You successfully created your profile!'
+      if params[:next]
+        # next_url = session[:next]
+        # session[:next] = nil
+        redirect_to params[:next], notice: 'You successfully created your profile!'
       else
         redirect_to user_path, notice: 'You successfully created your profile!'
       end
@@ -31,8 +34,10 @@ class ProfilesController < ApplicationController
 
   def update
     if @profile.update(profile_params)
-      if @next
-        redirect_to @next, notice: 'Profile was successfully updated.'
+      if params[:next]
+        # next_url = session[:next]
+        # session[:next] = nil
+        redirect_to params[:next], notice: 'Profile was successfully updated.'
       else
         redirect_to user_path, notice: 'Profile was successfully updated.'
       end
@@ -58,7 +63,8 @@ class ProfilesController < ApplicationController
   end
 
   def set_next
-    @next = params['next'] if params['next']
+    @next = session[:next] if session[:next]
+    session[:next] = nil
   end
 
 

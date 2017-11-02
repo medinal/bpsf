@@ -44,6 +44,7 @@ class GrantsController < ApplicationController
   before_action :owner, only: [:edit, :update, :destroy]
   before_action :already_submitted, only: [:edit, :update]
   before_action :has_profile?, except: [:index, :usergrants, :show]
+  before_action :set_next
 
   # GET /grants
   def index
@@ -187,6 +188,11 @@ class GrantsController < ApplicationController
 
     def has_profile?
       redirect_to new_user_profiles_path + "?next=#{request.original_fullpath}", alert: "Please create a profile first." unless current_admin_user or (current_user and current_user.profile)
+    end
+
+    def set_next
+      @next = session[:next] if session[:next]
+      session[:next] = nil
     end
 
 end

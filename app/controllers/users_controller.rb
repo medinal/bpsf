@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_next
 
   def show
     if params['current']
@@ -34,11 +35,14 @@ class UsersController < ApplicationController
           customer.save
         end
       end
-
-      redirect_to user_path + "?current=credit-card-label", notice: 'Successfully created card'
+      if params[:next]
+        redirect_to params[:next], notice: 'Successfully created card'
+      else
+        redirect_to user_path + "?current=credit-card-label", notice: 'Successfully created card'
+      end
     rescue => e
       redirect_to user_path + "?current=credit-card-label", alert: 'Could not find token to create card'
-    end 
+    end
   end
 
   def edit_card
@@ -59,7 +63,11 @@ class UsersController < ApplicationController
             customer.default_source = card.id
             customer.save
           end
-          redirect_to user_path + "?current=credit-card-label", notice: 'Successfully updated card'
+          if params[:next]
+            redirect_to params[:next], notice: 'Successfully updated card'
+          else
+            redirect_to user_path + "?current=credit-card-label", notice: 'Successfully updated card'
+          end
         rescue => e
           p e
           redirect_to user_path + "?current=credit-card-label", alert: 'Could not update card'
@@ -93,5 +101,10 @@ class UsersController < ApplicationController
 
   def card_params
     params.permit(:name, :exp_month, :exp_year, :address_city, :address_state, :address_zip, :address_line1, :address_line2, :address_country)
+  end
+
+  def set_next
+    @next = session[:next] if session[:next]
+    session[:next] = nil
   end
 end
