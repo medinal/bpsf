@@ -21,8 +21,6 @@ class ProfilesController < ApplicationController
     @profile.user = current_user
     if @profile.save
       if params[:next]
-        # next_url = session[:next]
-        # session[:next] = nil
         redirect_to params[:next], notice: 'You successfully created your profile!'
       else
         redirect_to user_path, notice: 'You successfully created your profile!'
@@ -35,8 +33,6 @@ class ProfilesController < ApplicationController
   def update
     if @profile.update(profile_params)
       if params[:next]
-        # next_url = session[:next]
-        # session[:next] = nil
         redirect_to params[:next], notice: 'Profile was successfully updated.'
       else
         redirect_to user_path, notice: 'Profile was successfully updated.'
