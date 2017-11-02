@@ -5,6 +5,7 @@ class PaymentsController < ApplicationController
   before_action :stripe_token_and_no_card?, only: :new
   before_action :set_payment, only: :destroy
   before_action :owner_or_admin?, only: :destroy
+  before_action :set_next
 
   def new
     @grant = Grant.find(params[:grant_id])
@@ -51,7 +52,10 @@ class PaymentsController < ApplicationController
   private
 
   def has_profile?
-    redirect_to new_user_profiles_path + "?next=#{request.original_fullpath}", alert: "Please create a profile first." unless current_admin_user or (current_user and current_user.profile)
+    unless current_admin_user or (current_user and current_user.profile)
+      session[:next] = "#{request.original_fullpath}"
+      redirect_to new_user_profiles_path, alert: "Please create a profile first."
+    end
   end
 
   def payment_params
@@ -70,7 +74,10 @@ class PaymentsController < ApplicationController
     if current_user and current_user.stripe_token?
       Stripe.api_key = ENV['stripe_api_key']
       customer = Stripe::Customer.retrieve(current_user.stripe_token)
-      redirect_to user_path + "?current=credit-card-label", alert: 'Add a new credit card before donating' unless customer.sources.total_count > 0
+      unless customer.sources.total_count > 0
+        session[:next] = "#{request.original_fullpath}"
+        redirect_to user_path + "?current=credit-card-label", alert: 'Add a new credit card before donating'
+      end
     end
   end
 
@@ -78,8 +85,14 @@ class PaymentsController < ApplicationController
     # Update profile if you are coming from clicking the donate button on grant show page
     if request.base_url + grant_path(@grant) == request.referer
       flash[:info] = "Please confirm the information below before donating."
-      redirect_to edit_user_profiles_path + "?next=#{request.original_fullpath}"
+      session[:next] = "#{request.original_fullpath}"
+      redirect_to edit_user_profiles_path
     end
+  end
+
+  def set_next
+    @next = session[:next] if session[:next]
+    session[:next] = nil
   end
 
 end
