@@ -178,8 +178,8 @@ $(document).on('turbolinks:load', function() {
     $('#error_explanation').html('');
     var amount = $('input#amount').val();
     amount = amount.replace(/\$/g, '').replace(/\,/g, '');
-    amount = parseFloat(amount);
-
+    amount = parseFloat(parseFloat(amount).toFixed(2));
+    $('input#amount').val(amount);
     if (isNaN(amount)) {
       e.preventDefault();
       $('#error_explanation').html('<p>Please enter a valid amount in USD ($).</p>');

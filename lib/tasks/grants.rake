@@ -38,7 +38,7 @@ namespace :grants do
               charge = Stripe::Charge.create(
                 :customer => payment.user.stripe_token,
                 :currency => 'usd',
-                :amount => payment.amount*100
+                :amount => (payment.amount*100).to_i
               )
               payment.status = "charged"
               payment.charge_id = charge.id
