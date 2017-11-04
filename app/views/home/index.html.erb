@@ -9,7 +9,7 @@
                   <%= cl_image_tag(@grants.first.image) %>
                   <figcaption class="orbit-caption">
                     <h3><%= @grants.first.title %></h3>
-                    <h4><span class="amount">$<%= @grants.first.amount_raised %></span> of $<%= @grants.first.total_budget %>
+                    <h4><span class="amount">$<%= @grants.first.amount_raised %></span> of $<%= @grants.first.with_admin_cost %>
                       <% if @grants.first.days_left > 1 %>
                         with <%= pluralize(@grants.first.days_left, 'day') %> left
                       <% elsif @grants.first.days_left > 0 %>
@@ -18,8 +18,8 @@
                         Past Deadline
                       <% end %>
                     </h4>
-                    <div class="progress" role="progressbar" tabindex="0" aria-valuenow="<%= @grants.first.amount_raised %>" aria-valuemin="0" aria-valuemax="<%= @grants.first.total_budget %>">
-                      <div class="progress-meter" style="width: <%= @grants.first.percent_complete %>%"></div>
+                    <div class="progress" role="progressbar" tabindex="0" aria-valuenow="<%= @grants.first.amount_raised %>" aria-valuemin="0" aria-valuemax="<%= @grants.first.with_admin_cost %>">
+                      <div class="progress-meter" style="width: <%= @grants.first.progress %>"></div>
                     </div>
                   </figcaption>
                 <% end %>
@@ -30,7 +30,7 @@
                   <%= cl_image_tag(grant.image)%>
                   <figcaption class="orbit-caption">
                     <h3><%= grant.title %></h3>
-                    <h4><span class="amount">$<%= grant.amount_raised %></span> of $<%= grant.total_budget %>
+                    <h4><span class="amount">$<%= grant.amount_raised %></span> of $<%= grant.with_admin_cost %>
                       <% if grant.days_left > 1 %>
                         with <%= pluralize(grant.days_left, 'day') %> left
                       <% elsif grant.days_left > 0 %>
@@ -39,8 +39,8 @@
                         Past Deadline
                       <% end %>
                     </h4>
-                    <div class="progress" role="progressbar" tabindex="0" aria-valuenow="<%= grant.amount_raised %>" aria-valuemin="0" aria-valuemax="<%= grant.total_budget %>">
-                      <div class="progress-meter" style="width: <%= grant.percent_complete %>%"></div>
+                    <div class="progress" role="progressbar" tabindex="0" aria-valuenow="<%= grant.amount_raised %>" aria-valuemin="0" aria-valuemax="<%= grant.with_admin_cost %>">
+                      <div class="progress-meter" style="width: <%= grant.progress %>"></div>
                     </div>
                   </figcaption>
                   <% end %>

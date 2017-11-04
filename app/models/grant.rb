@@ -23,8 +23,13 @@ class Grant < ApplicationRecord
   validate :state_transition, on: :save
   validates :user, :school, :status, presence: true
 
+  def percent_complete
+    percent = ([self.amount_raised/self.with_admin_cost.to_f, 1].min * 100).to_i
+    percent
+  end
+
   def progress
-    "#{([self.amount_raised/self.total_budget.to_f, 1].min * 100).to_i}%"
+    "#{self.percent_complete}%"
   end
 
   def amount_raised
@@ -34,13 +39,6 @@ class Grant < ApplicationRecord
     end
     total
   end
-
-  def percent_complete
-    percent = (self.amount_raised/self.total_budget.to_f)*100
-    percent = 100 if percent > 100
-    percent
-  end
-
 
   def days_left
     (self.deadline - Time.now.getlocal("-07:00").to_date).to_i
@@ -59,7 +57,7 @@ class Grant < ApplicationRecord
   end
 
   def check_total(total, admins, payment)
-    if total < self.total_budget && total + payment.amount >= self.total_budget
+    if total < self.with_admin_cost && total + payment.amount >= self.with_admin_cost
       admins.each do |admin|
         AdminCrowdsuccessJob.new.async.perform(self, admin)
       end
@@ -71,7 +69,7 @@ class Grant < ApplicationRecord
         end
       end
       GrantFundedJob.new.async.perform(self)
-    elsif self.amount_raised >= (self.total_budget * 0.8) && (self.amount_raised < self.total_budget)
+    elsif self.amount_raised >= (self.with_admin_cost * 0.8) && (self.amount_raised < self.with_admin_cost)
       DonorNearendJob.new.async.perform(self, payment.user)
     end
   end

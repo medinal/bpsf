@@ -8,14 +8,14 @@ namespace :grants do
       grant.payments.each do |payment|
         sum += payment.amount
       end
-      if grant.days_left == 3 && sum < grant.total_budget
+      if grant.days_left == 3 && sum < grant.with_admin_cost
         GrantEndingJob.new.perform(grant)
         AdminUser.all.each do |admin|
           SuperCrowdendingJob.new.perform(grant, admin)
         end
       end
       if grant.days_left < 1
-        if sum < grant.total_budget
+        if sum < grant.with_admin_cost
           grant.status = "failed"
           AdminUser.all.each do |admin|
             puts "before admin"

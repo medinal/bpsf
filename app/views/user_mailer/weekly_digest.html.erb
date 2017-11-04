@@ -9,13 +9,13 @@
   <body>
     <h1>
       <%= @user.first_name %>, here is your weekly digest for the Schools Fund Friends and Family Grant Portal.    </h1>
-    <% @grants.each do |g%>
+    <% @grants.each do |g| %>
       <h2>
         <%= g.title %>: currently at <%= g.crowdfunder.progress %>
         <br>
       </h2>
       <p>
-        You only have <%= g.days_left %> days left until your deadline! Try sharing your grant on social media to raise the last $<%= g.total_budget-g.amount_raised %>. Here is the link to your grant: <%= 'https://bpsfgrants.herokuapp.com/grants/' + (g.id).to_s %>.
+        You only have <%= g.days_left %> days left until your deadline! Try sharing your grant on social media to raise the last $<%= g.with_admin_cost-g.amount_raised %>. Here is the link to your grant: <%= 'https://bpsfgrants.herokuapp.com/grants/' + (g.id).to_s %>.
         <br>
       </p>
     <% end %>
