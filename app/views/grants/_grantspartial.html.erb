@@ -6,7 +6,7 @@
     <div class="columns medium-6 large-8 small-12">
       <h3 class="hover-orange"><%= grant.title %></h3>
       <p><%= grant.user.first_name %> <%= grant.user.last_name %> | <%= grant.school.name %></p>
-      <h6><%= grant.summary %></6>
+      <h6><%= grant.summary %></h6>
       <h4><span class="amount">$<%= grant.amount_raised %></span> of $<%= grant.with_admin_cost %>
         <% if grant.days_left > 1 %>
           with <%= pluralize(grant.days_left, 'day') %> left
