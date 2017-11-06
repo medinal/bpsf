@@ -29,7 +29,11 @@ class Grant < ApplicationRecord
   end
 
   def progress
-    "#{self.percent_complete}%"
+    if self.total_budget
+      "#{self.percent_complete}%"
+    else
+      ""
+    end
   end
 
   def amount_raised
@@ -92,11 +96,19 @@ class Grant < ApplicationRecord
 
   def with_admin_cost
     # 9% cost added
-    (total_budget * 1.09).to_i
+    if self.total_budget
+      (self.total_budget * 1.09).to_i
+    else
+      ""
+    end
   end
 
   def admin_cost
-    with_admin_cost - total_budget
+    if self.total_budget
+      self.with_admin_cost - self.total_budget
+    else
+      ""
+    end
   end
 
 
